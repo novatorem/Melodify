@@ -4,22 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Melodify"
+        xmlns:interop="clr-namespace:Melodify"
+        interop:WindowBlur.IsEnabled="True"
+        Background="Transparent"
+        AllowsTransparency="True"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="400"
+        Title="MainWindow"
+        Height="200"
+        Width="400"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid >
 
-        <TextBlock HorizontalAlignment="Center" Text="HeliOS" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,0,75" FontSize="48" FontFamily="Calibri Light"/>
 
-        <Button Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="32" Padding="5,-5,5,0" FontFamily="Calibri" BorderThickness="0,0,0,0" Background="#FF1ED760">
+        <TextBlock HorizontalAlignment="Center" Text="HeliOS" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,0,75" FontSize="48" FontFamily="Calibri Light" Foreground="White"/>
+
+        <Button x:Name="song" Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="18" FontFamily="Calibri">
+        </Button>
+
+
+        <TextBlock x:Name="artist" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,110,0,0"/>
+
+        <Canvas Background="Black" Opacity="0.1" Panel.ZIndex="-100"/>
+
+        <!--<Button x:Name="entrance" Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="32" Padding="5,-5,5,0" FontFamily="Calibri" BorderThickness="0,0,0,0" Background="#FF1ED760">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
-        </Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="290,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.563,0.677" Click="Button_Click_1"/>
+        </Button>-->
+
 
     </Grid>
 </Window>

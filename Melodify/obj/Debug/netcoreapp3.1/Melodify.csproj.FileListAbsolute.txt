@@ -44,3 +44,4 @@ C:\Users\ahaji\Documents\Github\Melodify\Melodify\obj\Debug\netcoreapp3.1\Melodi
 C:\Users\ahaji\Documents\Github\Melodify\Melodify\obj\Debug\netcoreapp3.1\Melodify.csproj.CopyComplete
 C:\Users\ahaji\Documents\Github\Melodify\Melodify\obj\Debug\netcoreapp3.1\Melodify.dll
 C:\Users\ahaji\Documents\Github\Melodify\Melodify\obj\Debug\netcoreapp3.1\Melodify.pdb
+C:\Users\ahaji\Documents\Github\Melodify\Melodify\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs

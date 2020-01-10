@@ -25,12 +25,22 @@ namespace Melodify
         public MainWindow()
         {
             InitializeComponent();
+            MouseDown += Window_MouseDown;
+            SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
-            
+            //SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
+            var _spotify = new SpotifyWebAPI()
+            {
+                AccessToken = (string)App.Current.Properties["AccessToken"],
+                TokenType = (string)App.Current.Properties["TokenType"]
+            };
+            PlaybackContext context = _spotify.GetPlayingTrack();
+            System.Diagnostics.Debug.WriteLine(context.Item.Name);
+            song.Content = context.Item.Name;
+            artist.Text = context.Item.Artists[0].Name;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -42,6 +52,12 @@ namespace Melodify
             };
             FullTrack track = _spotify.GetTrack("3Hvu1pq89D4R0lyPBoujSv");
             System.Diagnostics.Debug.WriteLine(track.Name);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

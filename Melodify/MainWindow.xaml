@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Melodify"
         xmlns:interop="clr-namespace:Melodify"
-        interop:WindowBlur.IsEnabled="True"
         Background="Transparent"
         AllowsTransparency="True"
         mc:Ignorable="d"
@@ -19,13 +18,18 @@
 
         <TextBlock HorizontalAlignment="Center" Text="HeliOS" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,0,75" FontSize="48" FontFamily="Calibri Light" Foreground="White"/>
 
-        <Button x:Name="song" Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="18" FontFamily="Calibri">
-        </Button>
+        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0" FontSize="20"  Foreground="White">musicorum</Label>
+        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0" FontSize="16" Foreground="White">artifex</Label>
 
+        <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Top" Width="500" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,-140,0,0">
+            <Image.Effect>
+                <BlurEffect Radius="40"/>
+            </Image.Effect>
+        </Image>
+        <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-98"/>
 
-        <TextBlock x:Name="artist" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,110,0,0"/>
-
-        <Canvas Background="Black" Opacity="0.1" Panel.ZIndex="-100"/>
+        <!--<Button x:Name="song" Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="18" FontFamily="Calibri">
+        </Button>-->
 
         <!--<Button x:Name="entrance" Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="32" Padding="5,-5,5,0" FontFamily="Calibri" BorderThickness="0,0,0,0" Background="#FF1ED760">
             <Button.Resources>

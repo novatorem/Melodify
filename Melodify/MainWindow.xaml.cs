@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,31 +29,44 @@ namespace Melodify
             InitializeComponent();
             MouseDown += Window_MouseDown;
             SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
+            // Sleep for two seconds while waiting for login to process
+            // Needs to be fixed later as it will take more time for user to log in - implement null checker
+            Thread.Sleep(2000);
+            System.Timers.Timer timer = new System.Timers.Timer(100);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            //SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
-            var _spotify = new SpotifyWebAPI()
+            try
             {
-                AccessToken = (string)App.Current.Properties["AccessToken"],
-                TokenType = (string)App.Current.Properties["TokenType"]
-            };
-            PlaybackContext context = _spotify.GetPlayingTrack();
-            System.Diagnostics.Debug.WriteLine(context.Item.Name);
-            song.Content = context.Item.Name;
-            artist.Text = context.Item.Artists[0].Name;
-        }
+                var _spotify = new SpotifyWebAPI()
+                {
+                    AccessToken = (string)App.Current.Properties["AccessToken"],
+                    TokenType = (string)App.Current.Properties["TokenType"]
+                };
+                PlaybackContext context = _spotify.GetPlayingTrack();
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var _spotify = new SpotifyWebAPI()
+                Title.Dispatcher.Invoke(() =>
+                {
+                    //Title.Content = context.Item.Name;
+                    Title.Content = context.Item.Name;
+                    Author.Content = context.Item.Artists[0].Name;
+
+                    BitmapImage albumArt = new BitmapImage();
+                    albumArt.BeginInit();
+                    albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
+                    albumArt.EndInit();
+                    cover.Source = albumArt;
+                
+                });
+            }
+            catch
             {
-                AccessToken = (string)App.Current.Properties["AccessToken"],
-                TokenType = (string)App.Current.Properties["TokenType"]
-            };
-            FullTrack track = _spotify.GetTrack("3Hvu1pq89D4R0lyPBoujSv");
-            System.Diagnostics.Debug.WriteLine(track.Name);
+                Title.Content = "song name...";
+                Author.Content = "artist name...";
+            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

@@ -50,7 +50,6 @@ namespace Melodify
 
                 Title.Dispatcher.Invoke(() =>
                 {
-                    //Title.Content = context.Item.Name;
                     Title.Content = context.Item.Name;
                     Author.Content = context.Item.Artists[0].Name;
 
@@ -59,7 +58,6 @@ namespace Melodify
                     albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
                     albumArt.EndInit();
                     cover.Source = albumArt;
-                
                 });
             }
             catch
@@ -83,6 +81,26 @@ namespace Melodify
         private void Self_Click(object sender, RoutedEventArgs e)
         {
             Spotify.UserTrackSuggestion();
+        }
+
+        private void Love_Click(object sender, RoutedEventArgs e)
+        {
+            Spotify.LoveSong();
+        }
+
+        private void PausePlay_Click(object sender, RoutedEventArgs e)
+        {
+            Spotify.PausePlaySong();
+        }
+
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            Spotify.NextSong();
+        }
+
+        private void Previous_Click(object sender, RoutedEventArgs e)
+        {
+            Spotify.PreviousSong();
         }
     }
 }

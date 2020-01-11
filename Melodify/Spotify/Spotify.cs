@@ -24,11 +24,18 @@ namespace Melodify
                 };
                 
                 PlaybackContext context = _spotify.GetPlayingTrack();
+                System.Diagnostics.Debug.WriteLine(context);
                 string songID = context.Item.Id;
-                string playlist = context.Context.Uri.Split(':')[4];
+                System.Diagnostics.Debug.WriteLine(songID);
+
                 suggestionMode = true;
+                var playbackContext = _spotify.GetPlayback();
+                var playlistID = playbackContext.Context;
+                System.Diagnostics.Debug.WriteLine(playlistID);
 
                 string recommendedURI = _spotify.GetRecommendations(trackSeed: new List<string> { songID }).Tracks[0].Uri;
+
+                System.Diagnostics.Debug.WriteLine(recommendedURI);
                 ErrorResponse err = _spotify.ResumePlayback(uris: new List<string> { recommendedURI }, offset: "");
 
 
@@ -61,14 +68,21 @@ namespace Melodify
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
                 };
-
-                PlaybackContext context = _spotify.GetPlayingTrack();
-                string songID = context.Item.Id;
-                string playlist = context.Context.Uri.Split(':')[4];
+                Random random = new Random();
+                // Get users top playing tracks
+                Paging<FullTrack> tracks = _spotify.GetUsersTopTracks();
+                List<string> favTracks = new List<string>();
+                // Get the ID of each track
+                tracks.Items.ForEach(item => favTracks.Add(item.Id));
+                // Iterate through those IDs and find a random suggested song based on them
+                List<string> recTracks = new List<string>();
+                foreach (string track in favTracks)
+                {
+                    recTracks.Add(_spotify.GetRecommendations(trackSeed: new List<string> { track }, limit: 5).Tracks[random.Next(4)].Uri);
+                }
+                // Play the random songs as a standalone playlist
                 suggestionMode = true;
-
-                string recommendedURI = _spotify.GetRecommendations(trackSeed: new List<string> { songID }).Tracks[0].Uri;
-                ErrorResponse err = _spotify.ResumePlayback(uris: new List<string> { recommendedURI }, offset: "");
+                ErrorResponse err = _spotify.ResumePlayback(uris: recTracks, offset: "");
 
             }
             catch
@@ -229,16 +243,15 @@ namespace Melodify
                     TokenType = (string)App.Current.Properties["TokenType"]
                 };
                 // Below should in theory work, but doesn't seem to
-                //PlaybackContext context = _spotify.GetPlayback();
-                //System.Diagnostics.Debug.WriteLine(context.IsPlaying);
-                //if (!context.IsPlaying) {
-                //    System.Diagnostics.Debug.WriteLine(context.IsPlaying);
-                //    ErrorResponse error = _spotify.PausePlayback();
-                //} else
-                //{
-                //    System.Diagnostics.Debug.WriteLine(context.IsPlaying);
-                //    ErrorResponse error = _spotify.ResumePlayback(offset: "");
-                //}
+                PlaybackContext context = _spotify.GetPlayback();
+                if (context.IsPlaying)
+                {
+                    ErrorResponse error = _spotify.PausePlayback();
+                }
+                else
+                {
+                    ErrorResponse error = _spotify.ResumePlayback(offset: "");
+                }
             }
             catch
             {

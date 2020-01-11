@@ -73,7 +73,7 @@
             </Button.Background>
         </Button>
 
-        <Button Style="{DynamicResource playback}" Content="⏮️" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,75,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,75,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -84,7 +84,7 @@
             </Button.Background>
         </Button>
 
-        <Button Style="{DynamicResource playback}" Content="⏭" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,75,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,75,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

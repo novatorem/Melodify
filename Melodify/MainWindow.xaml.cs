@@ -74,5 +74,15 @@ namespace Melodify
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void Other_Click(object sender, RoutedEventArgs e)
+        {
+            Spotify.CurrentTrackSuggestion();
+        }
+
+        private void Self_Click(object sender, RoutedEventArgs e)
+        {
+            Spotify.UserTrackSuggestion();
+        }
     }
 }

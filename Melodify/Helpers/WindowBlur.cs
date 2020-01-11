@@ -126,7 +126,7 @@ namespace Melodify
                 Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY,
                 SizeOfData = accentStructSize,
                 Data = accentPtr
-            };
+        };
 
             SetWindowCompositionAttribute(windowHelper.Handle, ref data);
 

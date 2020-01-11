@@ -9,15 +9,12 @@
         AllowsTransparency="True"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="200"
-        Width="400"
+        Height="100"
+        Width="360"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
 
     <Grid >
-
-
-        <TextBlock HorizontalAlignment="Center" Text="HeliOS" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,0,125" FontSize="48" FontFamily="Calibri Light" Foreground="White"/>
 
         <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,50" FontSize="20"  Foreground="White">musicorum</Label>
         <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="16" Foreground="White">artifex</Label>
@@ -27,7 +24,7 @@
             </Image.Effect>
         </Image>
 
-        <!-- The three bottom buttons -->
+        <!-- The japanese buttons -->
         <Button Style="{DynamicResource control}" Content="そ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Other_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2"
                 ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Recommended song based on currently playing">
             <Button.Resources>
@@ -62,7 +59,7 @@
 
         <!-- Media Control buttons -->
 
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Center" VerticalAlignment="Center" Click="PausePlay_Click" BorderBrush="{x:Null}" Padding="50,75,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="128">
+        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="PausePlay_Click" BorderBrush="{x:Null}" Padding="50,40,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="128" Panel.ZIndex="-5">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -73,7 +70,7 @@
             </Button.Background>
         </Button>
 
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,75,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -84,7 +81,7 @@
             </Button.Background>
         </Button>
 
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,75,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

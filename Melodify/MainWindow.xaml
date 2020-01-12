@@ -14,10 +14,10 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
 
-    <Grid >
+    <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave">
 
-        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,50" FontSize="20"  Foreground="White">musicorum</Label>
-        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="16" Foreground="White">artifex</Label>
+        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,25" FontSize="20"  Foreground="White" Panel.ZIndex="-10">musicorum</Label>
+        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-25" FontSize="16" Foreground="White" Panel.ZIndex="-10">artifex</Label>
         <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Top" Width="500" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,-140,0,0">
             <Image.Effect>
                 <BlurEffect Radius="40"/>
@@ -25,7 +25,7 @@
         </Image>
 
         <!-- The japanese buttons -->
-        <Button Style="{DynamicResource control}" Content="そ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Other_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2"
+        <Button x:Name="otherClick" Style="{DynamicResource control}" Content="そ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Other_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2"
                 ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Recommended song based on currently playing">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -36,7 +36,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button Style="{DynamicResource control}" Content="セ" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Self_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
+        <Button x:Name="selfClick" Style="{DynamicResource control}" Content="セ" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Self_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -46,7 +46,17 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button Style="{DynamicResource control}" Content="ハ" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
+        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="グ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.15"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="り" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -58,7 +68,6 @@
         </Button>
 
         <!-- Media Control buttons -->
-
         <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="PausePlay_Click" BorderBrush="{x:Null}" Padding="50,40,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="128" Panel.ZIndex="-5">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -69,7 +78,6 @@
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
         </Button>
-
         <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -80,7 +88,6 @@
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
         </Button>
-
         <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -92,20 +99,16 @@
             </Button.Background>
         </Button>
 
-
-        <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-98"/>
-
-        <!--<Button x:Name="song" Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="18" FontFamily="Calibri">
-        </Button>-->
-
-        <!--<Button x:Name="entrance" Content="enter" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Click="Button_Click" Opacity="0.79" FontSize="32" Padding="5,-5,5,0" FontFamily="Calibri" BorderThickness="0,0,0,0" Background="#FF1ED760">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
-        </Button>-->
-
+        <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
+        
+        <Grid.ContextMenu>
+            <ContextMenu Name="contextMenu">
+                <MenuItem Header="Info"/>
+                <MenuItem Header="Github"/>
+                <Separator/>
+                <MenuItem Header="Exit"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
 
     </Grid>
 

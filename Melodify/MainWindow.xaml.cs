@@ -102,5 +102,21 @@ namespace Melodify
         {
             Spotify.PreviousSong();
         }
+
+        private void MainGrid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            otherClick.Visibility = Visibility.Collapsed;
+            selfClick.Visibility = Visibility.Collapsed;
+            loveClick.Visibility = Visibility.Collapsed;
+            infoClick.Visibility = Visibility.Collapsed;
+        }
+
+        private void MainGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            otherClick.Visibility = Visibility.Visible;
+            selfClick.Visibility = Visibility.Visible;
+            loveClick.Visibility = Visibility.Visible;
+            infoClick.Visibility = Visibility.Visible;
+        }
     }
 }

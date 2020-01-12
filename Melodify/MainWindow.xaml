@@ -12,7 +12,9 @@
         Height="100"
         Width="360"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="Manual" 
+        Left="0" Top="0"
+        Topmost="True">
 
     <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave">
 

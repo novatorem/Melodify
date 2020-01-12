@@ -4,6 +4,20 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <Authors>Andrew Novac</Authors>
+    <Company>Novatorem</Company>
+    <Copyright>MIT License</Copyright>
+    <Description>A miniature UI for spotify, that includes recommendations and user information</Description>
+    <PackageProjectUrl>https://github.com/novatorem/Melodify</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/novatorem/Melodify.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0</Version>
+    <ApplicationIcon>melodify.ico</ApplicationIcon>
+
+
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

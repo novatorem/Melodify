@@ -12,6 +12,7 @@ Release/
 *.log
 TestResult.xml
 *.VisualState.xml
+.vs/
 Version.cs
 Version.h
 Version.cpp

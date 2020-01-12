@@ -169,39 +169,6 @@ namespace Melodify
             }
         }
 
-        public static void InfoUser()
-        {
-            try
-            {
-                var _spotify = new SpotifyWebAPI()
-                {
-                    AccessToken = (string)App.Current.Properties["AccessToken"],
-                    TokenType = (string)App.Current.Properties["TokenType"]
-                };
-
-                PlaybackContext context = _spotify.GetPlayingTrack();
-                ErrorResponse response = _spotify.SaveTrack(context.Item.Id);
-
-            }
-            catch
-            {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "LoveSong");
-                    return;
-                }
-
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed at Spotify/LoveSong");
-                System.Diagnostics.Debug.WriteLine("Failed at Spotify/LoveSong");
-            }
-        }
-
         public static void NextSong()
         {
             try

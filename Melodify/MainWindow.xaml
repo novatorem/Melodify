@@ -16,8 +16,8 @@
 
     <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave">
 
-        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,25" FontSize="20"  Foreground="White" Panel.ZIndex="-10">musicorum</Label>
-        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-25" FontSize="16" Foreground="White" Panel.ZIndex="-10">artifex</Label>
+        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,27.5" FontSize="20"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">musicorum</Label>
+        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-27.5" FontSize="16" Foreground="#FFA4A4A4" Panel.ZIndex="-10">artifex</Label>
         <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Top" Width="500" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,-140,0,0">
             <Image.Effect>
                 <BlurEffect Radius="40"/>
@@ -103,10 +103,10 @@
         
         <Grid.ContextMenu>
             <ContextMenu Name="contextMenu">
-                <MenuItem Header="Info"/>
-                <MenuItem Header="Github"/>
+                <MenuItem Header="Info" Click="CMInfo_Click"/>
+                <MenuItem Header="Github" Click="CMGithub_Click"/>
                 <Separator/>
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="Exit" Click="CMExit_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
 

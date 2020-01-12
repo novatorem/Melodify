@@ -91,6 +91,11 @@ namespace Melodify
             Spotify.LoveSong();
         }
 
+        private void Info_Click(object sender, RoutedEventArgs e)
+        {
+            Spotify.InfoUser();
+        }
+
         private void PausePlay_Click(object sender, RoutedEventArgs e)
         {
             Spotify.PausePlaySong();

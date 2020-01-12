@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 namespace Melodify
 {
     /// <summary>
-    /// Interaction logic for UserInfo.xaml
+    /// Interaction logic for AppInfo.xaml
     /// </summary>
     public partial class AppInfo : Window
     {
@@ -29,6 +29,11 @@ namespace Melodify
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

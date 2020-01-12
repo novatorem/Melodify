@@ -31,7 +31,7 @@
                 ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Recommended song based on currently playing">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="3"/>
                 </Style>
             </Button.Resources>
             <Button.Background>
@@ -41,7 +41,7 @@
         <Button x:Name="selfClick" Style="{DynamicResource control}" Content="セ" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Self_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="3"/>
                 </Style>
             </Button.Resources>
             <Button.Background>
@@ -51,7 +51,7 @@
         <Button x:Name="loveClick" Style="{DynamicResource control}" Content="グ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="3"/>
                 </Style>
             </Button.Resources>
             <Button.Background>
@@ -61,7 +61,7 @@
         <Button x:Name="infoClick" Style="{DynamicResource control}" Content="り" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Info_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="3"/>
                 </Style>
             </Button.Resources>
             <Button.Background>
@@ -71,31 +71,16 @@
 
         <!-- Media Control buttons -->
         <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="PausePlay_Click" BorderBrush="{x:Null}" Padding="50,40,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="128" Panel.ZIndex="-5">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
             <Button.Background>
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
         </Button>
         <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
             <Button.Background>
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
         </Button>
         <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
             <Button.Background>
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>

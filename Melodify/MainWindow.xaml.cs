@@ -2,6 +2,7 @@
 using SpotifyAPI.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -117,6 +118,30 @@ namespace Melodify
             selfClick.Visibility = Visibility.Visible;
             loveClick.Visibility = Visibility.Visible;
             infoClick.Visibility = Visibility.Visible;
+        }
+
+        private void CMExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void CMGithub_Click(object sender, RoutedEventArgs e)
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = "cmd",
+                WindowStyle = ProcessWindowStyle.Hidden,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                Arguments = $"/c start https://github.com/novatorem/Melodify"
+            };
+            Process.Start(psi);
+        }
+
+        private void CMInfo_Click(object sender, RoutedEventArgs e)
+        {
+            //Add a popup window/image/something to explain what's going on
+            ;
         }
     }
 }

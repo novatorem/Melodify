@@ -93,7 +93,8 @@ namespace Melodify
 
         private void Info_Click(object sender, RoutedEventArgs e)
         {
-            Spotify.InfoUser();
+            UserInfo userInfo = new UserInfo();
+            userInfo.Show();
         }
 
         private void PausePlay_Click(object sender, RoutedEventArgs e)

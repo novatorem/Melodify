@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/novatorem/Melodify.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Version>1.0</Version>
-    <ApplicationIcon>melodify.ico</ApplicationIcon>
+    <ApplicationIcon>Resources/melodify.ico</ApplicationIcon>
 
 
     <PublishSingleFile>true</PublishSingleFile>
@@ -26,6 +26,12 @@
 
   <ItemGroup>
     <PackageReference Include="SpotifyAPI.Web.Auth" Version="4.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UserInfo - Copy.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

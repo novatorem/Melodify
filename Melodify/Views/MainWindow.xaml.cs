@@ -148,8 +148,8 @@ namespace Melodify
 
         private void CMInfo_Click(object sender, RoutedEventArgs e)
         {
-            //Add a popup window/image/something to explain what's going on
-            ;
+            AppInfo appInfo = new AppInfo();
+            appInfo.Show();
         }
     }
 }

@@ -35,12 +35,19 @@ namespace Melodify
             // Sleep for two seconds while waiting for login to process
             // Needs to be fixed later as it will take more time for user to log in - implement null checker
             Thread.Sleep(2000);
+
+            // Timer to get the information
             System.Timers.Timer timer = new System.Timers.Timer(100);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
+
+            // Timer to refresh the access token
+            System.Timers.Timer accesser = new System.Timers.Timer(900000);
+            accesser.Elapsed += Access_Elapsed;
+            accesser.Start();
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+            private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             try
             {
@@ -68,6 +75,11 @@ namespace Melodify
                 Title.Content = "song name...";
                 Author.Content = "artist name...";
             }
+        }
+
+        private void Access_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

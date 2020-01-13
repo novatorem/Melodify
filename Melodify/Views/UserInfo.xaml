@@ -16,7 +16,7 @@
     <Grid>
 
         <!-- Exit button -->
-        <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="6,-3,6,2" FontSize="18">
+        <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,3,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-4,5,2" FontSize="20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>

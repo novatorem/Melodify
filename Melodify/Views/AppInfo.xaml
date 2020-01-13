@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Melodify"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="550" Width="400"
       Title="UserInfo"
       Background="Transparent"
       AllowsTransparency="True"
@@ -14,9 +14,16 @@
       >
 
     <Grid>
+        
+        <!--
+        An application meant to offer a clean and minimal interface to interact with Spotify. As a bonus, the user is able to retrieve information about themselves, as well as generate songs recommended to them based on their currently listening track or overall listening habits.
+        -->
+
+        <!-- Title -->
+        <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" Text="Melodify" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="24"/>
 
         <!-- Exit button -->
-        <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="6,-3,6,2" FontSize="18">
+        <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,3,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-4,5,2" FontSize="20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -27,8 +34,62 @@
             </Button.Background>
         </Button>
 
+        <!-- Grid to control the info-text elements-->
+        <Grid Margin="15,55,15,5">
+            <WrapPanel >
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
+                    ‌‌ ‌‌ ‌‌The controls for each process follows characterization of their Japanese translation. They are only visible when hovering over the application itself.
+                </TextBlock>
+                
+                <!-- Controls explanation -->
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
+                    [↖] グ
+                </TextBlock>
+                <TextBlock Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
+                   : likes a song, adding it to your favorite tracks
+                </TextBlock>
+                <TextBlock Width="10000" Height="0" />
+                <TextBlock Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
+                    [↗] り
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
+                   : information and facts about your listening habits
+                </TextBlock>
+                <TextBlock Width="10000" Height="0" />
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
+                    [↙] そ
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
+                   : a recommended song based on the current song
+                </TextBlock>
+                <TextBlock Width="10000" Height="0" />
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
+                    [↘] セ
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
+                   : plays playlist based on your general taste (slow)
+                </TextBlock>
+
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify" Margin="0,10,0,0">
+                    ‌‌ ‌‌ ‌‌There are also four hidden (in terms of UI) functionas. The middle of the program pauses/resumes playback, while the left and right play preview/next respectively. Finely, if you'd like to move the program around, the top left and top right areas are places you can freely click on to move the view.
+                </TextBlock>
+
+            </WrapPanel>
+
+            <!-- Filler for the space -->
+            <Image Source="https://i.imgur.com/zwBdb70.png" Width="350" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
+
+            <!-- Credits -->
+            <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="10" TextAlignment="Justify" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
+                    Created by Novatorem, source code available on Github.
+            </TextBlock>
+        </Grid>
+
+
         <!-- Background to add clickable and darken -->
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
+
+
 
     </Grid>
 

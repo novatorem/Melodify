@@ -79,7 +79,7 @@ namespace Melodify
 
         private void Access_Elapsed(object sender, ElapsedEventArgs e)
         {
-            SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
+            SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d", authed: true);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

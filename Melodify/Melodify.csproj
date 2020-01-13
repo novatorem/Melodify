@@ -13,11 +13,6 @@
     <RepositoryType>git</RepositoryType>
     <Version>1.0</Version>
     <ApplicationIcon>Resources/melodify.ico</ApplicationIcon>
-
-
-    <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>true</PublishTrimmed>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -8,7 +8,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Melodify"
         Height="100"
         Width="360"
         WindowStyle="None"

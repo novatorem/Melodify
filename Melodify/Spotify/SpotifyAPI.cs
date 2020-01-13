@@ -29,7 +29,7 @@ namespace Melodify
                     redirectUrl,
                     Scope.UserReadPrivate | Scope.UserReadCurrentlyPlaying | Scope.UserTopRead | Scope.Streaming | Scope.UserModifyPlaybackState | Scope.UserLibraryModify | Scope.UserReadPlaybackState
                 );
-
+                
                 auth.AuthReceived += (sender, payload) =>
                 {
                     auth.Stop();

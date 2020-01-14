@@ -36,18 +36,33 @@
         </Button>
 
         <Grid Margin="15,150,15,5">
-            <WrapPanel >
-                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
-                    Your taste in music is...
-                </TextBlock>
-            </WrapPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
+                <StackPanel x:Name="uSongs" Margin="20">
+                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
+                        Here are some songs you like-
+                    </TextBlock>
+                </StackPanel>
 
-            <!-- Credits -->
-            <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="10" TextAlignment="Justify" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
-                    Created by Novatorem, source code available on Github.
-            </TextBlock>
+                <StackPanel x:Name="uArtists" Margin="20">
+                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
+                        Your listening habits are-
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel x:Name="uOther" Margin="20">
+                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
+                        Some more info you like-
+                    </TextBlock>
+                </StackPanel>
+
+            </StackPanel>
         </Grid>
+        
+        <!-- Credits -->
+        <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="10" TextAlignment="Justify" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,0">
+                    Created by Novatorem, source code available on Github.
+        </TextBlock>
 
         <!-- Background to add clickable and darken -->
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>

@@ -10,11 +10,9 @@ namespace Melodify
     class Spotify
     {
 
-        private static string playlistID = "";
-        private static Boolean suggestionMode = false;
-
         public static void CurrentTrackSuggestion()
         {
+
             try
             {
                 var _spotify = new SpotifyWebAPI()
@@ -22,40 +20,35 @@ namespace Melodify
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
                 };
-                
+
                 PlaybackContext context = _spotify.GetPlayingTrack();
-                System.Diagnostics.Debug.WriteLine(context);
+                PlaybackContext playbackContext = _spotify.GetPlayback();
+
+                // Save their current playback so we can return to it after
+                try
+                {
+                    if (context.Context.Type == "playlist")
+                    {
+                        string playlistID = playbackContext.Context.Uri;
+                        App.Current.Properties["playlistID"] = playlistID;
+                        App.Current.Properties["suggestionMode"] = true;
+                    }
+                } catch
+                {
+                    System.Diagnostics.Debug.WriteLine("Not playing a playlist, can't get suggestion at Spotify/CurrentTrackSuggestion");
+                }
+
+                // Get a suggestion based on currently playing song
                 string songID = context.Item.Id;
-                System.Diagnostics.Debug.WriteLine(songID);
-
-                suggestionMode = true;
-                var playbackContext = _spotify.GetPlayback();
-                var playlistID = playbackContext.Context;
-                System.Diagnostics.Debug.WriteLine(playlistID);
-
                 string recommendedURI = _spotify.GetRecommendations(trackSeed: new List<string> { songID }).Tracks[0].Uri;
-
-                System.Diagnostics.Debug.WriteLine(recommendedURI);
                 ErrorResponse err = _spotify.ResumePlayback(uris: new List<string> { recommendedURI }, offset: "");
-
 
             }
             catch
             {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "getSuggestion");
-                    return;
-                }
 
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed to get suggestion at Spotify/getSuggestion");
-                System.Diagnostics.Debug.WriteLine("Failed to get suggestion at Spotify/getSuggestion");
+                App.Current.Properties["suggestionMode"] = false;
+                System.Diagnostics.Debug.WriteLine("Failed to get suggestion at Spotify/CurrentTrackSuggestion");
             }
         }
 
@@ -68,6 +61,26 @@ namespace Melodify
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
                 };
+
+
+                PlaybackContext context = _spotify.GetPlayingTrack();
+                PlaybackContext playbackContext = _spotify.GetPlayback();
+
+                // Save their current playback so we can return to it after
+                try
+                {
+                    if (context.Context.Type == "playlist")
+                    {
+                        string playlistID = playbackContext.Context.Uri;
+                        App.Current.Properties["playlistID"] = playlistID;
+                        App.Current.Properties["suggestionMode"] = true;
+                    }
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("Not playing a playlist, can't get suggestion at Spotify/UserTrackSuggestion");
+                }
+
                 Random random = new Random();
                 // Get users top playing tracks
                 Paging<FullTrack> tracks = _spotify.GetUsersTopTracks();
@@ -81,25 +94,12 @@ namespace Melodify
                     recTracks.Add(_spotify.GetRecommendations(trackSeed: new List<string> { track }, limit: 5).Tracks[random.Next(4)].Uri);
                 }
                 // Play the random songs as a standalone playlist
-                suggestionMode = true;
+                App.Current.Properties["suggestionMode"] = true;
                 ErrorResponse err = _spotify.ResumePlayback(uris: recTracks, offset: "");
 
             }
             catch
             {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "UserTrackSuggestion");
-                    return;
-                }
-
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed at Spotify/UserTrackSuggestion");
                 System.Diagnostics.Debug.WriteLine("Failed at Spotify/UserTrackSuggestion");
             }
         }
@@ -114,24 +114,11 @@ namespace Melodify
                     TokenType = (string)App.Current.Properties["TokenType"]
                 };
 
-                ErrorResponse err = _spotify.ResumePlayback(contextUri: playlistID, offset: "");
-                suggestionMode = false;
+                ErrorResponse err = _spotify.ResumePlayback(contextUri: (string)App.Current.Properties["playlistID"], offset: "");
+                App.Current.Properties["suggestionMode"] = false;
             }
             catch
             {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "resumePlayback");
-                    return;
-                }
-
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed at Spotify/resumePlayback");
                 System.Diagnostics.Debug.WriteLine("Failed at Spotify/resumePlayback");
             }
         }
@@ -152,19 +139,6 @@ namespace Melodify
             }
             catch
             {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "LoveSong");
-                    return;
-                }
-
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed at Spotify/LoveSong");
                 System.Diagnostics.Debug.WriteLine("Failed at Spotify/LoveSong");
             }
         }
@@ -184,19 +158,6 @@ namespace Melodify
             }
             catch
             {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "NextSong");
-                    return;
-                }
-
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed at Spotify/NextSong");
                 System.Diagnostics.Debug.WriteLine("Failed at Spotify/NextSong");
             }
         }
@@ -216,19 +177,6 @@ namespace Melodify
             }
             catch
             {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "PreviousSong");
-                    return;
-                }
-
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed at Spotify/PreviousSong");
                 System.Diagnostics.Debug.WriteLine("Failed at Spotify/PreviousSong");
             }
         }
@@ -247,30 +195,20 @@ namespace Melodify
                 if (context.IsPlaying)
                 {
                     ErrorResponse error = _spotify.PausePlayback();
+                    App.Current.Properties["userPause"] = true;
                 }
                 else
                 {
                     ErrorResponse error = _spotify.ResumePlayback(offset: "");
+                    App.Current.Properties["userPause"] = false;
                 }
             }
             catch
             {
-                // Create the source, if it does not already exist.
-                if (!EventLog.SourceExists("Melodify"))
-                {
-                    EventLog.CreateEventSource("Melodify", "PausePlaySong");
-                    return;
-                }
-
-                // Create an EventLog instance and assign its source.
-                EventLog myLog = new EventLog();
-                myLog.Source = "Melodify";
-
-                // Write an informational entry to the event log.    
-                myLog.WriteEntry("Failed at Spotify/PausePlaySong");
                 System.Diagnostics.Debug.WriteLine("Failed at Spotify/PausePlaySong");
             }
         }
+
 
     }
 }

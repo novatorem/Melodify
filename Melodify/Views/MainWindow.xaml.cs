@@ -53,7 +53,7 @@ namespace Melodify
             accesser.Start();
         }
 
-            private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             try
             {
@@ -75,6 +75,7 @@ namespace Melodify
                     albumArt.EndInit();
                     cover.Source = albumArt;
                 });
+
                 if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying) {
                     Spotify.ResumePlayback();
                 }

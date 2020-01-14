@@ -13,6 +13,7 @@
     <RepositoryType>git</RepositoryType>
     <Version>1.0</Version>
     <ApplicationIcon>Resources/melodify.ico</ApplicationIcon>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

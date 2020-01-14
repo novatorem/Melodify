@@ -31,6 +31,12 @@ namespace Melodify
             MouseDown += Window_MouseDown;
             Left = SystemParameters.WorkArea.Width - Width;
             Top = SystemParameters.WorkArea.Height - Height;
+
+            // Initalize some instances to ensure continuing playback
+            App.Current.Properties["playlistID"] = "";
+            App.Current.Properties["suggestionMode"] = false;
+            App.Current.Properties["userPause"] = false;
+
             SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
             // Sleep for two seconds while waiting for login to process
             // Needs to be fixed later as it will take more time for user to log in - implement null checker
@@ -69,6 +75,9 @@ namespace Melodify
                     albumArt.EndInit();
                     cover.Source = albumArt;
                 });
+                if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying) {
+                    Spotify.ResumePlayback();
+                }
             }
             catch
             {

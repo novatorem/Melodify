@@ -15,6 +15,14 @@
 
     <Grid>
 
+        <!-- Title -->
+        <Ellipse Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+            <Ellipse.Fill>
+                <ImageBrush x:Name="pPicture" ImageSource="https://source.unsplash.com/random/125x125" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock x:Name="title" HorizontalAlignment="Center" Margin="0,110,0,0" Text="Melodify" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="24"/>
+
         <!-- Exit button -->
         <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,3,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-4,5,2" FontSize="20">
             <Button.Resources>
@@ -26,6 +34,20 @@
                 <SolidColorBrush Color="Red" Opacity="0.15"/>
             </Button.Background>
         </Button>
+
+        <Grid Margin="15,150,15,5">
+            <WrapPanel >
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
+                    Your taste in music is...
+                </TextBlock>
+            </WrapPanel>
+
+
+            <!-- Credits -->
+            <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="10" TextAlignment="Justify" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
+                    Created by Novatorem, source code available on Github.
+            </TextBlock>
+        </Grid>
 
         <!-- Background to add clickable and darken -->
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>

@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Models;
 
 namespace Melodify
 {
@@ -23,6 +25,22 @@ namespace Melodify
             InitializeComponent();
             WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
+
+
+            var _spotify = new SpotifyWebAPI()
+            {
+                AccessToken = (string)App.Current.Properties["AccessToken"],
+                TokenType = (string)App.Current.Properties["TokenType"]
+            };
+
+            PrivateProfile user = _spotify.GetPrivateProfile();
+
+            title.Text = user.DisplayName;
+            BitmapImage bimage = new BitmapImage();
+            bimage.BeginInit();
+            bimage.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+            bimage.EndInit();
+            pPicture.ImageSource = bimage;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

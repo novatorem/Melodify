@@ -39,20 +39,20 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
                 <StackPanel x:Name="uSongs" Margin="20">
-                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
-                        Here are some songs you like-
+                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="20" TextAlignment="Center">
+                        Current Favorites
                     </TextBlock>
                 </StackPanel>
 
                 <StackPanel x:Name="uArtists" Margin="20">
-                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
-                        Your listening habits are-
+                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="20" TextAlignment="Center">
+                        Listening Habits
                     </TextBlock>
                 </StackPanel>
 
                 <StackPanel x:Name="uOther" Margin="20">
-                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
-                        Some more info you like-
+                    <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="20" TextAlignment="Center">
+                        User Profile
                     </TextBlock>
                 </StackPanel>
 

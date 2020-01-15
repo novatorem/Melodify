@@ -3,9 +3,6 @@ using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Melodify
 {
@@ -70,6 +67,9 @@ namespace Melodify
                     };
 
                     Token newToken = await auth.RefreshToken(token.RefreshToken);
+                    System.Diagnostics.Debug.WriteLine(auth.State);
+                    System.Diagnostics.Debug.WriteLine(newToken.ExpiresIn);
+                    System.Diagnostics.Debug.WriteLine("");
                     api.AccessToken = newToken.AccessToken;
                     api.TokenType = newToken.TokenType;
 

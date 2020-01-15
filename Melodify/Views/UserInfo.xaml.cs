@@ -1,17 +1,14 @@
-﻿using System;
+﻿using SpotifyAPI;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Enums;
+using SpotifyAPI.Web.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SpotifyAPI.Web;
-using SpotifyAPI.Web.Models;
 
 namespace Melodify
 {
@@ -41,13 +38,19 @@ namespace Melodify
         private void Populate_Title()
         {
             PrivateProfile user = _spotify.GetPrivateProfile();
-
-            title.Text = user.DisplayName;
-            BitmapImage bimage = new BitmapImage();
-            bimage.BeginInit();
-            bimage.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
-            bimage.EndInit();
-            pPicture.ImageSource = bimage;
+            try
+            {
+                title.Text = user.DisplayName;
+                BitmapImage bimage = new BitmapImage();
+                bimage.BeginInit();
+                bimage.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+                bimage.EndInit();
+                pPicture.ImageSource = bimage;
+            } catch (Exception e)
+            {
+                title.Text = "Your Universe";
+                System.Diagnostics.Debug.WriteLine("Issue getting info at UserInfo/Populate_Title");
+            }
         }
 
         private void Populate_Songs()
@@ -58,7 +61,7 @@ namespace Melodify
             {
                 TextBlock tBlock = new TextBlock();
 
-                userArtists = "🎜 " + track.Name + " - " + track.Artists[0].Name;
+                userArtists = "𝄞 " + track.Name + " - " + track.Artists[0].Name;
                 tBlock.Text = userArtists;
 
                 tBlock.FontSize = 16;
@@ -74,7 +77,22 @@ namespace Melodify
 
         private void Preview_Song(object sender, EventArgs e, string songID)
         {
-            
+            // Play the preview url
+            string previewURL = _spotify.GetTrack(songID).PreviewUrl;
+            if (previewURL != null)
+            {
+                previewer.Open(new Uri(previewURL));
+                previewer.Play();
+            }
+        }
+
+        private void Stop_Preview(object sender, EventArgs e)
+        {
+            previewer.Stop();
+        }
+
+        private void Open_Song(object sender, MouseEventArgs e, string songURI)
+        {
             // Save their current playback so we can return to it after
             try
             {
@@ -92,23 +110,10 @@ namespace Melodify
                 System.Diagnostics.Debug.WriteLine("Issue saving playback at UserInfo/Preview_Song");
             }
 
-            // Play the preview url
-            string previewURL = _spotify.GetTrack(songID).PreviewUrl;
-            if (previewURL != null)
-            {
-                previewer.Open(new Uri(previewURL));
-                previewer.Play();
-            }
-        }
-
-        private void Stop_Preview(object sender, EventArgs e)
-        {
-            previewer.Stop();
-        }
-
-        private void Open_Song(object sender, MouseEventArgs e, string songURI)
-        {
             ErrorResponse err = _spotify.ResumePlayback(uris: new List<string> { songURI }, offset: "");
+            // Possibility of disabling repeat when playing back
+            //App.Current.Properties["setRepeatOff"] = true;
+            //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

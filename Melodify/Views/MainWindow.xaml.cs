@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SpotifyAPI.Web;
+using SpotifyAPI.Web.Models;
+using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SpotifyAPI.Web;
-using SpotifyAPI.Web.Models;
 
 namespace Melodify
 {
@@ -66,24 +56,27 @@ namespace Melodify
 
                 Title.Dispatcher.Invoke(() =>
                 {
-                    Title.Content = context.Item.Name;
-                    Author.Content = context.Item.Artists[0].Name;
+                    if (context.Error == null)
+                    {
+                        Title.Content = context.Item.Name;
+                        Author.Content = context.Item.Artists[0].Name;
 
-                    BitmapImage albumArt = new BitmapImage();
-                    albumArt.BeginInit();
-                    albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
-                    albumArt.EndInit();
-                    cover.Source = albumArt;
+                        BitmapImage albumArt = new BitmapImage();
+                        albumArt.BeginInit();
+                        albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
+                        albumArt.EndInit();
+                        cover.Source = albumArt;
+                    }
                 });
 
-                if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying) {
+                if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying)
+                {
                     Spotify.ResumePlayback();
                 }
             }
-            catch
+            catch (Exception err)
             {
-                Title.Content = "song name...";
-                Author.Content = "artist name...";
+                System.Diagnostics.Debug.WriteLine("Error main timer- " + err.Message);
             }
         }
 

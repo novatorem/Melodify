@@ -2,8 +2,6 @@
 using SpotifyAPI.Web.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace Melodify
 {
@@ -33,7 +31,8 @@ namespace Melodify
                         App.Current.Properties["playlistID"] = playlistID;
                         App.Current.Properties["suggestionMode"] = true;
                     }
-                } catch
+                }
+                catch
                 {
                     System.Diagnostics.Debug.WriteLine("Not playing a playlist, can't get suggestion at Spotify/CurrentTrackSuggestion");
                 }
@@ -91,7 +90,7 @@ namespace Melodify
                 List<string> recTracks = new List<string>();
                 foreach (string track in favTracks)
                 {
-                    recTracks.Add(_spotify.GetRecommendations(trackSeed: new List<string> { track }, limit: 5).Tracks[random.Next(4)].Uri);
+                    recTracks.Add(_spotify.GetRecommendations(trackSeed: new List<string> { track }, limit: 5).Tracks[random.Next(2)].Uri);
                 }
                 // Play the random songs as a standalone playlist
                 App.Current.Properties["suggestionMode"] = true;

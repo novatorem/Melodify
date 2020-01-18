@@ -35,7 +35,7 @@
         </Button>
 
         <!-- The background over hover -->
-        <Image x:Name="userCover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="0" VerticalAlignment="Top" Width="0" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,0,0,0">
+        <Image x:Name="userCover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="0" VerticalAlignment="Center" Width="0" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,0,0,0">
             <Image.Effect>
                 <BlurEffect Radius="40"/>
             </Image.Effect>

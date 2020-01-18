@@ -111,6 +111,8 @@ namespace Melodify
                 grid.MouseLeave += new MouseEventHandler(Stop_Preview);
                 grid.MouseDown += ((s, e) => Open_Song(s, e, track.Uri));
 
+                grid.Cursor = Cursors.Hand;
+
                 grid.Children.Add(ellipse);
                 grid.Children.Add(tBlock);
                 grid.Children.Add(tBlock2);

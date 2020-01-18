@@ -123,10 +123,10 @@ namespace Melodify
             Spotify.LoveSong();
         }
 
-        private void Info_Click(object sender, RoutedEventArgs e)
+        private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            TopSongs userInfo = new TopSongs();
-            userInfo.Show();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
         }
 
         private void PausePlay_Click(object sender, RoutedEventArgs e)

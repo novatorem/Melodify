@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Melodify"
       mc:Ignorable="d" 
       Height="550" Width="400"
-      Title="UserInfo"
+      Title="App Info"
       Background="Transparent"
       AllowsTransparency="True"
       WindowStyle="None"

@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace Melodify
 {
@@ -55,27 +56,70 @@ namespace Melodify
 
         private void Populate_Songs()
         {
-            Paging<FullTrack> tracks = _spotify.GetUsersTopTracks();
+            Paging<FullTrack> tracks = _spotify.GetUsersTopTracks(limit: 21);
+            string userSong = "";
             string userArtists = "";
             foreach (FullTrack track in tracks.Items)
             {
+                Grid grid = new Grid();
+
+                // Get the image URL
+                BitmapImage bimage = new BitmapImage();
+                bimage.BeginInit();
+                bimage.UriSource = new Uri(track.Album.Images[0].Url, UriKind.Absolute);
+                bimage.EndInit();
+
+                // Bind the image to a brush
+                ImageBrush imageBrush = new ImageBrush();
+                imageBrush.ImageSource = bimage;
+                imageBrush.Stretch = System.Windows.Media.Stretch.UniformToFill;
+
+                // Create the image container
+                Ellipse ellipse = new Ellipse();
+                ellipse.Height = 100;
+                ellipse.Width = 100;
+                ellipse.Fill = imageBrush;
+                ellipse.Margin = new Thickness(0, 10, 0, 0);
+                ellipse.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+
+                // Create the song text
                 TextBlock tBlock = new TextBlock();
 
-                userArtists = "𝄞   " + track.Name + " - " + track.Artists[0].Name;
-                tBlock.Text = userArtists;
+                userSong = track.Name;
+                tBlock.Text = userSong;
 
                 tBlock.FontSize = 16;
-                tBlock.Margin = new Thickness(0, 5, 0, 0);
+                tBlock.Margin = new Thickness(0, 0, 0, 35);
+                tBlock.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                tBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
                 tBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
-                tBlock.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, track.Id));
-                tBlock.MouseLeave += new MouseEventHandler(Stop_Preview);
-                tBlock.MouseDown += ((s, e) => Open_Song(s, e, track.Uri));
 
-                uSongs.Children.Add(tBlock);
+                // Create the artist text
+                TextBlock tBlock2 = new TextBlock();
+
+                userArtists = track.Artists[0].Name;
+                tBlock2.Text = userArtists;
+
+                tBlock2.FontSize = 14;
+                tBlock2.Margin = new Thickness(0, 0, 0, 18);
+                tBlock2.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                tBlock2.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                tBlock2.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
+
+                // Create the event handlers
+                grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, track.Id, bimage));
+                grid.MouseLeave += new MouseEventHandler(Stop_Preview);
+                grid.MouseDown += ((s, e) => Open_Song(s, e, track.Uri));
+
+                grid.Children.Add(ellipse);
+                grid.Children.Add(tBlock);
+                grid.Children.Add(tBlock2);
+
+                uSongs.Children.Add(grid);
             }
         }
 
-        private void Preview_Song(object sender, EventArgs e, string songID)
+        private void Preview_Song(object sender, EventArgs e, string songID, BitmapImage bimage)
         {
             // Play the preview url
             string previewURL = _spotify.GetTrack(songID).PreviewUrl;
@@ -83,12 +127,17 @@ namespace Melodify
             {
                 previewer.Open(new Uri(previewURL));
                 previewer.Play();
+                userCover.Source = bimage;
+                userCover.SetValue(HeightProperty, DependencyProperty.UnsetValue);
+                userCover.SetValue(WidthProperty, DependencyProperty.UnsetValue);
             }
         }
 
         private void Stop_Preview(object sender, EventArgs e)
         {
             previewer.Stop();
+            userCover.Height = 0;
+            userCover.Width = 0;
         }
 
         private void Open_Song(object sender, MouseEventArgs e, string songURI)

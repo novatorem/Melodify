@@ -50,8 +50,8 @@ namespace Melodify
             {
                 var _spotify = new SpotifyWebAPI()
                 {
-                    AccessToken = (string)App.Current.Properties["AccessToken"],
-                    TokenType = (string)App.Current.Properties["TokenType"]
+                    AccessToken = (string)Application.Current.Properties["AccessToken"],
+                    TokenType = (string)Application.Current.Properties["TokenType"]
                 };
                 PlaybackContext context = _spotify.GetPlayingTrack();
 
@@ -68,7 +68,9 @@ namespace Melodify
                             albumArt.BeginInit();
                             albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
                             albumArt.EndInit();
-                            cover.Source = albumArt;
+                            if ((cover.Source != albumArt) && (albumArt != null)) {
+                                 cover.Source = albumArt;
+                            }
                         }
                         else
                         {

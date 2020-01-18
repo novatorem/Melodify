@@ -39,9 +39,9 @@ namespace Melodify
             timer.Start();
 
             // Timer to refresh the access token
-            //System.Timers.Timer accesser = new System.Timers.Timer(100000);
-            //accesser.Elapsed += Access_Elapsed;
-            //accesser.Start();
+            System.Timers.Timer accesser = new System.Timers.Timer(200000);
+            accesser.Elapsed += Access_Elapsed;
+            accesser.Start();
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)

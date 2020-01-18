@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 namespace Melodify
 {
     /// <summary>
-    /// Interaction logic for UserInfo.xaml
+    /// Interaction logic for TopSons.xaml
     /// </summary>
     public partial class TopSongs : Window
     {
@@ -50,7 +50,7 @@ namespace Melodify
             } catch (Exception e)
             {
                 title.Text = "Your Universe";
-                System.Diagnostics.Debug.WriteLine("Issue getting info at UserInfo/Populate_Title- " + e.Message);
+                System.Diagnostics.Debug.WriteLine("Issue getting info at TopSongs/Populate_Title- " + e.Message);
             }
         }
 
@@ -158,7 +158,7 @@ namespace Melodify
             }
             catch
             {
-                System.Diagnostics.Debug.WriteLine("Issue saving playback at UserInfo/Preview_Song");
+                System.Diagnostics.Debug.WriteLine("Issue saving playback at TopSongs/Preview_Song");
             }
 
             _ = _spotify.ResumePlayback(uris: new List<string> { songURI }, offset: "");

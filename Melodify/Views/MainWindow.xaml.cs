@@ -125,7 +125,7 @@ namespace Melodify
 
         private void Info_Click(object sender, RoutedEventArgs e)
         {
-            UserInfo userInfo = new UserInfo();
+            TopSongs userInfo = new TopSongs();
             userInfo.Show();
         }
 

@@ -16,7 +16,7 @@ namespace Melodify
     /// <summary>
     /// Interaction logic for UserInfo.xaml
     /// </summary>
-    public partial class UserInfo : Window
+    public partial class TopSongs : Window
     {
 
         MediaPlayer previewer = new MediaPlayer();
@@ -27,7 +27,7 @@ namespace Melodify
             TokenType = (string)App.Current.Properties["TokenType"]
         };
 
-        public UserInfo()
+        public TopSongs()
         {
             InitializeComponent();
             WindowBlur.SetIsEnabled(this, true);

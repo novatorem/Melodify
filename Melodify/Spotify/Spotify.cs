@@ -13,7 +13,7 @@ namespace Melodify
 
             try
             {
-                var _spotify = new SpotifyWebAPI()
+                using var _spotify = new SpotifyWebAPI()
                 {
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
@@ -55,7 +55,7 @@ namespace Melodify
         {
             try
             {
-                var _spotify = new SpotifyWebAPI()
+                using var _spotify = new SpotifyWebAPI()
                 {
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
@@ -107,7 +107,7 @@ namespace Melodify
         {
             try
             {
-                var _spotify = new SpotifyWebAPI()
+                using var _spotify = new SpotifyWebAPI()
                 {
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
@@ -126,7 +126,7 @@ namespace Melodify
         {
             try
             {
-                var _spotify = new SpotifyWebAPI()
+                using var _spotify = new SpotifyWebAPI()
                 {
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
@@ -146,7 +146,7 @@ namespace Melodify
         {
             try
             {
-                var _spotify = new SpotifyWebAPI()
+                using var _spotify = new SpotifyWebAPI()
                 {
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
@@ -165,7 +165,7 @@ namespace Melodify
         {
             try
             {
-                var _spotify = new SpotifyWebAPI()
+                using var _spotify = new SpotifyWebAPI()
                 {
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
@@ -184,7 +184,7 @@ namespace Melodify
         {
             try
             {
-                var _spotify = new SpotifyWebAPI()
+                using var _spotify = new SpotifyWebAPI()
                 {
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]

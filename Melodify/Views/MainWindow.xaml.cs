@@ -15,6 +15,7 @@ namespace Melodify
     /// </summary>
     public partial class MainWindow : Window
     {
+        SpotifyAPI spotAPI;
         public MainWindow()
         {
             InitializeComponent();
@@ -27,20 +28,20 @@ namespace Melodify
             App.Current.Properties["suggestionMode"] = false;
             App.Current.Properties["userPause"] = false;
 
-            SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
+            spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
             // Sleep for two seconds while waiting for login to process
             // Needs to be fixed later as it will take more time for user to log in - implement null checker
             Thread.Sleep(2000);
 
             // Timer to get the information
-            System.Timers.Timer timer = new System.Timers.Timer(100);
+            System.Timers.Timer timer = new System.Timers.Timer(250);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
             // Timer to refresh the access token
-            System.Timers.Timer accesser = new System.Timers.Timer(900000);
-            accesser.Elapsed += Access_Elapsed;
-            accesser.Start();
+            //System.Timers.Timer accesser = new System.Timers.Timer(100000);
+            //accesser.Elapsed += Access_Elapsed;
+            //accesser.Start();
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -58,14 +59,27 @@ namespace Melodify
                 {
                     if (context.Error == null)
                     {
-                        Title.Content = context.Item.Name;
-                        Author.Content = context.Item.Artists[0].Name;
+                        if (context.Item.Error == null)
+                        {
+                            Title.Content = context.Item.Name;
+                            Author.Content = context.Item.Artists[0].Name;
 
-                        BitmapImage albumArt = new BitmapImage();
-                        albumArt.BeginInit();
-                        albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
-                        albumArt.EndInit();
-                        cover.Source = albumArt;
+                            BitmapImage albumArt = new BitmapImage();
+                            albumArt.BeginInit();
+                            albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
+                            albumArt.EndInit();
+                            cover.Source = albumArt;
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.WriteLine("Inside- " + context.Error.Message);
+                            spotAPI.authenticate();
+                        }
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("Outside- " + context.Error.Message);
+                        spotAPI.authenticate();
                     }
                 });
 
@@ -77,12 +91,13 @@ namespace Melodify
             catch (Exception err)
             {
                 System.Diagnostics.Debug.WriteLine("Error main timer- " + err.Message);
+                spotAPI.authenticate();
             }
         }
 
         private void Access_Elapsed(object sender, ElapsedEventArgs e)
         {
-            SpotifyAPI spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d", authed: true);
+            spotAPI.authenticate();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

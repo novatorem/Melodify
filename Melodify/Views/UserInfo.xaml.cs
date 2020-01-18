@@ -49,7 +49,7 @@ namespace Melodify
             } catch (Exception e)
             {
                 title.Text = "Your Universe";
-                System.Diagnostics.Debug.WriteLine("Issue getting info at UserInfo/Populate_Title");
+                System.Diagnostics.Debug.WriteLine("Issue getting info at UserInfo/Populate_Title- " + e.Message);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Melodify
             {
                 TextBlock tBlock = new TextBlock();
 
-                userArtists = "𝄞 " + track.Name + " - " + track.Artists[0].Name;
+                userArtists = "𝄞   " + track.Name + " - " + track.Artists[0].Name;
                 tBlock.Text = userArtists;
 
                 tBlock.FontSize = 16;
@@ -110,7 +110,7 @@ namespace Melodify
                 System.Diagnostics.Debug.WriteLine("Issue saving playback at UserInfo/Preview_Song");
             }
 
-            ErrorResponse err = _spotify.ResumePlayback(uris: new List<string> { songURI }, offset: "");
+            _ = _spotify.ResumePlayback(uris: new List<string> { songURI }, offset: "");
             // Possibility of disabling repeat when playing back
             //App.Current.Properties["setRepeatOff"] = true;
             //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;

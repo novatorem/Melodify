@@ -10,6 +10,9 @@ namespace Melodify
     {
         private string _clientId;
         private string _secretId;
+        private Token token;
+        private AuthorizationCodeAuth auth;
+        private SpotifyWebAPI api;
 
         public SpotifyAPI() { }
 
@@ -22,7 +25,7 @@ namespace Melodify
             {
 
                 System.Diagnostics.Debug.WriteLine("Authorizing for the first time");
-                AuthorizationCodeAuth auth = new AuthorizationCodeAuth(
+                auth = new AuthorizationCodeAuth(
                     _clientId,
                     _secretId,
                     redirectUrl,
@@ -33,8 +36,8 @@ namespace Melodify
                 auth.AuthReceived += async (sender, payload) =>
                 {
                     auth.Stop();
-                    Token token = await auth.ExchangeCode(payload.Code);
-                    SpotifyWebAPI api = new SpotifyWebAPI()
+                    token = await auth.ExchangeCode(payload.Code);
+                    api = new SpotifyWebAPI()
                     {
                         TokenType = token.TokenType,
                         AccessToken = token.AccessToken
@@ -46,39 +49,18 @@ namespace Melodify
                 auth.OpenBrowser();
                 authed = true;
             }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("Performing a refresh on authentication token");
-                System.Diagnostics.Debug.WriteLine("Old token: " + (string)App.Current.Properties["AccessToken"]);
-                AuthorizationCodeAuth auth = new AuthorizationCodeAuth(
-                    _clientId,
-                    _secretId,
-                    redirectUrl,
-                    redirectUrl,
-                    Scope.UserReadPrivate | Scope.UserReadCurrentlyPlaying | Scope.UserTopRead | Scope.Streaming | Scope.UserModifyPlaybackState | Scope.UserLibraryModify | Scope.UserReadPlaybackState
-                );
-                auth.AuthReceived += async (sender, payload) =>
-                {
-                    Token token = await auth.ExchangeCode(payload.Code);
-                    SpotifyWebAPI api = new SpotifyWebAPI()
-                    {
-                        TokenType = token.TokenType,
-                        AccessToken = token.AccessToken
-                    };
-
-                    Token newToken = await auth.RefreshToken(token.RefreshToken);
-                    System.Diagnostics.Debug.WriteLine(auth.State);
-                    System.Diagnostics.Debug.WriteLine(newToken.ExpiresIn);
-                    System.Diagnostics.Debug.WriteLine("");
-                    api.AccessToken = newToken.AccessToken;
-                    api.TokenType = newToken.TokenType;
-
-                    App.Current.Properties["TokenType"] = api.TokenType;
-                    App.Current.Properties["AccessToken"] = api.AccessToken;
-                };
-
-                System.Diagnostics.Debug.WriteLine("New token: " + (string)App.Current.Properties["AccessToken"]);
-            }
+        }
+        public void authenticate()
+        {
+            System.Diagnostics.Debug.WriteLine("Performing a refresh on authentication token");
+            System.Diagnostics.Debug.WriteLine("Old token: " + (string)App.Current.Properties["AccessToken"]);
+            Token newToken = auth.RefreshToken(token.RefreshToken).Result;
+            api.AccessToken = newToken.AccessToken;
+            api.AccessToken = newToken.TokenType;
+            App.Current.Properties["TokenType"] = api.TokenType;
+            App.Current.Properties["AccessToken"] = api.AccessToken;
+            System.Diagnostics.Debug.WriteLine("New token: " + newToken.AccessToken);
+            System.Diagnostics.Debug.WriteLine("");
         }
     }
 }

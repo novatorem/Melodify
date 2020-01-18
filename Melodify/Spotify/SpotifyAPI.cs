@@ -52,15 +52,17 @@ namespace Melodify
         }
         public void authenticate()
         {
-            System.Diagnostics.Debug.WriteLine("Performing a refresh on authentication token");
-            System.Diagnostics.Debug.WriteLine("Old token: " + (string)App.Current.Properties["AccessToken"]);
+            //System.Diagnostics.Debug.WriteLine("Performing a refresh on authentication token");
+            //System.Diagnostics.Debug.WriteLine("Old token: " + (string)App.Current.Properties["AccessToken"]);
             Token newToken = auth.RefreshToken(token.RefreshToken).Result;
+            //System.Diagnostics.Debug.WriteLine("Got the result");
+            api.TokenType = newToken.TokenType;
             api.AccessToken = newToken.AccessToken;
-            api.AccessToken = newToken.TokenType;
+            //System.Diagnostics.Debug.WriteLine("Set old with new");
             App.Current.Properties["TokenType"] = api.TokenType;
             App.Current.Properties["AccessToken"] = api.AccessToken;
-            System.Diagnostics.Debug.WriteLine("New token: " + newToken.AccessToken);
-            System.Diagnostics.Debug.WriteLine("");
+            //System.Diagnostics.Debug.WriteLine("New token: " + newToken.AccessToken);
+            //System.Diagnostics.Debug.WriteLine("");
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Melodify
         {
             TopSongs topSongs = new TopSongs();
             topSongs.Show();
+            this.Close();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

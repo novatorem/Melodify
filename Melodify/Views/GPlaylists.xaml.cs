@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 namespace Melodify
 {
     /// <summary>
-    /// Interaction logic for Playlists.xaml
+    /// Interaction logic for GPlaylists.xaml
     /// </summary>
-    public partial class Playlists : Window
+    public partial class GPlaylists : Window
     {
         SpotifyWebAPI _spotify = new SpotifyWebAPI()
 
@@ -26,7 +26,7 @@ namespace Melodify
             TokenType = (string)App.Current.Properties["TokenType"]
         };
 
-        public Playlists()
+        public GPlaylists()
         {
             InitializeComponent();
             WindowBlur.SetIsEnabled(this, true);

@@ -40,7 +40,7 @@
             </Grid>
 
             <!-- User Info -->
-            <Grid Width="300" Margin="50" Cursor="Hand">
+            <Grid Width="300" Margin="50" MouseDown="User_Click" Cursor="Hand">
                 <TextBlock Text="User Info" Margin="0,3,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
                 <TextBlock HorizontalAlignment="Center" Margin="0,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Justify">
                     Set of information regarding your listening habits and other fun tidbits (in progress).

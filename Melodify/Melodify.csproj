@@ -32,6 +32,12 @@
     <Compile Update="Views\MainMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\FullScreen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +45,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FullScreen.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserInfo.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

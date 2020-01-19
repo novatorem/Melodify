@@ -28,6 +28,13 @@ namespace Melodify
             this.Close();
         }
 
+        private void User_Click(object sender, RoutedEventArgs e)
+        {
+            UserInfo userInfo = new UserInfo();
+            userInfo.Show();
+            this.Close();
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

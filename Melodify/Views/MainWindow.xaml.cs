@@ -16,6 +16,7 @@ namespace Melodify
     public partial class MainWindow : Window
     {
         SpotifyAPI spotAPI;
+        bool _pauseAPI = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,13 +40,17 @@ namespace Melodify
             timer.Start();
 
             // Timer to refresh the access token
-            System.Timers.Timer accesser = new System.Timers.Timer(200000);
+            System.Timers.Timer accesser = new System.Timers.Timer(3500000);
             accesser.Elapsed += Access_Elapsed;
             accesser.Start();
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            if (_pauseAPI)
+            {
+                return;
+            }
             try
             {
                 using var _spotify = new SpotifyWebAPI()
@@ -113,6 +118,18 @@ namespace Melodify
             Spotify.CurrentTrackSuggestion();
         }
 
+        private void Full_Click(object sender, RoutedEventArgs e)
+        {
+            FullNow(true);
+            FullScreen fullScreen = new FullScreen(this);
+            fullScreen.Show();
+        }
+
+        public void FullNow(bool pauseAPI)
+        {
+            _pauseAPI = pauseAPI;
+        }
+
         private void Self_Click(object sender, RoutedEventArgs e)
         {
             Spotify.UserTrackSuggestion();
@@ -146,7 +163,7 @@ namespace Melodify
 
         private void MainGrid_MouseLeave(object sender, MouseEventArgs e)
         {
-            otherClick.Visibility = Visibility.Collapsed;
+            fullClick.Visibility = Visibility.Collapsed;
             selfClick.Visibility = Visibility.Collapsed;
             loveClick.Visibility = Visibility.Collapsed;
             infoClick.Visibility = Visibility.Collapsed;
@@ -154,7 +171,7 @@ namespace Melodify
 
         private void MainGrid_MouseEnter(object sender, MouseEventArgs e)
         {
-            otherClick.Visibility = Visibility.Visible;
+            fullClick.Visibility = Visibility.Visible;
             selfClick.Visibility = Visibility.Visible;
             loveClick.Visibility = Visibility.Visible;
             infoClick.Visibility = Visibility.Visible;

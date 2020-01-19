@@ -115,5 +115,28 @@ namespace Melodify
             _window.FullNow(false);
             _window.Visibility = Visibility.Visible;
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)
+            {
+                Spotify.PreviousSong();
+            }
+            else if (e.Key == Key.Right)
+            {
+                Spotify.NextSong();
+            }
+            else if (e.Key == Key.Space ^ e.Key == Key.Enter)
+            {
+                Spotify.PausePlaySong();
+            } else if (e.Key == Key.Escape)
+            {
+                timer.Stop();
+                this.Close();
+                _window.FullNow(false);
+                _window.Visibility = Visibility.Visible;
+            }
+            e.Handled = true;
+        }
     }
 }

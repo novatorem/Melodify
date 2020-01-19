@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Playlists.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\MainMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -42,6 +45,9 @@
 
   <ItemGroup>
     <Page Update="UserInfo - Copy.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Playlists.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainMenu.xaml">

@@ -162,6 +162,12 @@ namespace Melodify
             Spotify.PreviousSong();
         }
 
+        private void Playlist_Click(object sender, RoutedEventArgs e)
+        {
+            Playlists playlists = new Playlists();
+            playlists.Show();
+        }
+
         private void MainGrid_MouseLeave(object sender, MouseEventArgs e)
         {
             fullClick.Visibility = Visibility.Collapsed;
@@ -200,6 +206,38 @@ namespace Melodify
         {
             AppInfo appInfo = new AppInfo();
             appInfo.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)
+            {
+                Spotify.PreviousSong();
+            } else if (e.Key == Key.Right)
+            {
+                Spotify.NextSong();
+            } else if (e.Key == Key.Space ^ e.Key == Key.Enter)
+            {
+                Spotify.PausePlaySong();
+            } else if (e.Key == Key.F)
+            {
+                FullNow(true);
+                FullScreen fullScreen = new FullScreen(this);
+                fullScreen.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                fullScreen.Show();
+                fullScreen.WindowState = WindowState.Maximized;
+            }
+            e.Handled = true;
+        }
+
+        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            FullNow(true);
+            FullScreen fullScreen = new FullScreen(this);
+            fullScreen.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            fullScreen.Show();
+            fullScreen.WindowState = WindowState.Maximized;
+            e.Handled = true;
         }
     }
 }

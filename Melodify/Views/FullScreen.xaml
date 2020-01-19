@@ -11,6 +11,7 @@
       AllowsTransparency="True"
       WindowStyle="None"
       SizeToContent="Manual"
+      KeyDown="Window_KeyDown"
       >
 
     <Grid>
@@ -129,15 +130,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
-        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070" Opacity="0"/>
         <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#000000" Opacity="0"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#000000" Opacity="0"/>
         <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#000000" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#000000ff"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#000000ff" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383" Opacity="0"/>
         <Style x:Key="playback" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>

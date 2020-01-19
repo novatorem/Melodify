@@ -1,113 +1,61 @@
-﻿<Window x:Class="Melodify.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Melodify"
-        xmlns:interop="clr-namespace:Melodify"
-        Background="Transparent"
-        AllowsTransparency="True"
-        mc:Ignorable="d"
-        Title="Melodify"
-        Height="100"
-        Width="360"
-        WindowStyle="None"
-        WindowStartupLocation="Manual" 
-        Left="0" Top="0"
-        Topmost="True"
-        KeyDown="Window_KeyDown"
-        MouseDoubleClick="Window_MouseDoubleClick">
+﻿<Window x:Class="Melodify.Playlists"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Melodify"
+      mc:Ignorable="d" 
+      Height="300" Width="900"
+      Title="Playlists"
+      Background="Transparent"
+      AllowsTransparency="True"
+      WindowStyle="None"
+      WindowStartupLocation="CenterScreen"
+      >
 
-    <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave">
+    <Grid>
+        <!-- Title -->
+        <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" Text="Melodify" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="24"/>
 
-        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,27.5" FontSize="20"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">musicorum</Label>
-        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-27.5" FontSize="16" Foreground="#FFA4A4A4" Panel.ZIndex="-10">artifex</Label>
-        <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Top" Width="500" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,-140,0,0">
-            <Image.Effect>
-                <BlurEffect Radius="40"/>
-            </Image.Effect>
-        </Image>
-
-        <!-- The japanese buttons -->
-        <Button x:Name="fullClick" Style="{DynamicResource control}" Content="い" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Full_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
-                ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Resize to full screen view">
+        <!-- Exit button -->
+        <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,3,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-4,5,2" FontSize="20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
                 </Style>
             </Button.Resources>
             <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="0.15"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="selfClick" Style="{DynamicResource control}" Content="セ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Self_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
-                ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Generate songs based on your taste">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="3"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="0.15"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="グ" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
-                ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Add current songs to favorites">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="3"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="0.15"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="り" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
-                ToolTipService.InitialShowDelay="2000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Open a menu for more actions">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="3"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="0.15"/>
+                <SolidColorBrush Color="Red" Opacity="0.15"/>
             </Button.Background>
         </Button>
 
-        <!-- Media Control buttons -->
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="PausePlay_Click" BorderBrush="{x:Null}" Padding="50,40,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="128" Panel.ZIndex="-5">
-            <Button.Background>
-                <SolidColorBrush Opacity="0"/>
-            </Button.Background>
-        </Button>
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
-            <Button.Background>
-                <SolidColorBrush Opacity="0"/>
-            </Button.Background>
-        </Button>
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
-            <Button.Background>
-                <SolidColorBrush Opacity="0"/>
-            </Button.Background>
-        </Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- Top Songs -->
+            <Grid Width="300" Margin="50" MouseDown="Songs_Click" Cursor="Hand">
+                <TextBlock Text="Top Songs" Margin="0,3,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Justify">
+                    A view of all your current favorite songs, determined by how often you've played them.
+                </TextBlock>
+                <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
+            </Grid>
 
+            <!-- User Info -->
+            <Grid Width="300" Margin="50" MouseDown="User_Click" Cursor="Hand">
+                <TextBlock Text="User Info" Margin="0,3,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Justify">
+                    Set of information regarding your listening habits and other fun tidbits (in progress).
+                </TextBlock>
+                <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
+            </Grid>
+        </StackPanel>
+
+        <!-- Background to add clickable and darken -->
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
-        
-        <Grid.ContextMenu>
-            <ContextMenu Name="contextMenu">
-                <MenuItem Header="Info" Click="CMInfo_Click"/>
-                <MenuItem Header="Github" Click="CMGithub_Click"/>
-                <Separator/>
-                <MenuItem Header="Exit" Click="CMExit_Click"/>
-            </ContextMenu>
-        </Grid.ContextMenu>
 
     </Grid>
 
-
-
-
     <Window.Resources>
+        <!-- Window opener styling -->
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -126,7 +74,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="control" TargetType="{x:Type Button}">
+        <Style x:Key="menu" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -163,6 +111,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <!-- Exit button style -->
         <Style x:Key="FocusVisual1">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -172,20 +122,20 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#000000" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="Red" Opacity="0.25"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#000000" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#000000" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#000000ff" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5" Opacity="0"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383" Opacity="0"/>
-        <Style x:Key="playback" TargetType="{x:Type Button}">
+        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="Red" Opacity="0.5"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#000000ff"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
+        <Style x:Key="exit" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border1}"/>
-            <Setter Property="Foreground" Value="{StaticResource Button.MouseOver.Border1}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -203,7 +153,6 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background1}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border1}"/>
-                                <Setter Property="Foreground" Value="#55ffffff"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background1}"/>
@@ -220,5 +169,4 @@
             </Setter>
         </Style>
     </Window.Resources>
-
 </Window>

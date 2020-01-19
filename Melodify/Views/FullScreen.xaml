@@ -16,11 +16,21 @@
 
     <Grid>
 
-        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,205" FontSize="52"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">musicorum</Label>
-        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,150" FontSize="44" Foreground="#FFA4A4A4" Panel.ZIndex="-10">artifex</Label>
+        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,205" FontSize="52"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">
+            musicorum
+            <Label.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity="0.6" Softness="1" />
+            </Label.BitmapEffect>
+        </Label>
+        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,150" FontSize="44" Foreground="#FFA4A4A4" Panel.ZIndex="-10">
+            artifex
+            <Label.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity=".6" Softness="1" />
+            </Label.BitmapEffect>
+        </Label>
         <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Center" Width="500" Stretch="UniformToFill" Panel.ZIndex="-50" MouseDown="Cover_Click" Margin="0,0,0,100">
             <Image.Effect>
-                <DropShadowEffect BlurRadius="40" 
+                <DropShadowEffect BlurRadius="20" 
                            ShadowDepth="0" 
                            Color="Black"/>
             </Image.Effect>

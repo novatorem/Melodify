@@ -104,6 +104,11 @@ namespace Melodify
         private void Access_Elapsed(object sender, ElapsedEventArgs e)
         {
             spotAPI.authenticate();
+            _spotify = new SpotifyWebAPI()
+            {
+                AccessToken = (string)Application.Current.Properties["AccessToken"],
+                TokenType = (string)Application.Current.Properties["TokenType"]
+            };
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

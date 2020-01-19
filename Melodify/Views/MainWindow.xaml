@@ -182,7 +182,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5" Opacity="0"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383" Opacity="0"/>
         <Style x:Key="playback" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border1}"/>
             <Setter Property="Foreground" Value="{StaticResource Button.MouseOver.Border1}"/>

@@ -17,3 +17,7 @@ Version.cs
 Version.h
 Version.cpp
 Properties/
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj

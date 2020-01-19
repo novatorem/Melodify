@@ -43,35 +43,35 @@
                 
                 <!-- Controls explanation -->
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
-                    [↖] グ
+                    [↖] い
                 </TextBlock>
                 <TextBlock Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
-                   : likes a song, adding it to your favorite tracks
+                   : expands the program to be fullscreen with blur
                 </TextBlock>
                 <TextBlock Width="10000" Height="0" />
                 <TextBlock Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
                     [↗] り
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
-                   : information and facts about your listening habits
+                   : menu with various views based on your taste
                 </TextBlock>
                 <TextBlock Width="10000" Height="0" />
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
-                    [↙] そ
-                </TextBlock>
-                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
-                   : a recommended song based on the current song
-                </TextBlock>
-                <TextBlock Width="10000" Height="0" />
-                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
-                    [↘] セ
+                    [↙] セ
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
                    : plays playlist based on your general taste (slow)
                 </TextBlock>
+                <TextBlock Width="10000" Height="0" />
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
+                    [↘] グ
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
+                   : likes a song, adding it to your favorite tracks
+                </TextBlock>
 
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify" Margin="0,10,0,0">
-                    ‌‌ ‌‌ ‌‌There are also four hidden (in terms of UI) functionas. The middle of the program pauses/resumes playback, while the left and right play preview/next respectively. Finely, if you'd like to move the program around, the top left and top right areas are places you can freely click on to move the view.
+                    ‌‌ ‌‌ ‌Clicking the middle pauses. Left/Right plays next and previous respectively. The top area can also be used to repoition the view.
                 </TextBlock>
 
             </WrapPanel>

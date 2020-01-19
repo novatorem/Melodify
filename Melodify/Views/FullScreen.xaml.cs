@@ -32,7 +32,6 @@ namespace Melodify
         public FullScreen(MainWindow window)
         {
             InitializeComponent();
-            WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
             timer = new System.Timers.Timer(350);
             timer.Elapsed += Timer_Elapsed;

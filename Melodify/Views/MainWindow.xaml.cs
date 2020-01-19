@@ -121,7 +121,9 @@ namespace Melodify
         {
             FullNow(true);
             FullScreen fullScreen = new FullScreen(this);
+            fullScreen.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             fullScreen.Show();
+            fullScreen.WindowState = WindowState.Maximized;
         }
 
         public void FullNow(bool pauseAPI)

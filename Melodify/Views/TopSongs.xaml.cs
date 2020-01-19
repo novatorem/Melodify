@@ -65,7 +65,7 @@ namespace Melodify
                 // Get the image URL
                 BitmapImage bimage = new BitmapImage();
                 bimage.BeginInit();
-                bimage.UriSource = new Uri(track.Album.Images[0].Url, UriKind.Absolute);
+                bimage.UriSource = new Uri(track.Album.Images[1].Url, UriKind.Absolute);
                 bimage.EndInit();
 
                 // Bind the image to a brush

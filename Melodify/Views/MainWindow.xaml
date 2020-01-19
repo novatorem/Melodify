@@ -27,8 +27,8 @@
         </Image>
 
         <!-- The japanese buttons -->
-        <Button x:Name="otherClick" Style="{DynamicResource control}" Content="そ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Other_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2"
-                ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Recommended song based on currently playing">
+        <Button x:Name="fullClick" Style="{DynamicResource control}" Content="い" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Full_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+                ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Resize to full screen view">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -38,7 +38,8 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="selfClick" Style="{DynamicResource control}" Content="セ" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Self_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
+        <Button x:Name="selfClick" Style="{DynamicResource control}" Content="セ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Self_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+                ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Generate songs based on your taste">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -48,7 +49,8 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="グ" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
+        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="グ" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+                ToolTipService.InitialShowDelay="5000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Add current songs to favorites">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -58,7 +60,8 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="り" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2">
+        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="り" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+                ToolTipService.InitialShowDelay="2000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Open a menu for more actions">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>

@@ -49,7 +49,6 @@ namespace Melodify
                 pPicture.ImageSource = bimage;
             } catch (Exception e)
             {
-                title.Text = "Your Universe";
                 System.Diagnostics.Debug.WriteLine("Issue getting info at TopSongs/Populate_Title- " + e.Message);
             }
         }

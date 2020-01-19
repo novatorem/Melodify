@@ -103,7 +103,7 @@ namespace Melodify
 
         private void Access_Elapsed(object sender, ElapsedEventArgs e)
         {
-            spotAPI.authenticate();
+            spotAPI.Authenticate();
             _spotify = new SpotifyWebAPI()
             {
                 AccessToken = (string)Application.Current.Properties["AccessToken"],
@@ -169,24 +169,24 @@ namespace Melodify
 
         private void Playlist_Click(object sender, RoutedEventArgs e)
         {
-            Playlists playlists = new Playlists();
-            playlists.Show();
+            PlaylistMenu playlistMenu = new PlaylistMenu();
+            playlistMenu.Show();
         }
 
         private void MainGrid_MouseLeave(object sender, MouseEventArgs e)
         {
             fullClick.Visibility = Visibility.Collapsed;
-            selfClick.Visibility = Visibility.Collapsed;
             loveClick.Visibility = Visibility.Collapsed;
             infoClick.Visibility = Visibility.Collapsed;
+            playlistClick.Visibility = Visibility.Collapsed;
         }
 
         private void MainGrid_MouseEnter(object sender, MouseEventArgs e)
         {
             fullClick.Visibility = Visibility.Visible;
-            selfClick.Visibility = Visibility.Visible;
             loveClick.Visibility = Visibility.Visible;
             infoClick.Visibility = Visibility.Visible;
+            playlistClick.Visibility = Visibility.Visible;
         }
 
         private void CMExit_Click(object sender, RoutedEventArgs e)

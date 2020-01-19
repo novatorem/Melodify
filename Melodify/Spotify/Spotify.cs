@@ -189,7 +189,6 @@ namespace Melodify
                     AccessToken = (string)App.Current.Properties["AccessToken"],
                     TokenType = (string)App.Current.Properties["TokenType"]
                 };
-                // Below should in theory work, but doesn't seem to
                 PlaybackContext context = _spotify.GetPlayback();
                 if (context.IsPlaying)
                 {
@@ -208,6 +207,32 @@ namespace Melodify
             }
         }
 
-
+        public static int GetSetVolume(int volume = -1)
+        {
+            try
+            {
+                using var _spotify = new SpotifyWebAPI()
+                {
+                    AccessToken = (string)App.Current.Properties["AccessToken"],
+                    TokenType = (string)App.Current.Properties["TokenType"]
+                };
+                // Below should in theory work, but doesn't seem to
+                PlaybackContext context = _spotify.GetPlayback();
+                if (volume == -1)
+                {
+                    // Unable to run command to get volume?
+                    return 0;
+                } else
+                {
+                    ErrorResponse _ = _spotify.SetVolume(volume);
+                    return 1;
+                }
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("Failed at Spotify/GetSetVolume");
+                return -1;
+            }
+        }
     }
 }

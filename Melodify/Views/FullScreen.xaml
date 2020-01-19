@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Melodify - Fullscreen"
-      Background="Transparent"
+      Background="Black"
       AllowsTransparency="True"
       WindowStyle="None"
       WindowState="Maximized"
@@ -16,9 +16,9 @@
 
     <Grid>
 
-        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,100" FontSize="52"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">musicorum</Label>
-        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" FontSize="44" Foreground="#FFA4A4A4" Panel.ZIndex="-10">artifex</Label>
-        <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Center" Width="500" Stretch="UniformToFill" Panel.ZIndex="-50" Margin="0,-0,0,0" MouseDown="Cover_Click">
+        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,205" FontSize="52"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">musicorum</Label>
+        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,150" FontSize="44" Foreground="#FFA4A4A4" Panel.ZIndex="-10">artifex</Label>
+        <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Center" Width="500" Stretch="UniformToFill" Panel.ZIndex="-50" MouseDown="Cover_Click" Margin="0,0,0,100">
             <Image.Effect>
                 <DropShadowEffect BlurRadius="40" 
                            ShadowDepth="0" 
@@ -28,7 +28,7 @@
 
         <Grid x:Name="exitGrid" Margin="710,0,710,782" MouseEnter="ExitGrid_MouseEnter" MouseLeave="ExitGrid_MouseLeave">
             <!-- Exit button -->
-            <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-11,4,-3" FontSize="36" Visibility="Collapsed">
+            <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="4.5,-12,4.5,-3" FontSize="36" Visibility="Collapsed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="50"/>

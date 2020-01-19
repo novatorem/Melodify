@@ -17,6 +17,8 @@ namespace Melodify
     {
         SpotifyAPI spotAPI;
         bool _pauseAPI = false;
+        SpotifyWebAPI _spotify;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,9 +35,14 @@ namespace Melodify
             // Sleep for two seconds while waiting for login to process
             // Needs to be fixed later as it will take more time for user to log in - implement null checker
             Thread.Sleep(2000);
+            _spotify = new SpotifyWebAPI()
+            {
+                AccessToken = (string)Application.Current.Properties["AccessToken"],
+                TokenType = (string)Application.Current.Properties["TokenType"]
+            };
 
             // Timer to get the information
-            System.Timers.Timer timer = new System.Timers.Timer(250);
+            System.Timers.Timer timer = new System.Timers.Timer(350);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
@@ -53,11 +60,6 @@ namespace Melodify
             }
             try
             {
-                using var _spotify = new SpotifyWebAPI()
-                {
-                    AccessToken = (string)Application.Current.Properties["AccessToken"],
-                    TokenType = (string)Application.Current.Properties["TokenType"]
-                };
                 PlaybackContext context = _spotify.GetPlayingTrack();
 
                 Title.Dispatcher.Invoke(() =>
@@ -80,13 +82,11 @@ namespace Melodify
                         else
                         {
                             System.Diagnostics.Debug.WriteLine("Inside- " + context.Error.Message);
-                            spotAPI.authenticate();
                         }
                     }
                     else
                     {
                         System.Diagnostics.Debug.WriteLine("Outside- " + context.Error.Message);
-                        spotAPI.authenticate();
                     }
                 });
 
@@ -98,7 +98,6 @@ namespace Melodify
             catch (Exception err)
             {
                 System.Diagnostics.Debug.WriteLine("Error main timer- " + err.Message);
-                spotAPI.authenticate();
             }
         }
 

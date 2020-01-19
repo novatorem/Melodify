@@ -19,6 +19,7 @@ namespace Melodify
     /// </summary>
     public partial class FullScreen : Window
     {
+        System.Timers.Timer timer;
         private MainWindow _window;
         SpotifyWebAPI _spotify = new SpotifyWebAPI()
 
@@ -26,13 +27,14 @@ namespace Melodify
             AccessToken = (string)App.Current.Properties["AccessToken"],
             TokenType = (string)App.Current.Properties["TokenType"]
         };
+        
 
         public FullScreen(MainWindow window)
         {
             InitializeComponent();
             WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
-            System.Timers.Timer timer = new System.Timers.Timer(250);
+            timer = new System.Timers.Timer(350);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
             _window = window;
@@ -43,7 +45,6 @@ namespace Melodify
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             PlaybackContext context = _spotify.GetPlayingTrack();
-
             Title.Dispatcher.Invoke(() =>
             {
                 if (context.Error == null)
@@ -110,6 +111,7 @@ namespace Melodify
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             this.Close();
             _window.FullNow(false);
             _window.Visibility = Visibility.Visible;

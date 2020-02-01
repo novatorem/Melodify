@@ -30,7 +30,7 @@ namespace Melodify
                     _secretId,
                     redirectUrl,
                     redirectUrl,
-                    Scope.UserReadPrivate | Scope.UserReadCurrentlyPlaying | Scope.UserTopRead | Scope.Streaming | Scope.UserModifyPlaybackState | Scope.UserLibraryModify | Scope.UserReadPlaybackState
+                    Scope.UserReadPrivate | Scope.UserReadCurrentlyPlaying | Scope.UserTopRead | Scope.Streaming | Scope.UserModifyPlaybackState | Scope.UserLibraryModify | Scope.UserReadPlaybackState | Scope.PlaylistReadPrivate
                 );
 
                 auth.AuthReceived += async (sender, payload) =>

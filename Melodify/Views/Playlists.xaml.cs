@@ -47,9 +47,13 @@ namespace Melodify
 
         private void Populate_Playlists()
         {
-            Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id);
+            Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50);
             foreach (SimplePlaylist playlist in userPlaylists.Items)
             {
+                if (_spotify.GetPrivateProfile().Id != playlist.Owner.Id)
+                {
+                    continue;
+                }
                 Grid grid = new Grid();
 
                 // Get the image URL

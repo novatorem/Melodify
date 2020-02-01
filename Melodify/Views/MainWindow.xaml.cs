@@ -64,7 +64,7 @@ namespace Melodify
 
                 Title.Dispatcher.Invoke(() =>
                 {
-                    if (context.Error == null)
+                    if (context.Error == null && context.Item != null)
                     {
                         if (context.Item.Error == null)
                         {
@@ -134,11 +134,6 @@ namespace Melodify
         public void FullNow(bool pauseAPI)
         {
             _pauseAPI = pauseAPI;
-        }
-
-        private void Self_Click(object sender, RoutedEventArgs e)
-        {
-            Spotify.UserTrackSuggestion();
         }
 
         private void Love_Click(object sender, RoutedEventArgs e)

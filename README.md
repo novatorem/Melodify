@@ -9,12 +9,29 @@ A major Spotify client replacement, integrating
 The default view of the application.
 Hovering over it reveals four buttons that perform the following:
 
-
+Location | Symbol | Purpose
+:---: | :---: | ---
+↖|い|Expands the program to be fullscreen with blur
+↗|り|Menu with various views based on your taste
+↙|ト|Opens the playlist view, public and private
+↘|グ|Likes a song, adding it to your favorite tracks
 
 ![](images/hoverRaw.jpg)
 ![](images/hoverInfo.jpg)
 
-Clicking is also available, red returns to previous song or skips. Green pauses/plays the current song. The pink allows you to move around the view to your desired location.
+Mouse clicks and Keyboard controls are also supported.
+Color | Keystroke | Purpose
+:---: | :---: | ---
+Green|`spacebar`|Plays/Pauses current song
+Blue|`left`/`right`|Returns to previous song or skips current song
+Black|` `|Allows dragging of window to desired location
+` `|`f`|Resizes to fullscreen
+
+## Planned Features
+- Play music video in full screen view
+- Display lyrics in full screen view
+- Implement user statistics view
+- Caching system for loading playlists
 
 ## Installation
 
@@ -36,3 +53,4 @@ Clicking is also available, red returns to previous song or skips. Green pauses/
 ## Development setup
 
 Developed on Visual Studio 2019
+A WPF application using .NET

@@ -3,7 +3,8 @@ Clean and minimal Spotify interface with user stats and recommendations
 
 A major Spotify client replacement, integrating
 
-![](images/main.jpg)
+![](images/main.JPG)
+
 ![](images/hover.jpg)
 
 The default view of the application.
@@ -17,15 +18,17 @@ Location | Symbol | Purpose
 ↘|グ|Likes a song, adding it to your favorite tracks
 
 ![](images/hoverRaw.jpg)
+
 ![](images/hoverInfo.jpg)
 
 Mouse clicks and Keyboard controls are also supported.
+
 Color | Keystroke | Purpose
 :---: | :---: | ---
-Green|`spacebar`|Plays/Pauses current song
-Blue|`left`/`right`|Returns to previous song or skips current song
-Black|` `|Allows dragging of window to desired location
-` `|`f`|Resizes to fullscreen
+Green | `spacebar` | Plays/Pauses current song
+Blue | `left`/`right` | Returns to previous song or skips current song
+Black | ` ` | Allows dragging of window to desired location
+` ` | `f` | Resizes to fullscreen
 
 ## Planned Features
 - Play music video in full screen view

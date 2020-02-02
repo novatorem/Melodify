@@ -11,10 +11,10 @@ Hovering over it reveals four buttons that perform the following:
 
 Location | Symbol | Purpose
 :---: | :---: | ---
-↖|い|Expands the program to be fullscreen with blur
-↗|り|Menu with various views based on your taste
-↙|ト|Opens the playlist view, public and private
-↘|グ|Likes a song, adding it to your favorite tracks
+↖|`い`|Expands the program to be fullscreen with blur
+↗|`り`|Menu with various views based on your taste
+↙|`ト`|Opens the playlist view, public and private
+↘|`グ`|Likes a song, adding it to your favorite tracks
 
 ![](images/hoverRaw.jpg)
 ![](images/hoverInfo.jpg)
@@ -27,6 +27,13 @@ Green | `spacebar` | Plays/Pauses current song
 Blue | `left`/`right` | Returns to previous song or skips current song
 Black | ⠀ | Allows dragging of window to desired location
 ⠀ | `f` | Resizes to fullscreen
+
+#### Fullscreen View
+![](images/fullscreen.jpg)
+#### Top Songs View (video)
+[![Preview Top Songs](images/topSongs.jpg)](https://streamable.com/m08hx)
+
+There are other features in play, with a number more planned! I work on this during the weekends, but you're also welcome to submit feature or pull requests at any point.
 
 ## Planned Features
 - Play music video in full screen view
@@ -54,4 +61,5 @@ Black | ⠀ | Allows dragging of window to desired location
 ## Development setup
 
 Developed on Visual Studio 2019
+
 A WPF application using .NET

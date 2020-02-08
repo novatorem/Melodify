@@ -51,7 +51,22 @@
             <Canvas Background="Black" Opacity="0.001" Panel.ZIndex="-90"/>
         </Grid>
 
-        <!-- The background over hover -->
+        <!-- Youtube button -->
+        <Grid x:Name="youtubeGrid" Margin="710,0,705,10" MouseEnter="YoutubeGrid_MouseEnter" MouseLeave="YoutubeGrid_MouseLeave" VerticalAlignment="Bottom" Height="135">
+            <Button x:Name="youtubeClick" Style="{DynamicResource exit}" Content="⏵" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Youtube_Click" Foreground="White" BorderBrush="{x:Null}" Padding="4.5,-12,4.5,-3" FontSize="36" Visibility="Collapsed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="50"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <SolidColorBrush Color="Red" Opacity="0.15"/>
+                </Button.Background>
+            </Button>
+            <Canvas Background="Black" Opacity="0.001" Panel.ZIndex="-90"/>
+        </Grid>
+
+        <!-- The background cover -->
         <Image x:Name="userCover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="0" VerticalAlignment="Center" Width="0" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,0,0,0">
             <Image.Effect>
                 <BlurEffect Radius="40"/>

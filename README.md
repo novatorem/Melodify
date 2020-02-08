@@ -1,7 +1,6 @@
 # Melodify
-Clean and minimal Spotify interface with user stats and recommendations
 
-A major Spotify client replacement, integrating
+Yet another spotify "client" that runs alongisde the program, removing certain features and adding others. This program uses (SpotifyAPI-NET)[https://github.com/JohnnyCrazy/SpotifyAPI-NET] in a WPF .NET Core application. 
 
 ![](images/main.JPG)
 ![](images/hover.jpg)

@@ -63,3 +63,9 @@ There are other features in play, with a number more planned! I work on this dur
 Developed on Visual Studio 2019
 
 A WPF application using .NET
+
+## Various Views
+
+Just to give an idea on what it generally looks like, the miniature view blurs and darkens the album art and uses it as the background as such:
+
+![](images/multi.jpg)

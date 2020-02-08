@@ -2,6 +2,28 @@
 
 Yet another spotify "client" that runs alongisde the program, removing certain features and adding others. This program uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) in a WPF .NET Core application. 
 
+## Features
+
+<table style="text-align:center;">
+  <tr>
+    <td>Miniplayer with playing track info</td>
+    <td>Progress bar and controls</td>
+    <td>Full screen view with album art</td>
+  </tr>
+  <tr>
+    <td>Playlist view and playback</td>
+    <td>Top songs playback and preview</td>
+    <td>Favorite song from miniplayer</td>
+  </tr>
+  <tr>
+    <td>🚧 Music Videos in full screen 🚧</td>
+    <td>🚧 Full user statistics and info 🚧</td>
+    <td>🚧 Lyrics in full screen 🚧</td>
+  </tr>
+</table>
+
+## Overview
+
 ![](images/main.JPG)
 ![](images/hover.jpg)
 

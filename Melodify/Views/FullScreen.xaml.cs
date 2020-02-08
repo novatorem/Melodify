@@ -87,6 +87,16 @@ namespace Melodify
             exitClick.Visibility = Visibility.Visible;
         }
 
+        private void YoutubeGrid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            youtubeClick.Visibility = Visibility.Collapsed;
+        }
+
+        private void YoutubeGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            youtubeClick.Visibility = Visibility.Visible;
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -114,6 +124,10 @@ namespace Melodify
             this.Close();
             _window.FullNow(false);
             _window.Visibility = Visibility.Visible;
+        }
+        private void Youtube_Click(object sender, RoutedEventArgs e)
+        {
+            ;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

@@ -18,6 +18,7 @@ namespace Melodify
         SpotifyAPI spotAPI;
         bool _pauseAPI = false;
         SpotifyWebAPI _spotify;
+        int progress = 0;
 
         public MainWindow()
         {
@@ -71,13 +72,18 @@ namespace Melodify
                             Title.Content = context.Item.Name;
                             Author.Content = context.Item.Artists[0].Name;
 
-                            BitmapImage albumArt = new BitmapImage();
-                            albumArt.BeginInit();
-                            albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
-                            albumArt.EndInit();
-                            if ((albumArt.UriSource.AbsoluteUri != cover.Source.ToString()) && (albumArt.UriSource.AbsoluteUri != null)) {
+                            if ((context.Item.Album.Images[0].Url != cover.Source.ToString()) && (context.Item.Album.Images[0].Url != null)) {
+                                BitmapImage albumArt = new BitmapImage();
+                                albumArt.BeginInit();
+                                albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
+                                albumArt.EndInit();
                                 cover.Source = albumArt;
+
+                                // Gets the total length of the song
+                                progress = context.Item.DurationMs;
                             }
+                            progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
+
                         }
                         else
                         {
@@ -208,6 +214,20 @@ namespace Melodify
             appInfo.Show();
         }
 
+        private void Trackbar_Click(object sender, RoutedEventArgs e)
+        {
+            if (progressBar.Visibility == Visibility.Visible)
+            {
+                progressBar.Visibility = Visibility.Collapsed;
+                Trackbar.IsChecked = false;
+            }
+            else if (progressBar.Visibility == Visibility.Collapsed)
+            {
+                progressBar.Visibility = Visibility.Visible;
+                Trackbar.IsChecked = true;
+            }
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
@@ -238,6 +258,11 @@ namespace Melodify
             fullScreen.Show();
             fullScreen.WindowState = WindowState.Maximized;
             e.Handled = true;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

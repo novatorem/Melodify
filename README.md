@@ -16,9 +16,9 @@ Yet another spotify "client" that runs alongisde the program, removing certain f
     <td>Favorite song from miniplayer</td>
   </tr>
   <tr>
-    <td><small><small>🚧</small></small> Music Videos in full screen <small><small>🚧</small></small></td>
-    <td><small><small>🚧</small></small> Full user statistics and info <small><small>🚧</small></small></td>
-    <td><small><small>🚧</small></small> Lyrics in full screen <small><small>🚧</small></small></td>
+    <td><sub><sup>🚧</sup></sub> Music Videos in full screen</td>
+    <td><sub><sup>🚧</sup></sub> Full user statistics and info</td>
+    <td><sub><sup>🚧</sup></sub> Lyrics in full screen</td>
   </tr>
 </table>
 

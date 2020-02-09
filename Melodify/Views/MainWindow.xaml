@@ -75,7 +75,7 @@
         </Button>
 
         <!-- Media Control buttons -->
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="PausePlay_Click" BorderBrush="{x:Null}" Padding="50,40,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="128" Panel.ZIndex="-5">
+        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="PausePlay_Click" BorderBrush="{x:Null}" Padding="50,40,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="128" Panel.ZIndex="-5">
             <Button.Background>
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
@@ -85,14 +85,16 @@
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
         </Button>
-        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5">
+        <Button Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5" Height="67">
             <Button.Background>
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
         </Button>
 
-        <Rectangle x:Name="progressBar" Margin="0" Fill="#50FFFFFF" Width="0" Height="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="Visible"></Rectangle>
-        
+        <Grid x:Name="progressGrid" Height="4" VerticalAlignment="Bottom" Width="360" MouseDown="Seek_Playback" Background="#01FFFFFF" Cursor="Hand" Visibility="Visible">
+            <Rectangle x:Name="progressBar" Height="2" VerticalAlignment="Bottom" Margin="0" Fill="#40FFFFFF" Width="0" HorizontalAlignment="Left"/>
+        </Grid>
+
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
 
         <Grid.ContextMenu>
@@ -100,9 +102,7 @@
                 <MenuItem Header="Info" Click="CMInfo_Click"/>
                 <MenuItem Header="Github" Click="CMGithub_Click"/>
                 <Separator/>
-                <MenuItem Header="Options">
-                    <MenuItem x:Name="Trackbar" Header="Trackbar" Click="Trackbar_Click" IsCheckable="True" IsChecked="True"/>
-                </MenuItem>
+                <MenuItem x:Name="Trackbar" Header="Trackbar" Click="Trackbar_Click" IsCheckable="True" IsChecked="True"/>
                 <Separator/>
                 <MenuItem Header="Exit" Click="CMExit_Click"/>
             </ContextMenu>

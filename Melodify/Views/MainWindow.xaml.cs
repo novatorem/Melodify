@@ -168,6 +168,13 @@ namespace Melodify
             Spotify.PreviousSong();
         }
 
+        private void Seek_Playback(object sender, RoutedEventArgs e)
+        {
+            int position = (int)((Mouse.GetPosition(this).X / 360) * 100);
+            Spotify.SeekPlayback(position);
+            e.Handled = true;
+        }
+
         private void Playlist_Click(object sender, RoutedEventArgs e)
         {
             PlaylistMenu playlistMenu = new PlaylistMenu();
@@ -216,14 +223,14 @@ namespace Melodify
 
         private void Trackbar_Click(object sender, RoutedEventArgs e)
         {
-            if (progressBar.Visibility == Visibility.Visible)
+            if (progressGrid.Visibility == Visibility.Visible)
             {
-                progressBar.Visibility = Visibility.Collapsed;
+                progressGrid.Visibility = Visibility.Collapsed;
                 Trackbar.IsChecked = false;
             }
-            else if (progressBar.Visibility == Visibility.Collapsed)
+            else if (progressGrid.Visibility == Visibility.Collapsed)
             {
-                progressBar.Visibility = Visibility.Visible;
+                progressGrid.Visibility = Visibility.Visible;
                 Trackbar.IsChecked = true;
             }
         }

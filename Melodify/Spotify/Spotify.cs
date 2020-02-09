@@ -180,6 +180,24 @@ namespace Melodify
             }
         }
 
+        public static void SeekPlayback(int position)
+        {
+            try
+            {
+                using var _spotify = new SpotifyWebAPI()
+                {
+                    AccessToken = (string)App.Current.Properties["AccessToken"],
+                    TokenType = (string)App.Current.Properties["TokenType"]
+                };
+                PlaybackContext context = _spotify.GetPlayingTrack();
+                ErrorResponse error = _spotify.SeekPlayback((int)((position/100.0) * context.Item.DurationMs));
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("Failed at Spotify/PreviousSong");
+            }
+        }
+
         public static void PausePlaySong()
         {
             try

@@ -25,7 +25,7 @@ namespace Melodify
     {
         System.Timers.Timer timer;
         private MainWindow _window;
-        string _volume = "50";
+        int _volume = 0;
 
         String _currentSong = "None";
 
@@ -71,12 +71,18 @@ namespace Melodify
                             listRequest.MaxResults = 1;
                             listRequest.Type = "video";
                             listRequest.Order = Google.Apis.YouTube.v3.SearchResource.ListRequest.OrderEnum.ViewCount;
+                            listRequest.VideoEmbeddable = SearchResource.ListRequest.VideoEmbeddableEnum.True__;
                             SearchListResponse resp = listRequest.Execute();
 
                             string videoID = resp.Items[0].Id.VideoId;
                             string startTime = (context.ProgressMs / 1000).ToString();
 
+                            if (Spotify.GetSetVolume() != 0)
+                            {
+                                _volume = Spotify.GetSetVolume();
+                            }
                             Spotify.GetSetVolume(0);
+
                             YoutubePlayer(videoID, startTime);
                         }
                     }
@@ -108,7 +114,9 @@ namespace Melodify
             } else if (e.Key == Key.Escape)
             {
                 timer.Stop();
+                this.webBrowser1.Navigate((Uri)null);
                 this.Close();
+                Spotify.GetSetVolume(_volume);
                 _window.FullNow(false);
                 _window.Visibility = Visibility.Visible;
             }
@@ -122,11 +130,11 @@ namespace Melodify
             sb.Append("<html>");
             sb.Append("    <head>");
             sb.Append("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"/>");
-            sb.Append("        <style type=\"text/css\">body, html{margin: 0; padding: 0; height: 100%; overflow: hidden;}#content{position: absolute; left: 0; right: 0; bottom: 0; top: 0px;}</style> ");
+            sb.Append("        <style type=\"text/css\">body, html{margin: 0; padding: 0; height: 100%; overflow: hidden;}#content{position: absolute; left: 0; right: 0; bottom: 0; top: 0px;}iframe:focus{outline: none;}</style> ");
             sb.Append("    </head>");
             sb.Append("    <body>");
             sb.Append("        <div id=\"content\">");
-            sb.Append("            <iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + videoCode + "?autoplay=1&start=" + startTime + "\"");
+            sb.Append("            <iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + videoCode + "?autoplay=1&start=" + startTime + "\"  frameborder=\"0\" allow=\"autoplay; encrypted - media\" allowfullscreen");
             sb.Append("                </iframe>");
             sb.Append("        </div>");
             sb.Append("    </body>");

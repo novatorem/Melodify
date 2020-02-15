@@ -67,11 +67,12 @@ namespace Melodify
                         {
                             _currentSong = songName;
                             SearchResource.ListRequest listRequest = youtube.Search.List("snippet");
-                            listRequest.Q = songName + "-" + artistName;
+                            listRequest.Q = songName + " - " + artistName;
                             listRequest.MaxResults = 1;
                             listRequest.Type = "video";
-                            listRequest.Order = Google.Apis.YouTube.v3.SearchResource.ListRequest.OrderEnum.ViewCount;
+                            //listRequest.Order = Google.Apis.YouTube.v3.SearchResource.ListRequest.OrderEnum.ViewCount;
                             listRequest.VideoEmbeddable = SearchResource.ListRequest.VideoEmbeddableEnum.True__;
+                            listRequest.VideoSyndicated = SearchResource.ListRequest.VideoSyndicatedEnum.True__;
                             SearchListResponse resp = listRequest.Execute();
 
                             string videoID = resp.Items[0].Id.VideoId;
@@ -134,8 +135,7 @@ namespace Melodify
             sb.Append("    </head>");
             sb.Append("    <body>");
             sb.Append("        <div id=\"content\">");
-            sb.Append("            <iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + videoCode + "?autoplay=1&start=" + startTime + "\"  frameborder=\"0\" allow=\"autoplay; encrypted - media\" allowfullscreen");
-            sb.Append("                </iframe>");
+            sb.Append("            <iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + videoCode + "?autoplay=1&controls=0&disablekb=1&fs=0&modestbranding=1&start=" + startTime + "\"  frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted - media; gyroscope; picture -in-picture\" allowfullscreen/>");
             sb.Append("        </div>");
             sb.Append("    </body>");
             sb.Append("</html>");

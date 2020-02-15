@@ -130,10 +130,9 @@ namespace Melodify
             timer.Stop();
             this.Close();
             MusicVideos musicVideos = new MusicVideos(_window);
-            musicVideos.Show();
             musicVideos.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            musicVideos.Show();
             musicVideos.WindowState = WindowState.Maximized;
+            musicVideos.Show();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

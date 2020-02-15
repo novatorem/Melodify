@@ -127,7 +127,10 @@ namespace Melodify
         }
         private void Youtube_Click(object sender, RoutedEventArgs e)
         {
-            ;
+            timer.Stop();
+            this.Close();
+            MusicVideos musicVideos = new MusicVideos(_window);
+            musicVideos.Show();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

@@ -19,13 +19,13 @@
         <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,205" FontSize="52"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">
             musicorum
             <Label.BitmapEffect>
-                <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity="0.6" Softness="1" />
+                <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity="0.4" Softness="1" />
             </Label.BitmapEffect>
         </Label>
         <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,150" FontSize="44" Foreground="#FFA4A4A4" Panel.ZIndex="-10">
             artifex
             <Label.BitmapEffect>
-                <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity=".6" Softness="1" />
+                <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity="0.4" Softness="1" />
             </Label.BitmapEffect>
         </Label>
         <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Center" Width="500" Stretch="UniformToFill" Panel.ZIndex="-50" MouseDown="Cover_Click" Margin="0,0,0,100">
@@ -53,7 +53,7 @@
 
         <!-- Youtube button -->
         <Grid x:Name="youtubeGrid" Margin="710,0,705,10" MouseEnter="YoutubeGrid_MouseEnter" MouseLeave="YoutubeGrid_MouseLeave" VerticalAlignment="Bottom" Height="135">
-            <Button x:Name="youtubeClick" Style="{DynamicResource exit}" Content="⏵" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Youtube_Click" Foreground="White" BorderBrush="{x:Null}" Padding="4.5,-12,4.5,-3" FontSize="36" Visibility="Collapsed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="youtubeClick" Style="{DynamicResource exit}" Content="⏵" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Youtube_Click" Foreground="White" BorderBrush="{x:Null}" Padding="1,-10,0,-3" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Collapsed">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="50"/>

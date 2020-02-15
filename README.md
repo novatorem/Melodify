@@ -57,7 +57,6 @@ Black | ⠀ | Allows dragging of window to desired location
 There are other features in play, with a number more planned! I work on this during the weekends, but you're also welcome to submit feature or pull requests at any point.
 
 ## Planned Features
-- Play music video in full screen view
 - Display lyrics in full screen view
 - Implement user statistics view
 - Caching system for loading playlists

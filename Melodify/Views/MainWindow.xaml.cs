@@ -266,10 +266,5 @@ namespace Melodify
             fullScreen.WindowState = WindowState.Maximized;
             e.Handled = true;
         }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

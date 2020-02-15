@@ -17,6 +17,7 @@ Version.cs
 Version.h
 Version.cpp
 Properties/
+Installer/Melodify-cache/
 *.[Pp]ublish.xml
 *.azurePubxml
 *.pubxml

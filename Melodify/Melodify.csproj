@@ -27,9 +27,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="SpotifyAPI.Web.Auth" Version="4.2.2" />
+    <PackageReference Include="YoutubeExplode" Version="4.7.13" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\MusicVideos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\PlaylistMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +56,9 @@
 
   <ItemGroup>
     <Page Update="UserInfo - Copy.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MusicVideos.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\PlaylistMenu.xaml">

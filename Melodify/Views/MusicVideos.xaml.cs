@@ -15,7 +15,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using YoutubeExplode;
 
 namespace Melodify
 {
@@ -35,7 +34,6 @@ namespace Melodify
             TokenType = (string)App.Current.Properties["TokenType"]
         };
 
-        YoutubeClient client = new YoutubeClient();
         YouTubeService youtube = new YouTubeService(new BaseClientService.Initializer()
         {
             ApplicationName = "Melodify",
@@ -45,7 +43,6 @@ namespace Melodify
         public MusicVideos(MainWindow window)
         {
             InitializeComponent();
-            MouseDown += Window_MouseDown;
             timer = new System.Timers.Timer(350);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
@@ -72,9 +69,14 @@ namespace Melodify
                             listRequest.Q = songName + "-" + artistName;
                             listRequest.MaxResults = 1;
                             listRequest.Type = "video";
+                            listRequest.Order = Google.Apis.YouTube.v3.SearchResource.ListRequest.OrderEnum.ViewCount;
                             SearchListResponse resp = listRequest.Execute();
+
                             string videoID = resp.Items[0].Id.VideoId;
-                            ShowYouTubeVideo(videoID);
+                            string startTime = (context.ProgressMs / 1000).ToString();
+
+                            Spotify.GetSetVolume(0);
+                            YoutubePlayer(videoID, startTime);
                         }
                     }
                     else
@@ -87,12 +89,6 @@ namespace Melodify
                     System.Diagnostics.Debug.WriteLine("Outside- " + context.Error.Message);
                 }
             });
-        }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ;
-            //if (e.ChangedButton == MouseButton.Left)
-            //    this.DragMove();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -118,11 +114,10 @@ namespace Melodify
             e.Handled = true;
         }
 
-        private string GetYouTubeVideoPlayerHTML(string videoCode)
+        private void YoutubePlayer(string videoCode, string startTime)
         {
             var sb = new StringBuilder();
 
-            const string youtubeURL = @"http://www.youtube.com/v/";
             sb.Append("<html>");
             sb.Append("    <head>");
             sb.Append("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"/>");
@@ -130,33 +125,14 @@ namespace Melodify
             sb.Append("    </head>");
             sb.Append("    <body>");
             sb.Append("        <div id=\"content\">");
-            sb.Append("            <iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + videoCode + "?autoplay=1\"");
+            sb.Append("            <iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + videoCode + "?autoplay=1&start=" + startTime + "\"");
             sb.Append("                </iframe>");
             sb.Append("        </div>");
             sb.Append("    </body>");
             sb.Append("</html>");
-            System.Diagnostics.Debug.WriteLine(sb.ToString());
-            //sb.Append("<html>");
-            //sb.Append("    <head>");
-            //sb.Append("        <meta name=\"viewport\" content=\"width=device-width; height=device-height;\">");
-            //sb.Append("    </head>");
-            //sb.Append("    <body marginheight=\"0\" marginwidth=\"0\" leftmargin=\"0\" topmargin=\"0\" style=\"overflow-y: hidden\">");
-            //sb.Append("        <object width=\"100%\" height=\"100%\">");
-            //sb.Append("            <param name=\"movie\" value=\"" + youtubeURL + videoCode + "?version=3&amp;rel=0\" />");
-            //sb.Append("            <param name=\"allowFullScreen\" value=\"true\" />");
-            //sb.Append("            <param name=\"allowscriptaccess\" value=\"always\" />");
-            //sb.Append("            <embed src=\"" + youtubeURL + videoCode + "?version=3&amp;rel=0\"");
-            //sb.Append("                   width=\"100%\" height=\"100%\" allowscriptaccess=\"always\" allowfullscreen=\"true\" />");
-            //sb.Append("        </object>");
-            //sb.Append("    </body>");
-            //sb.Append("</html>");
 
-            return sb.ToString();
-        }
-
-        public void ShowYouTubeVideo(string videoCode)
-        {
-            this.webBrowser1.NavigateToString(GetYouTubeVideoPlayerHTML(videoCode));
+            this.webBrowser1.NavigateToString(sb.ToString());
+            this.webBrowser1.Focus();
         }
     }
 }

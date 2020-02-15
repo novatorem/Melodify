@@ -25,6 +25,7 @@ namespace Melodify
     {
         System.Timers.Timer timer;
         private MainWindow _window;
+        string _volume = "50";
 
         String _currentSong = "None";
 

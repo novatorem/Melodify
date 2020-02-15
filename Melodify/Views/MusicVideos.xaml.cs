@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Melodify
@@ -140,8 +141,14 @@ namespace Melodify
             sb.Append("    </body>");
             sb.Append("</html>");
 
-            this.webBrowser1.NavigateToString(sb.ToString());
+            webBrowser1.Height = 0;
             this.webBrowser1.Focus();
+            this.webBrowser1.NavigateToString(sb.ToString());
+        }
+
+        private void Web_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            webBrowser1.Height = this.Height;
         }
     }
 }

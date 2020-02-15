@@ -225,7 +225,7 @@ namespace Melodify
             }
         }
 
-        public static int GetSetVolume(int volume = -1)
+        public static int GetSetVolume(int volume = 255)
         {
             try
             {
@@ -236,10 +236,9 @@ namespace Melodify
                 };
                 // Below should in theory work, but doesn't seem to
                 PlaybackContext context = _spotify.GetPlayback();
-                if (volume == -1)
+                if (volume == 255)
                 {
-                    // Unable to run command to get volume?
-                    return 0;
+                    return context.Device.VolumePercent;
                 } else
                 {
                     ErrorResponse _ = _spotify.SetVolume(volume);

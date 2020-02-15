@@ -74,6 +74,7 @@ namespace Melodify
                             //listRequest.Order = Google.Apis.YouTube.v3.SearchResource.ListRequest.OrderEnum.ViewCount;
                             listRequest.VideoEmbeddable = SearchResource.ListRequest.VideoEmbeddableEnum.True__;
                             listRequest.VideoSyndicated = SearchResource.ListRequest.VideoSyndicatedEnum.True__;
+                            listRequest.VideoLicense = SearchResource.ListRequest.VideoLicenseEnum.CreativeCommon;
                             SearchListResponse resp = listRequest.Execute();
 
                             string videoID = resp.Items[0].Id.VideoId;

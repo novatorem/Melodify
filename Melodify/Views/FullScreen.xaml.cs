@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -29,7 +30,6 @@ namespace Melodify
             TokenType = (string)App.Current.Properties["TokenType"]
         };
         
-
         public FullScreen(MainWindow window)
         {
             InitializeComponent();
@@ -40,6 +40,13 @@ namespace Melodify
             _window = window;
             _window.FullNow(true);
             _window.Visibility = Visibility.Collapsed;
+
+            // Checks user settings regarding progress bar
+            if (Properties.Settings.Default.ProgressBar != "true")
+            {
+                Progressbar.IsChecked = false;
+                progressGrid.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -66,6 +73,12 @@ namespace Melodify
                             // Gets the total length of the song
                             progress = context.Item.DurationMs;
                         }
+                        DoubleAnimation animation = new DoubleAnimation();
+                        animation.From = progressBar.ActualWidth;
+                        animation.To = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
+                        animation.Duration = new Duration(TimeSpan.FromSeconds(1));
+                        animation.FillBehavior = FillBehavior.Stop;
+                        progressBar.BeginAnimation(Rectangle.WidthProperty, animation);
                         progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
                     }
                     else
@@ -149,13 +162,15 @@ namespace Melodify
         {
             if (progressGrid.Visibility == Visibility.Visible)
             {
-                progressGrid.Visibility = Visibility.Collapsed;
                 Progressbar.IsChecked = false;
+                progressGrid.Visibility = Visibility.Collapsed;
+                Properties.Settings.Default.ProgressBar = "false";
             }
             else if (progressGrid.Visibility == Visibility.Collapsed)
             {
-                progressGrid.Visibility = Visibility.Visible;
                 Progressbar.IsChecked = true;
+                progressGrid.Visibility = Visibility.Visible;
+                Properties.Settings.Default.ProgressBar = "true";
             }
         }
 

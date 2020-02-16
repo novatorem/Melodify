@@ -4,6 +4,22 @@
              xmlns:local="clr-namespace:Melodify"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-
+        <Style TargetType="ContextMenu">
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Opacity" Value="0.95"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Margin" Value="-33,0,0,0"/>
+            <Setter Property="Padding" Value="2,0,0,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="Background" Value="WhiteSmoke" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

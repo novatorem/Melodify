@@ -1,6 +1,6 @@
 # Melodify
 
-Yet another spotify "client" that runs alongisde the program, removing certain features and adding others. This program uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) in a WPF .NET Core application. 
+Yet another spotify "client" that runs alongisde the program, removing certain features and adding others. This program uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) in a WPF .NET Core application. **Do not run as an Admin**.
 
 ## Features
 

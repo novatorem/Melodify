@@ -53,7 +53,7 @@ namespace Melodify
             accesser.Start();
 
             // Checks user settings regarding progress bar
-            if ("HERE" != "true")
+            if (Properties.Settings.Default.ProgressBar != "true")
             {
                 Progressbar.IsChecked = false;
                 progressGrid.Visibility = Visibility.Collapsed;
@@ -234,11 +234,13 @@ namespace Melodify
             {
                 Progressbar.IsChecked = false;
                 progressGrid.Visibility = Visibility.Collapsed;
+                Properties.Settings.Default.ProgressBar = "false";
             }
             else if (progressGrid.Visibility == Visibility.Collapsed)
             {
                 Progressbar.IsChecked = true;
                 progressGrid.Visibility = Visibility.Visible;
+                Properties.Settings.Default.ProgressBar = "true";
             }
         }
 

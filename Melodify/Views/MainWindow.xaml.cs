@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -42,6 +43,8 @@ namespace Melodify
                 TokenType = (string)Application.Current.Properties["TokenType"]
             };
 
+            Populate_Playlists();
+
             // Timer to get the information
             System.Timers.Timer timer = new System.Timers.Timer(350);
             timer.Elapsed += Timer_Elapsed;
@@ -55,11 +58,11 @@ namespace Melodify
             // Checks user settings regarding progress bar
             if (Properties.Settings.Default.ProgressBar != "true")
             {
-                Progressbar.IsChecked = false;
+                Progressbar.Header = "Enable Progress Bar";
                 progressGrid.Visibility = Visibility.Collapsed;
             } else
             {
-                Progressbar.IsChecked = true;
+                Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
             }
         }
@@ -236,13 +239,13 @@ namespace Melodify
         {
             if (progressGrid.Visibility == Visibility.Visible)
             {
-                Progressbar.IsChecked = false;
+                Progressbar.Header = "Enable Progress Bar";
                 progressGrid.Visibility = Visibility.Collapsed;
                 Properties.Settings.Default.ProgressBar = "false";
             }
             else if (progressGrid.Visibility == Visibility.Collapsed)
             {
-                Progressbar.IsChecked = true;
+                Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
                 Properties.Settings.Default.ProgressBar = "true";
             }
@@ -279,6 +282,20 @@ namespace Melodify
             fullScreen.Show();
             fullScreen.WindowState = WindowState.Maximized;
             e.Handled = true;
+        }
+
+        private void Populate_Playlists()
+        {
+            //Add to main menu
+            MenuItem newMenuItem1 = new MenuItem();
+            newMenuItem1.Header = "Test 123";
+            contextMenu.Items.Add(newMenuItem1);
+
+            //Add to a sub item
+            MenuItem newMenuItem2 = new MenuItem();
+            MenuItem newExistMenuItem = (MenuItem)contextMenu.Items[0];
+            newMenuItem2.Header = "Test 456";
+            newExistMenuItem.Items.Add(newMenuItem2);
         }
     }
 }

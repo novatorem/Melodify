@@ -20,8 +20,8 @@
 
     <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave">
 
-        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontSize="20"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">musicorum</Label>
-        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-35" FontSize="16" Foreground="#FFA4A4A4" Panel.ZIndex="-10">artifex</Label>
+        <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontSize="20"  Foreground="#FFC7C7C7" Panel.ZIndex="-10"></Label>
+        <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-35" FontSize="16" Foreground="#FFA4A4A4" Panel.ZIndex="-10"></Label>
         <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Top" Width="500" Stretch="UniformToFill" Panel.ZIndex="-99" Margin="0,-140,0,0">
             <Image.Effect>
                 <BlurEffect Radius="40"/>
@@ -29,7 +29,7 @@
         </Image>
 
         <!-- The japanese buttons -->
-        <Button x:Name="fullClick" Style="{DynamicResource control}" Content="い" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Full_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+        <Button x:Name="fullClick" Style="{DynamicResource control}" Content="⛶" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Full_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
                 ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Resize to full screen view">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -40,7 +40,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="playlistClick" Style="{DynamicResource control}" Content="ト" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Playlist_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+        <Button x:Name="playlistClick" Style="{DynamicResource control}" Content="∞" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Playlist_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,1,5,3" Cursor="Hand"
                 ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens the playlist view">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -51,7 +51,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="グ" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="♡" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
                 ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Add current songs to favorites">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -62,7 +62,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="り" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="Ѧ" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
                 ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens a menu with more actions">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -102,7 +102,7 @@
                 <MenuItem Header="Info" Click="CMInfo_Click"/>
                 <MenuItem Header="Github" Click="CMGithub_Click"/>
                 <Separator/>
-                <MenuItem x:Name="Trackbar" Header="Trackbar" Click="Trackbar_Click" IsCheckable="True" IsChecked="True"/>
+                <MenuItem x:Name="Progressbar" Header="Progress Bar" Click="Progressbar_Click" IsCheckable="True" IsChecked="True"/>
                 <Separator/>
                 <MenuItem Header="Exit" Click="CMExit_Click"/>
             </ContextMenu>

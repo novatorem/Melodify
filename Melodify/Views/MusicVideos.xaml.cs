@@ -24,10 +24,9 @@ namespace Melodify
     /// </summary>
     public partial class MusicVideos : Window
     {
+        int _volume = 0;
         System.Timers.Timer timer;
         private MainWindow _window;
-        int _volume = 0;
-
         String _currentSong = "None";
 
         SpotifyWebAPI _spotify = new SpotifyWebAPI()
@@ -56,7 +55,7 @@ namespace Melodify
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             PlaybackContext context = _spotify.GetPlayingTrack();
-            webBrowser1.Dispatcher.Invoke(() =>
+            webView.Dispatcher.Invoke(() =>
             {
                 if (context.Error == null)
                 {
@@ -68,18 +67,15 @@ namespace Melodify
                         {
                             _currentSong = songName;
                             SearchResource.ListRequest listRequest = youtube.Search.List("snippet");
-                            listRequest.Q = songName + " - " + artistName;
                             listRequest.MaxResults = 1;
                             listRequest.Type = "video";
-                            //listRequest.Order = Google.Apis.YouTube.v3.SearchResource.ListRequest.OrderEnum.ViewCount;
+                            listRequest.Q = songName + " - " + artistName;
                             listRequest.VideoEmbeddable = SearchResource.ListRequest.VideoEmbeddableEnum.True__;
                             listRequest.VideoSyndicated = SearchResource.ListRequest.VideoSyndicatedEnum.True__;
-                            listRequest.VideoLicense = SearchResource.ListRequest.VideoLicenseEnum.CreativeCommon;
                             SearchListResponse resp = listRequest.Execute();
 
                             string videoID = resp.Items[0].Id.VideoId;
                             string startTime = (context.ProgressMs / 1000).ToString();
-
                             if (Spotify.GetSetVolume() != 0)
                             {
                                 _volume = Spotify.GetSetVolume();
@@ -111,13 +107,10 @@ namespace Melodify
             {
                 Spotify.NextSong();
             }
-            else if (e.Key == Key.Space ^ e.Key == Key.Enter)
-            {
-                Spotify.PausePlaySong();
-            } else if (e.Key == Key.Escape)
+            else if (e.Key == Key.Escape)
             {
                 timer.Stop();
-                this.webBrowser1.Navigate((Uri)null);
+                this.webView.Navigate((Uri)null);
                 this.Close();
                 Spotify.GetSetVolume(_volume);
                 _window.FullNow(false);
@@ -128,28 +121,28 @@ namespace Melodify
 
         private void YoutubePlayer(string videoCode, string startTime)
         {
-            var sb = new StringBuilder();
-
-            sb.Append("<html>");
-            sb.Append("    <head>");
-            sb.Append("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"/>");
-            sb.Append("        <style type=\"text/css\">body, html{margin: 0; padding: 0; height: 100%; overflow: hidden;}#content{position: absolute; left: 0; right: 0; bottom: 0; top: 0px;}iframe:focus{outline: none;}</style> ");
-            sb.Append("    </head>");
-            sb.Append("    <body>");
-            sb.Append("        <div id=\"content\">");
-            sb.Append("            <iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + videoCode + "?autoplay=1&controls=0&disablekb=1&fs=0&modestbranding=1&start=" + startTime + "\"  frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted - media; gyroscope; picture -in-picture\" allowfullscreen/>");
-            sb.Append("        </div>");
-            sb.Append("    </body>");
-            sb.Append("</html>");
-
-            webBrowser1.Height = 0;
-            this.webBrowser1.Focus();
-            this.webBrowser1.NavigateToString(sb.ToString());
+            webView.Height = 0;
+            webView.Navigate(new Uri("https://novac.dev/x/Melodify?videoCode=" + videoCode + "&startTime=" + startTime));
         }
 
-        private void Web_LoadCompleted(object sender, NavigationEventArgs e)
+        private void webView_NavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e)
         {
-            webBrowser1.Height = this.Height;
+            webView.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            webView.Focus();
+        }
+
+        private void WebView_AcceleratorKeyPressed(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlAcceleratorKeyPressedEventArgs e)
+        {
+            if ((e.VirtualKey == Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.VirtualKey.F4 && Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
+               ^ e.VirtualKey == Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.VirtualKey.Escape)
+            {
+                timer.Stop();
+                webView.Navigate((Uri)null);
+                this.Close();
+                Spotify.GetSetVolume(_volume);
+                _window.FullNow(false);
+                _window.Visibility = Visibility.Visible;
+            }
         }
     }
 }

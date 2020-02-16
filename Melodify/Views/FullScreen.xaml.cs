@@ -19,6 +19,7 @@ namespace Melodify
     /// </summary>
     public partial class FullScreen : Window
     {
+        int progress = 0;
         System.Timers.Timer timer;
         private MainWindow _window;
         SpotifyWebAPI _spotify = new SpotifyWebAPI()
@@ -52,18 +53,20 @@ namespace Melodify
                     {
                         Title.Content = context.Item.Name;
                         Author.Content = context.Item.Artists[0].Name;
-
-                        BitmapImage albumArt = new BitmapImage();
-                        albumArt.BeginInit();
-                        albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
-                        albumArt.EndInit();
-                        if ((albumArt.UriSource.AbsoluteUri != cover.Source.ToString()) && (albumArt.UriSource.AbsoluteUri != null))
+                        if ((context.Item.Album.Images[0].Url != cover.Source.ToString()) && (context.Item.Album.Images[0].Url != null))
                         {
+                            BitmapImage albumArt = new BitmapImage();
+                            albumArt.BeginInit();
+                            albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
+                            albumArt.EndInit();
                             cover.Source = albumArt;
                             userCover.Source = albumArt;
-                            userCover.SetValue(HeightProperty, DependencyProperty.UnsetValue);
                             userCover.SetValue(WidthProperty, DependencyProperty.UnsetValue);
+                            userCover.SetValue(HeightProperty, DependencyProperty.UnsetValue);
+                            // Gets the total length of the song
+                            progress = context.Item.DurationMs;
                         }
+                        progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
                     }
                     else
                     {
@@ -133,6 +136,27 @@ namespace Melodify
             musicVideos.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             musicVideos.WindowState = WindowState.Maximized;
             musicVideos.Show();
+        }
+
+        private void Seek_Playback(object sender, RoutedEventArgs e)
+        {
+            int position = (int)((Mouse.GetPosition(this).X / this.Width) * 100);
+            Spotify.SeekPlayback(position);
+            e.Handled = true;
+        }
+
+        private void Progressbar_Click(object sender, RoutedEventArgs e)
+        {
+            if (progressGrid.Visibility == Visibility.Visible)
+            {
+                progressGrid.Visibility = Visibility.Collapsed;
+                Progressbar.IsChecked = false;
+            }
+            else if (progressGrid.Visibility == Visibility.Collapsed)
+            {
+                progressGrid.Visibility = Visibility.Visible;
+                Progressbar.IsChecked = true;
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

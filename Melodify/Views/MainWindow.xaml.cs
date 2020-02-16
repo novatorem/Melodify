@@ -31,8 +31,8 @@ namespace Melodify
             App.Current.Properties["playlistID"] = "";
             App.Current.Properties["suggestionMode"] = false;
             App.Current.Properties["userPause"] = false;
+            spotAPI = new SpotifyAPI(Properties.Resources.SpotID, Properties.Resources.SpotSecret);
 
-            spotAPI = new SpotifyAPI("b875781a51d540039acb8fd0aab33e11", "ddc0ef0527744d0d8024448f803de52d");
             // Sleep for two seconds while waiting for login to process
             // Needs to be fixed later as it will take more time for user to log in - implement null checker
             Thread.Sleep(2000);
@@ -51,6 +51,13 @@ namespace Melodify
             System.Timers.Timer accesser = new System.Timers.Timer(3500000);
             accesser.Elapsed += Access_Elapsed;
             accesser.Start();
+
+            // Checks user settings regarding progress bar
+            if ("HERE" != "true")
+            {
+                Progressbar.IsChecked = false;
+                progressGrid.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -221,17 +228,17 @@ namespace Melodify
             appInfo.Show();
         }
 
-        private void Trackbar_Click(object sender, RoutedEventArgs e)
+        private void Progressbar_Click(object sender, RoutedEventArgs e)
         {
             if (progressGrid.Visibility == Visibility.Visible)
             {
+                Progressbar.IsChecked = false;
                 progressGrid.Visibility = Visibility.Collapsed;
-                Trackbar.IsChecked = false;
             }
             else if (progressGrid.Visibility == Visibility.Collapsed)
             {
+                Progressbar.IsChecked = true;
                 progressGrid.Visibility = Visibility.Visible;
-                Trackbar.IsChecked = true;
             }
         }
 

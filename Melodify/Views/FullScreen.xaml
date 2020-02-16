@@ -17,18 +17,18 @@
     <Grid>
 
         <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,205" FontSize="52"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">
-            musicorum
+
             <Label.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity="0.4" Softness="1" />
             </Label.BitmapEffect>
         </Label>
         <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,150" FontSize="44" Foreground="#FFA4A4A4" Panel.ZIndex="-10">
-            artifex
+
             <Label.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" ShadowDepth="0" Opacity="0.4" Softness="1" />
             </Label.BitmapEffect>
         </Label>
-        <Image x:Name="cover" Source="https://source.unsplash.com/random/200x400" HorizontalAlignment="Center" Height="500" VerticalAlignment="Center" Width="500" Stretch="UniformToFill" Panel.ZIndex="-50" MouseDown="Cover_Click" Margin="0,0,0,100">
+        <Image x:Name="cover" Source="https://imgur.com/6NznWPx.png" HorizontalAlignment="Center" Height="500" VerticalAlignment="Center" Width="500" Stretch="UniformToFill" Panel.ZIndex="-50" MouseDown="Cover_Click" Margin="0,0,0,100">
             <Image.Effect>
                 <DropShadowEffect BlurRadius="20" 
                            ShadowDepth="0" 
@@ -52,18 +52,18 @@
         </Grid>
 
         <!-- Youtube button -->
-        <Grid x:Name="youtubeGrid" Margin="710,0,705,10" MouseEnter="YoutubeGrid_MouseEnter" MouseLeave="YoutubeGrid_MouseLeave" VerticalAlignment="Bottom" Height="135">
-            <Button x:Name="youtubeClick" Style="{DynamicResource exit}" Content="⏵" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Youtube_Click" Foreground="White" BorderBrush="{x:Null}" Padding="1,-10,0,-3" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Collapsed">
+        <Grid x:Name="youtubeGrid" Margin="710,0,705,10" MouseEnter="YoutubeGrid_MouseEnter" MouseLeave="YoutubeGrid_MouseLeave" VerticalAlignment="Bottom" Height="322">
+            <Button x:Name="youtubeClick" Style="{DynamicResource exit}" Content="⏵" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="Youtube_Click" Foreground="White" BorderBrush="{x:Null}" Padding="8,-8,7,-1" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Collapsed">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="50"/>
+                        <Setter Property="CornerRadius" Value="7.5"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>
                     <SolidColorBrush Color="Red" Opacity="0.15"/>
                 </Button.Background>
             </Button>
-            <Canvas Background="Black" Opacity="0.001" Panel.ZIndex="-90"/>
+            <Canvas Background="Black" Opacity="0.001" Panel.ZIndex="-90" Margin="0,0,0,4"/>
         </Grid>
 
         <!-- The background cover -->
@@ -85,8 +85,22 @@
             </Button.Background>
         </Button>
 
+        <!-- Progress Bar -->
+        <Grid x:Name="progressGrid" Height="16" VerticalAlignment="Bottom" MouseDown="Seek_Playback" Background="#01FFFFFF" Cursor="Hand" Visibility="Visible" Panel.ZIndex="50">
+            <Rectangle x:Name="progressBar" Height="12" VerticalAlignment="Bottom" Margin="0" Fill="#40FFFFFF" Width="0" HorizontalAlignment="Left"/>
+        </Grid>
+
         <!-- Background to add clickable and darken -->
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
+        
+        <!-- Context Menu -->
+        <Grid.ContextMenu>
+            <ContextMenu Name="contextMenu">
+                <Separator/>
+                <MenuItem x:Name="Progressbar" Header="Progress Bar" Click="Progressbar_Click" IsCheckable="True" IsChecked="True"/>
+                <Separator/>
+            </ContextMenu>
+        </Grid.ContextMenu>
 
     </Grid>
 

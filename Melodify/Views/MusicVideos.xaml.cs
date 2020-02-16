@@ -38,7 +38,7 @@ namespace Melodify
         YouTubeService youtube = new YouTubeService(new BaseClientService.Initializer()
         {
             ApplicationName = "Melodify",
-            ApiKey = "AIzaSyDMpkq9kWkITxDpT96m2c5K4a6ey4oQiGM",
+            ApiKey = Properties.Resources.YoutubeAPI,
         });
 
         public MusicVideos(MainWindow window)
@@ -71,7 +71,7 @@ namespace Melodify
                             listRequest.Type = "video";
                             listRequest.Q = songName + " - " + artistName;
                             listRequest.VideoEmbeddable = SearchResource.ListRequest.VideoEmbeddableEnum.True__;
-                            listRequest.VideoSyndicated = SearchResource.ListRequest.VideoSyndicatedEnum.True__;
+                            //listRequest.VideoSyndicated = SearchResource.ListRequest.VideoSyndicatedEnum.True__;
                             SearchListResponse resp = listRequest.Execute();
 
                             string videoID = resp.Items[0].Id.VideoId;

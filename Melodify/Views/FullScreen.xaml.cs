@@ -47,6 +47,11 @@ namespace Melodify
                 Progressbar.IsChecked = false;
                 progressGrid.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                Progressbar.IsChecked = true;
+                progressGrid.Visibility = Visibility.Visible;
+            }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -172,6 +177,7 @@ namespace Melodify
                 progressGrid.Visibility = Visibility.Visible;
                 Properties.Settings.Default.ProgressBar = "true";
             }
+            Properties.Settings.Default.Save();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

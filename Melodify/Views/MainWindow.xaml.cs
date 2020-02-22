@@ -36,14 +36,12 @@ namespace Melodify
 
             // Sleep for two seconds while waiting for login to process
             // Needs to be fixed later as it will take more time for user to log in - implement null checker
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             _spotify = new SpotifyWebAPI()
             {
                 AccessToken = (string)Application.Current.Properties["AccessToken"],
                 TokenType = (string)Application.Current.Properties["TokenType"]
             };
-
-            Populate_Playlists();
 
             // Timer to get the information
             System.Timers.Timer timer = new System.Timers.Timer(350);
@@ -65,6 +63,7 @@ namespace Melodify
                 Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
             }
+            Populate_Playlists();
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -77,7 +76,7 @@ namespace Melodify
             {
                 PlaybackContext context = _spotify.GetPlayingTrack();
 
-                Title.Dispatcher.Invoke(() =>
+                Dispatcher.Invoke(() =>
                 {
                     if (context.Error == null && context.Item != null)
                     {
@@ -286,16 +285,11 @@ namespace Melodify
 
         private void Populate_Playlists()
         {
-            //Add to main menu
-            MenuItem newMenuItem1 = new MenuItem();
-            newMenuItem1.Header = "Test 123";
-            contextMenu.Items.Add(newMenuItem1);
-
-            //Add to a sub item
-            MenuItem newMenuItem2 = new MenuItem();
+            // Add to the first object in context menu
+            MenuItem newMenuItem = new MenuItem();
             MenuItem newExistMenuItem = (MenuItem)contextMenu.Items[0];
-            newMenuItem2.Header = "Test 456";
-            newExistMenuItem.Items.Add(newMenuItem2);
+            newMenuItem.Header = "Sample Playlist";
+            newExistMenuItem.Items.Add(newMenuItem);
         }
     }
 }

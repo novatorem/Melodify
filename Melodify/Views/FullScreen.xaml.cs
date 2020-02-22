@@ -24,7 +24,6 @@ namespace Melodify
         System.Timers.Timer timer;
         private MainWindow _window;
         SpotifyWebAPI _spotify = new SpotifyWebAPI()
-
         {
             AccessToken = (string)App.Current.Properties["AccessToken"],
             TokenType = (string)App.Current.Properties["TokenType"]

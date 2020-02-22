@@ -4,6 +4,7 @@ using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -138,6 +139,33 @@ namespace Melodify
             Spotify.PreviousSong();
         }
 
+        private void CMGithub_Click(object sender, RoutedEventArgs e)
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = "cmd",
+                WindowStyle = ProcessWindowStyle.Hidden,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                Arguments = $"/c start https://github.com/novatorem/Melodify"
+            };
+            Process.Start(psi);
+        }
+
+        private void CMInfo_Click(object sender, RoutedEventArgs e)
+        {
+            AppInfo appInfo = new AppInfo();
+            appInfo.Show();
+        }
+
+        private void CMExit_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            this.Close();
+            _window.FullNow(false);
+            _window.Visibility = Visibility.Visible;
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             timer.Stop();
@@ -145,6 +173,7 @@ namespace Melodify
             _window.FullNow(false);
             _window.Visibility = Visibility.Visible;
         }
+
         private void Youtube_Click(object sender, RoutedEventArgs e)
         {
             timer.Stop();

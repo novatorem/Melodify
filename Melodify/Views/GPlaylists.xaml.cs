@@ -32,6 +32,7 @@ namespace Melodify
             WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
             Populate_Playlists();
+            System.Diagnostics.Debug.WriteLine("Hello???");
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -53,9 +54,11 @@ namespace Melodify
         private void Populate_Playlists()
         {
             Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50);
+            string userID = _spotify.GetPrivateProfile().Id;
+
             foreach (SimplePlaylist playlist in userPlaylists.Items)
             {
-                if (_spotify.GetPrivateProfile().Id == playlist.Owner.Id)
+                if (userID == playlist.Owner.Id)
                 {
                     continue;
                 }

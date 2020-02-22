@@ -63,7 +63,6 @@ namespace Melodify
                 Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
             }
-            Populate_Playlists();
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -251,6 +250,12 @@ namespace Melodify
             Properties.Settings.Default.Save();
         }
 
+        private void Populate_Playlists(object sender, RoutedEventArgs e)
+        {
+            Playlists playlists = new Playlists(true);
+            playlists.Show();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
@@ -283,13 +288,5 @@ namespace Melodify
             e.Handled = true;
         }
 
-        private void Populate_Playlists()
-        {
-            // Add to the first object in context menu
-            MenuItem newMenuItem = new MenuItem();
-            MenuItem newExistMenuItem = (MenuItem)contextMenu.Items[0];
-            newMenuItem.Header = "Sample Playlist";
-            newExistMenuItem.Items.Add(newMenuItem);
-        }
     }
 }

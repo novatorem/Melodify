@@ -48,6 +48,7 @@ namespace Melodify
         private void Populate_Playlists(bool adding)
         {
             Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50);
+            userPlaylists.Items.AddRange(_spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50, offset: 50).Items);
             string userID = _spotify.GetPrivateProfile().Id;
 
             foreach (SimplePlaylist playlist in userPlaylists.Items)
@@ -84,6 +85,7 @@ namespace Melodify
                 tBlock.Text = pName;
 
                 tBlock.FontSize = 16;
+                tBlock.FontWeight = FontWeights.Bold;
                 tBlock.Margin = new Thickness(0, 0, 0, 35);
                 tBlock.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
                 tBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;

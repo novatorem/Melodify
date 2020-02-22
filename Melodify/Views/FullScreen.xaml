@@ -38,7 +38,7 @@
 
         <Grid x:Name="exitGrid" Margin="710,0,710,782" MouseEnter="ExitGrid_MouseEnter" MouseLeave="ExitGrid_MouseLeave">
             <!-- Exit button -->
-            <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="4.5,-12,4.5,-3" FontSize="36" Visibility="Collapsed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-12,5,-3" FontSize="36" Visibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="50"/>
@@ -53,7 +53,7 @@
 
         <!-- Youtube button -->
         <Grid x:Name="youtubeGrid" Margin="710,0,705,10" MouseEnter="YoutubeGrid_MouseEnter" MouseLeave="YoutubeGrid_MouseLeave" VerticalAlignment="Bottom" Height="322">
-            <Button x:Name="youtubeClick" Style="{DynamicResource exit}" Content="⏵" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="Youtube_Click" Foreground="White" BorderBrush="{x:Null}" Padding="8,-8,7,-1" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Collapsed">
+            <Button x:Name="youtubeClick" Style="{DynamicResource exit}" Content="⏵" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="Youtube_Click" Foreground="White" BorderBrush="{x:Null}" Padding="8,-8,7,-1" FontSize="36" Visibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7.5"/>

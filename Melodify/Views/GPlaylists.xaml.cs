@@ -53,6 +53,7 @@ namespace Melodify
         private void Populate_Playlists()
         {
             Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50);
+            userPlaylists.Items.AddRange(_spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50, offset: 50).Items);
             string userID = _spotify.GetPrivateProfile().Id;
 
             foreach (SimplePlaylist playlist in userPlaylists.Items)
@@ -119,7 +120,7 @@ namespace Melodify
             }
             catch
             {
-                System.Diagnostics.Debug.WriteLine("Issue saving playback at TopSongs/Preview_Song");
+                System.Diagnostics.Debug.WriteLine("Issue saving playback at GPlaylists/Play_Playlist");
             }
 
             ErrorResponse err = _spotify.ResumePlayback(contextUri: playlistURI, offset: "");

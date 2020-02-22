@@ -8,13 +8,13 @@
         <Style TargetType="ContextMenu">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#121212"/>
+                    <Setter Property="Background" Value="#1E1E1E"/>
                 </Trigger>
                 <DataTrigger Binding="{Binding ContextMenu.IsOpen,RelativeSource={RelativeSource Mode=Self}}" Value="True">
-                    <Setter Property="Background" Value="#121212"/>
+                    <Setter Property="Background" Value="#1E1E1E"/>
                 </DataTrigger>
             </Style.Triggers>
-            <Setter Property="Background" Value="#121212" />
+            <Setter Property="Background" Value="#1E1E1E" />
             <Setter Property="Foreground" Value="#D9FFFFFF" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Template">
@@ -49,9 +49,9 @@
         </Style>
 
         <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
-            <Setter Property="Background" Value="#121212"/>
+            <Setter Property="Background" Value="#1E1E1E"/>
             <Setter Property="Foreground" Value="#D9FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#121212"/>
+            <Setter Property="BorderBrush" Value="#1E1E1E"/>
             <Setter Property="Margin" Value="0,0,0,0"/>
             <Setter Property="Padding" Value="-20,0,0,0"/>
         </Style>
@@ -68,7 +68,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Separator}">
                         <Grid Margin="0,6,0,4" SnapsToDevicePixels="true">
-                            <Rectangle Margin="1,0,1,1" Height="1" Fill="#121212"/>
+                            <Rectangle Margin="1,0,1,1" Height="1" Fill="#1E1E1E"/>
                             <Rectangle Margin="1,1,1,0" Height="1" Fill="Gray"/>
                         </Grid>
                     </ControlTemplate>

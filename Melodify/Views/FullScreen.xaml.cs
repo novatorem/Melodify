@@ -52,6 +52,21 @@ namespace Melodify
                 Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
             }
+            System.Threading.Tasks.Task.Delay(2 * 1000).ContinueWith((_) => HideButtons());
+        }
+
+        private void HideButtons()
+        {
+            exitClick.Dispatcher.Invoke(() =>
+            {
+
+                exitClick.Visibility = Visibility.Collapsed;
+            });
+            youtubeClick.Dispatcher.Invoke(() =>
+            {
+
+                youtubeClick.Visibility = Visibility.Collapsed;
+            });
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)

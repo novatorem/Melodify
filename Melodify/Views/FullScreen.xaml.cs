@@ -55,20 +55,6 @@ namespace Melodify
             System.Threading.Tasks.Task.Delay(2 * 1000).ContinueWith((_) => HideButtons());
         }
 
-        private void HideButtons()
-        {
-            exitClick.Dispatcher.Invoke(() =>
-            {
-
-                exitClick.Visibility = Visibility.Collapsed;
-            });
-            youtubeClick.Dispatcher.Invoke(() =>
-            {
-
-                youtubeClick.Visibility = Visibility.Collapsed;
-            });
-        }
-
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             PlaybackContext context = _spotify.GetPlayingTrack();
@@ -110,6 +96,19 @@ namespace Melodify
                 {
                     System.Diagnostics.Debug.WriteLine("Outside- " + context.Error.Message);
                 }
+            });
+        }
+
+        private void HideButtons()
+        {
+            exitClick.Visibility = Visibility.Collapsed;
+            exitClick.Dispatcher.Invoke(() =>
+            {
+                ;// exitClick.Visibility = Visibility.Collapsed;
+            });
+            youtubeClick.Dispatcher.Invoke(() =>
+            {
+                youtubeClick.Visibility = Visibility.Collapsed;
             });
         }
 
@@ -204,6 +203,12 @@ namespace Melodify
             int position = (int)((Mouse.GetPosition(this).X / this.Width) * 100);
             Spotify.SeekPlayback(position);
             e.Handled = true;
+        }
+
+        private void Populate_Playlists(object sender, RoutedEventArgs e)
+        {
+            Playlists playlists = new Playlists(true);
+            playlists.Show();
         }
 
         private void Progressbar_Click(object sender, RoutedEventArgs e)

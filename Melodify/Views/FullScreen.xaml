@@ -97,7 +97,7 @@
         
         <Grid.ContextMenu>
             <ContextMenu Name="contextMenu">
-                <MenuItem x:Name="addToPlaylist" Header="Add To Playlist"/>
+                <MenuItem x:Name="addToPlaylist" Header="Add To Playlist" Click="Populate_Playlists"/>
                 <MenuItem x:Name="Progressbar" Header="Progress Bar" Click="Progressbar_Click"/>
                 <Separator/>
                 <MenuItem Header="Info" Click="CMInfo_Click"/>

@@ -32,7 +32,6 @@ namespace Melodify
             WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
             Populate_Playlists();
-            System.Diagnostics.Debug.WriteLine("Hello???");
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

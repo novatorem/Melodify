@@ -82,7 +82,7 @@ namespace Melodify
                         DoubleAnimation animation = new DoubleAnimation();
                         animation.From = progressBar.ActualWidth;
                         animation.To = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
-                        animation.Duration = new Duration(TimeSpan.FromSeconds(1));
+                        animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
                         animation.FillBehavior = FillBehavior.Stop;
                         progressBar.BeginAnimation(Rectangle.WidthProperty, animation);
                         progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
@@ -101,14 +101,19 @@ namespace Melodify
 
         private void HideButtons()
         {
-            exitClick.Visibility = Visibility.Collapsed;
             exitClick.Dispatcher.Invoke(() =>
             {
-                ;// exitClick.Visibility = Visibility.Collapsed;
+                if (!exitGrid.IsMouseOver)
+                {
+                    exitClick.Visibility = Visibility.Collapsed;
+                }
             });
             youtubeClick.Dispatcher.Invoke(() =>
             {
-                youtubeClick.Visibility = Visibility.Collapsed;
+                if (!youtubeGrid.IsMouseOver)
+                {
+                    youtubeClick.Visibility = Visibility.Collapsed;
+                }
             });
         }
 

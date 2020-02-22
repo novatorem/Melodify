@@ -7,7 +7,9 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace Melodify
 {
@@ -93,6 +95,13 @@ namespace Melodify
                                 // Gets the total length of the song
                                 progress = context.Item.DurationMs;
                             }
+
+                            DoubleAnimation animation = new DoubleAnimation();
+                            animation.From = progressBar.ActualWidth;
+                            animation.To = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
+                            animation.Duration = new Duration(TimeSpan.FromMilliseconds(250));
+                            animation.FillBehavior = FillBehavior.Stop;
+                            progressBar.BeginAnimation(Rectangle.WidthProperty, animation);
                             progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
 
                             if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying)

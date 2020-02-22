@@ -94,11 +94,16 @@
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
         
         <!-- Context Menu -->
+        
         <Grid.ContextMenu>
             <ContextMenu Name="contextMenu">
-                <Separator/>
+                <MenuItem x:Name="addToPlaylist" Header="Add To Playlist"/>
                 <MenuItem x:Name="Progressbar" Header="Progress Bar" Click="Progressbar_Click"/>
                 <Separator/>
+                <MenuItem Header="Info" Click="CMInfo_Click"/>
+                <MenuItem Header="Github" Click="CMGithub_Click"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="CMExit_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
 

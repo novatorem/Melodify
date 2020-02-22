@@ -26,12 +26,12 @@ namespace Melodify
             TokenType = (string)App.Current.Properties["TokenType"]
         };
 
-        public Playlists()
+        public Playlists(bool adding = false)
         {
             InitializeComponent();
             WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
-            Populate_Playlists();
+            Populate_Playlists(adding);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -45,12 +45,14 @@ namespace Melodify
             this.Close();
         }
 
-        private void Populate_Playlists()
+        private void Populate_Playlists(bool adding)
         {
             Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50);
+            string userID = _spotify.GetPrivateProfile().Id;
+
             foreach (SimplePlaylist playlist in userPlaylists.Items)
             {
-                if (_spotify.GetPrivateProfile().Id != playlist.Owner.Id)
+                if (userID != playlist.Owner.Id)
                 {
                     continue;
                 }
@@ -88,7 +90,13 @@ namespace Melodify
                 tBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
 
                 grid.Cursor = Cursors.Hand;
-                grid.MouseDown += ((s, e) => Play_Playlist(s, e, playlist.Uri));
+                if (adding)
+                {
+                    grid.MouseDown += ((s, e) => AddTo_Playlist(s, e, userID, playlist.Id));
+                } else
+                {
+                    grid.MouseDown += ((s, e) => Play_Playlist(s, e, playlist.Uri));
+                }
 
                 grid.Children.Add(ellipse);
                 grid.Children.Add(tBlock);
@@ -113,13 +121,32 @@ namespace Melodify
             }
             catch
             {
-                System.Diagnostics.Debug.WriteLine("Issue saving playback at TopSongs/Preview_Song");
+                System.Diagnostics.Debug.WriteLine("Issue saving playback at Playlists/Play_Playlist");
             }
 
             ErrorResponse err = _spotify.ResumePlayback(contextUri: playlistURI, offset: "");
             // Possibility of disabling repeat when playing back
             //App.Current.Properties["setRepeatOff"] = true;
             //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
+        }
+
+        private void AddTo_Playlist(object sender, MouseEventArgs e, string userID, string playlistID)
+        {
+            // Save their current playback so we can return to it after
+            try
+            {
+                PlaybackContext context = _spotify.GetPlayingTrack();
+                ErrorResponse response = _spotify.AddPlaylistTrack(userID, playlistID, context.Item.Id);
+
+                System.Diagnostics.Debug.WriteLine(userID);
+                System.Diagnostics.Debug.WriteLine(playlistID);
+                System.Diagnostics.Debug.WriteLine(context.Item.Id);
+                System.Diagnostics.Debug.WriteLine(response.Error.Message);
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("Issue saving playback at Playlists/AddTo_Playlist");
+            }
         }
 
     }

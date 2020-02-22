@@ -11,13 +11,10 @@
       AllowsTransparency="True"
       WindowStyle="None"
       WindowStartupLocation="CenterScreen"
+      ResizeMode="CanResize"
       >
 
     <Grid>
-        
-        <!--
-        An application meant to offer a clean and minimal interface to interact with Spotify. As a bonus, the user is able to retrieve information about themselves, as well as generate songs recommended to them based on their currently listening track or overall listening habits.
-        -->
 
         <!-- Title -->
         <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" Text="Melodify" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="24"/>
@@ -35,43 +32,43 @@
         </Button>
 
         <!-- Grid to control the info-text elements-->
-        <Grid Margin="15,55,15,5">
+        <Grid Margin="17,60,15,5">
             <WrapPanel >
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify">
-                    ‌‌ ‌‌ ‌‌The controls for each process follows characterization of their Japanese translation. They are only visible when hovering over the application itself.
+                    ‌‌ ‌‌ ‌‌        An application meant to offer a clean and minimal interface to interact with Spotify. As a bonus, the user is able to retrieve information about themselves, as well as generate songs recommended to them based on their currently listening track or overall listening habits.
                 </TextBlock>
                 
                 <!-- Controls explanation -->
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
-                    [↖] い
+                    [↖] ⛶
                 </TextBlock>
                 <TextBlock Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
-                   : expands the program to be fullscreen with blur
+                   :  expands the program to be fullscreen with blur
                 </TextBlock>
                 <TextBlock Width="10000" Height="0" />
                 <TextBlock Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
-                    [↗] り
+                    [↗] ∞
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
-                   : menu with various views based on your taste
+                   :  menu with info on user's taste and preferences
                 </TextBlock>
                 <TextBlock Width="10000" Height="0" />
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
-                    [↙] セ
+                    [↙] ≡
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
-                   : plays playlist based on your general taste (slow)
+                   :  menu containing followed and generated playlists
                 </TextBlock>
                 <TextBlock Width="10000" Height="0" />
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="0,10,0,0" FontWeight="Bold">
-                    [↘] グ
+                    [↘] ♡
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="14" TextAlignment="Justify" Margin="2,10,0,0">
-                   : likes a song, adding it to your favorite tracks
+                   :  likes a song, adding it to your favorite tracks
                 </TextBlock>
 
                 <TextBlock TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="16" TextAlignment="Justify" Margin="0,10,0,0">
-                    ‌‌ ‌‌ ‌Clicking the middle pauses. Left/Right plays next and previous respectively. The top area can also be used to repoition the view.
+                    ‌‌ ‌‌ ‌Clicking the middle pauses. Left/Right plays next and previous respectively. The top left/right areas can also be used to repoition the view. Progress bar can be used to seek track.
                 </TextBlock>
 
             </WrapPanel>

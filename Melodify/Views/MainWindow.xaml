@@ -40,7 +40,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="playlistClick" Style="{DynamicResource control}" Content="Ѧ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Playlist_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+        <Button x:Name="playlistClick" Style="{DynamicResource control}" Content="≡" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Playlist_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,0.9,5,3.4" Cursor="Hand"
                 ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens the playlist view">
             <Button.Resources>
                 <Style TargetType="Border">

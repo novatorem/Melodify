@@ -30,32 +30,45 @@
         </Button>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <!-- Top Songs -->
-            <Grid Width="300" Margin="50" MouseDown="Songs_Click" Cursor="Hand">
-                <TextBlock Text="Top Songs" Margin="0,3,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
-                <TextBlock HorizontalAlignment="Center" Margin="0,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Justify">
-                    A view of all your current favorite songs, determined by how often you've played them.
-                </TextBlock>
-                <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
-            </Grid>
+            <!-- User Playlists -->
+            <Button Style="{DynamicResource control}" Background="#11FFFFFF" BorderBrush="Black" BorderThickness="1,1,1,1" MaxHeight="200" VerticalAlignment="Bottom" Margin="0,30,50,0" Padding="5">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Grid Width="300" Margin="10" MouseDown="Songs_Click" Cursor="Hand">
+                    <TextBlock Text="Top Songs" Margin="0,-5,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
+                        A view of all your current favorite songs, determined by how often you've played them.
+                    </TextBlock>
+                    <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
+                </Grid>
+            </Button>
 
-            <!-- User Info -->
-            <Grid Width="300" Margin="50" MouseDown="User_Click" Cursor="Hand">
-                <TextBlock Text="User Info" Margin="0,3,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
-                <TextBlock HorizontalAlignment="Center" Margin="0,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Justify">
-                    Set of information regarding your listening habits and other fun tidbits (in progress).
-                </TextBlock>
-                <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
-            </Grid>
+            <!-- Followed Playlists -->
+            <Button Style="{DynamicResource control}" Background="#11FFFFFF" BorderBrush="Black" BorderThickness="1,1,1,1" MaxHeight="200" VerticalAlignment="Bottom" Margin="50,30,0,0" Padding="5">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Grid Width="300" Margin="10" MouseDown="User_Click" Cursor="Hand">
+                    <TextBlock Text="User Info" Margin="0,-5,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
+                        Set of information regarding your listening habits and other fun tidbits (in progress).
+                    </TextBlock>
+                    <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
+                </Grid>
+            </Button>
         </StackPanel>
 
         <!-- Background to add clickable and darken -->
-        <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
+        <Canvas Background="Black" Opacity="0.7" Panel.ZIndex="-90"/>
 
     </Grid>
 
     <Window.Resources>
-        <!-- Window opener styling -->
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -68,13 +81,13 @@
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#000000" Opacity="0.25"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#000000" Opacity="0"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="White" Opacity="0.4"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#000000" Opacity="0.5"/>
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#000000ff"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="menu" TargetType="{x:Type Button}">
+        <Style x:Key="control" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -111,7 +124,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
         <!-- Exit button style -->
         <Style x:Key="FocusVisual1">
             <Setter Property="Control.Template">

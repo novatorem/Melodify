@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Melodify"
       mc:Ignorable="d" 
-      Height="900" Width="700"
+      Height="900" Width="1050"
       Title="Playlists"
       Background="Transparent"
       AllowsTransparency="True"
@@ -41,7 +41,7 @@
         </Grid>
 
         <!-- Background to add clickable and darken -->
-        <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
+        <Canvas Background="Black" Opacity="0.7" Panel.ZIndex="-90"/>
 
     </Grid>
 

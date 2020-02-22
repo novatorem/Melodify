@@ -11,7 +11,7 @@ Yet another spotify "client" that runs alongisde the program, removing certain f
     <td>Full screen view with album art</td>
   </tr>
   <tr>
-    <td>Playlist view and playback</td>
+    <td>Playlist control and playback</td>
     <td>Top songs playback and preview</td>
     <td>Favorite song from miniplayer</td>
   </tr>

@@ -136,12 +136,7 @@ namespace Melodify
             try
             {
                 PlaybackContext context = _spotify.GetPlayingTrack();
-                ErrorResponse response = _spotify.AddPlaylistTrack(userID, playlistID, context.Item.Id);
-
-                System.Diagnostics.Debug.WriteLine(userID);
-                System.Diagnostics.Debug.WriteLine(playlistID);
-                System.Diagnostics.Debug.WriteLine(context.Item.Id);
-                System.Diagnostics.Debug.WriteLine(response.Error.Message);
+                ErrorResponse response = _spotify.AddPlaylistTrack(userID, playlistID, context.Item.Uri);
             }
             catch
             {

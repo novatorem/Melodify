@@ -96,12 +96,11 @@
         </Grid>
 
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>
-
+        <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-999"/>
+        
         <Grid.ContextMenu>
             <ContextMenu Name="contextMenu">
                 <MenuItem x:Name="addToPlaylist" Header="Add To Playlist">
-                    <MenuItem Header="Info" Click="CMInfo_Click"/>
-                    <MenuItem Header="Github" Click="CMGithub_Click"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem x:Name="Progressbar" Header="Progress Bar" Click="Progressbar_Click"/>

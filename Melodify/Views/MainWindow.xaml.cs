@@ -34,9 +34,8 @@ namespace Melodify
             App.Current.Properties["userPause"] = false;
             spotAPI = new SpotifyAPI(Properties.Resources.SpotID, Properties.Resources.SpotSecret);
 
-            // Sleep for two seconds while waiting for login to process
-            // Needs to be fixed later as it will take more time for user to log in - implement null checker
-            Thread.Sleep(5000);
+            // Sleep for a second while waiting for login to process
+            Thread.Sleep(1000);
             _spotify = new SpotifyWebAPI()
             {
                 AccessToken = (string)Application.Current.Properties["AccessToken"],
@@ -96,22 +95,31 @@ namespace Melodify
                             }
                             progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
 
+                            if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying)
+                            {
+                                Spotify.ResumePlayback();
+                            }
                         }
                         else
                         {
                             System.Diagnostics.Debug.WriteLine("Inside- " + context.Error.Message);
                         }
                     }
-                    else
+                    else if (context.Error != null)
                     {
                         System.Diagnostics.Debug.WriteLine("Outside- " + context.Error.Message);
+
+                        // If the issue is that the auth didn't go through, we try to set up a new connection
+                        if (context.Error.Message == "Only valid bearer authentication supported")
+                        {
+                            _spotify = new SpotifyWebAPI()
+                            {
+                                AccessToken = (string)Application.Current.Properties["AccessToken"],
+                                TokenType = (string)Application.Current.Properties["TokenType"]
+                            };
+                        }
                     }
                 });
-
-                if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying)
-                {
-                    Spotify.ResumePlayback();
-                }
             }
             catch (Exception err)
             {

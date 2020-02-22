@@ -94,7 +94,7 @@ namespace Melodify
                 grid.Cursor = Cursors.Hand;
                 if (adding)
                 {
-                    grid.MouseDown += ((s, e) => AddTo_Playlist(s, e, userID, playlist.Id));
+                    grid.MouseDown += ((s, e) => AddTo_Playlist(s, e, playlist.Id));
                 } else
                 {
                     grid.MouseDown += ((s, e) => Play_Playlist(s, e, playlist.Uri));
@@ -132,13 +132,14 @@ namespace Melodify
             //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
         }
 
-        private void AddTo_Playlist(object sender, MouseEventArgs e, string userID, string playlistID)
+        private void AddTo_Playlist(object sender, MouseEventArgs e, string playlistID)
         {
             // Save their current playback so we can return to it after
             try
             {
                 PlaybackContext context = _spotify.GetPlayingTrack();
-                ErrorResponse response = _spotify.AddPlaylistTrack(userID, playlistID, context.Item.Uri);
+                ErrorResponse response = _spotify.AddPlaylistTrack(playlistID, context.Item.Uri);
+                this.Close();
             }
             catch
             {

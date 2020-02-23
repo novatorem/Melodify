@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/novatorem/Melodify</PackageProjectUrl>
     <RepositoryUrl>https://github.com/novatorem/Melodify.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>0.2.1</Version>
+    <Version>0.2.4</Version>
     <ApplicationIcon>Resources/melodify.ico</ApplicationIcon>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>

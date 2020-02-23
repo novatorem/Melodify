@@ -166,6 +166,19 @@ namespace Melodify
             fullScreen.WindowState = WindowState.Maximized;
         }
 
+        private new void Mouse_Wheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                Spotify.GetSetVolume(Spotify.GetSetVolume() + 10);
+            }
+
+            else if (e.Delta < 0)
+            {
+                Spotify.GetSetVolume(Spotify.GetSetVolume() - 10);
+            }
+        }
+
         public void FullNow(bool pauseAPI)
         {
             _pauseAPI = pauseAPI;

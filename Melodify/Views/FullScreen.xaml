@@ -14,7 +14,7 @@
       KeyDown="Window_KeyDown"
       >
 
-    <Grid>
+    <Grid MouseWheel="Mouse_Wheel">
 
         <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,205" FontSize="52"  Foreground="#FFC7C7C7" Panel.ZIndex="-10">
 

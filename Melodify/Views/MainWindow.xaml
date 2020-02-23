@@ -18,7 +18,7 @@
         KeyDown="Window_KeyDown"
         MouseDoubleClick="Window_MouseDoubleClick">
 
-    <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave">
+    <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave" MouseWheel="Mouse_Wheel">
 
         <Label Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20" FontSize="20"  Foreground="#FFC7C7C7" Panel.ZIndex="-10"></Label>
         <Label Name="Author" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-35" FontSize="16" Foreground="#FFA4A4A4" Panel.ZIndex="-10"></Label>

@@ -125,7 +125,7 @@ namespace Melodify
             // Get the image URL
             BitmapImage bimageHover = new BitmapImage();
             bimageHover.BeginInit();
-            bimageHover.UriSource = new Uri("https://imgur.com/bvwhxjU.png", UriKind.Absolute);
+            bimageHover.UriSource = new Uri("https://i.imgur.com/OvOsHyN.png", UriKind.Absolute);
             bimageHover.EndInit();
 
             // Bind the image to a brush

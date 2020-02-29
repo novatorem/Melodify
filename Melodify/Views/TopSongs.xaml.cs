@@ -32,32 +32,23 @@ namespace Melodify
             InitializeComponent();
             WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
-            Populate_Title();
             Populate_Songs();
-        }
-
-        private void Populate_Title()
-        {
-            PrivateProfile user = _spotify.GetPrivateProfile();
-            try
-            {
-                title.Text = user.DisplayName;
-                BitmapImage bimage = new BitmapImage();
-                bimage.BeginInit();
-                bimage.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
-                bimage.EndInit();
-                pPicture.ImageSource = bimage;
-            } catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine("Issue getting info at TopSongs/Populate_Title- " + e.Message);
-            }
         }
 
         private void Populate_Songs()
         {
-            Paging<FullTrack> tracks = _spotify.GetUsersTopTracks(limit: 21);
+            PrivateProfile user = _spotify.GetPrivateProfile();
+            Paging<FullTrack> tracks = _spotify.GetUsersTopTracks(limit: 28);
             string userSong = "";
             string userArtists = "";
+
+            BitmapImage userArt = new BitmapImage();
+            userArt.BeginInit();
+            userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+            userArt.EndInit();
+
+            userCover.Source = userArt;
+
             foreach (FullTrack track in tracks.Items)
             {
                 Grid grid = new Grid();
@@ -106,8 +97,8 @@ namespace Melodify
                 tBlock2.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
 
                 // Create the event handlers
-                grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, track.Id, bimage));
-                grid.MouseLeave += new MouseEventHandler(Stop_Preview);
+                grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, track.Id, bimage, grid));
+                grid.MouseLeave += new MouseEventHandler((s, e) => Stop_Preview(s, e, userArt, grid));
                 grid.MouseDown += ((s, e) => Open_Song(s, e, track.Uri));
 
                 grid.Cursor = Cursors.Hand;
@@ -120,8 +111,9 @@ namespace Melodify
             }
         }
 
-        private void Preview_Song(object sender, EventArgs e, string songID, BitmapImage bimage)
+        private void Preview_Song(object sender, EventArgs e, string songID, BitmapImage bimage, Grid grid)
         {
+            Add_Hover(grid);
             // Play the preview url
             string previewURL = _spotify.GetTrack(songID).PreviewUrl;
             if (previewURL != null)
@@ -134,11 +126,11 @@ namespace Melodify
             }
         }
 
-        private void Stop_Preview(object sender, EventArgs e)
+        private void Stop_Preview(object sender, EventArgs e, BitmapImage userArt, Grid grid)
         {
             previewer.Stop();
-            userCover.Height = 0;
-            userCover.Width = 0;
+            grid.Children.RemoveAt(2);
+            userCover.Source = userArt;
         }
 
         private void Open_Song(object sender, MouseEventArgs e, string songURI)
@@ -164,6 +156,32 @@ namespace Melodify
             // Possibility of disabling repeat when playing back
             //App.Current.Properties["setRepeatOff"] = true;
             //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
+        }
+
+        private void Add_Hover(Grid grid)
+        {
+            Ellipse ellipseHover = new Ellipse();
+            // Get the image URL
+            BitmapImage bimageHover = new BitmapImage();
+            bimageHover.BeginInit();
+            bimageHover.UriSource = new Uri("https://i.imgur.com/OvOsHyN.png", UriKind.Absolute);
+            bimageHover.EndInit();
+
+            // Bind the image to a brush
+            ImageBrush imageBrushHover = new ImageBrush();
+            imageBrushHover.ImageSource = bimageHover;
+            imageBrushHover.Stretch = System.Windows.Media.Stretch.UniformToFill;
+
+            // Create the hover
+            ellipseHover.Height = 100;
+            ellipseHover.Name = "test";
+            ellipseHover.Width = 100;
+            ellipseHover.Fill = imageBrushHover;
+            ellipseHover.Opacity = 0.8;
+            ellipseHover.Margin = new Thickness(0, 10, 0, 0);
+            ellipseHover.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+
+            grid.Children.Add(ellipseHover);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

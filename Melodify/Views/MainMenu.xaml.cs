@@ -35,9 +35,21 @@ namespace Melodify
             this.Close();
         }
 
+        private void Artists_Click(object sender, RoutedEventArgs e)
+        {
+            TopArtists topArtists = new TopArtists();
+            topArtists.Show();
+            this.Close();
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

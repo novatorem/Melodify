@@ -52,8 +52,15 @@ namespace Melodify
 
         private void Populate_Playlists()
         {
+            int offSet = 50;
+            Paging<SimplePlaylist> userPlaylistsInc;
             Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50);
-            userPlaylists.Items.AddRange(_spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50, offset: 50).Items);
+            while (userPlaylists.Total > offSet)
+            {
+                userPlaylistsInc = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50, offset: offSet);
+                userPlaylists.Items.AddRange(userPlaylistsInc.Items);
+                offSet += 50;
+            }
             string userID = _spotify.GetPrivateProfile().Id;
 
             foreach (SimplePlaylist playlist in userPlaylists.Items)
@@ -95,6 +102,9 @@ namespace Melodify
                 tBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
 
                 grid.Cursor = Cursors.Hand;
+
+                grid.MouseLeave += ((s, e) => Remove_Hover(s, e, grid));
+                grid.MouseEnter += ((s, e) => Add_Hover(s, e, grid));
                 grid.MouseDown += ((s, e) => Play_Playlist(s, e, playlist.Uri));
 
                 grid.Children.Add(ellipse);
@@ -102,6 +112,37 @@ namespace Melodify
 
                 playlists.Children.Add(grid);
             }
+        }
+
+        private void Remove_Hover(object s, MouseEventArgs e, Grid grid)
+        {
+            grid.Children.RemoveAt(2);
+        }
+
+        private void Add_Hover(object s, MouseEventArgs e, Grid grid)
+        {
+            Ellipse ellipseHover = new Ellipse();
+            // Get the image URL
+            BitmapImage bimageHover = new BitmapImage();
+            bimageHover.BeginInit();
+            bimageHover.UriSource = new Uri("https://imgur.com/bvwhxjU.png", UriKind.Absolute);
+            bimageHover.EndInit();
+
+            // Bind the image to a brush
+            ImageBrush imageBrushHover = new ImageBrush();
+            imageBrushHover.ImageSource = bimageHover;
+            imageBrushHover.Stretch = System.Windows.Media.Stretch.UniformToFill;
+
+            // Create the hover
+            ellipseHover.Height = 100;
+            ellipseHover.Name = "test";
+            ellipseHover.Width = 100;
+            ellipseHover.Fill = imageBrushHover;
+            ellipseHover.Opacity = 0.8;
+            ellipseHover.Margin = new Thickness(0, 10, 0, 0);
+            ellipseHover.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+
+            grid.Children.Add(ellipseHover);
         }
 
         private void Play_Playlist(object sender, MouseEventArgs e, string playlistURI)

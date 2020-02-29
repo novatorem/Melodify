@@ -1,6 +1,6 @@
 # Melodify
 
-Yet another spotify "client" that runs alongisde the program, removing certain features and adding others. This program uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) in a WPF .NET Core application. **Do not run as an Admin**.
+Yet another spotify "client" that runs alongisde the program, removing certain features and adding others. This program uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) in a WPF .NET Core application.
 
 ## Features
 
@@ -23,19 +23,18 @@ Yet another spotify "client" that runs alongisde the program, removing certain f
 </table>
 
 ## Overview
+![](images/main.jpg) ![](images/melodify.gif)
 
-![](images/main.JPG)
-![](images/hover.jpg)
+The default view of the application. The blue circle are just recorded clicks, to show some functionality.
 
-The default view of the application.
 Hovering over it reveals four buttons that perform the following:
 
 Location | Symbol | Purpose
 :---: | :---: | ---
-↖|`い`|Expands the program to be fullscreen with blur
-↗|`り`|Menu with various views based on your taste
-↙|`ト`|Opens the playlist view, public and private
-↘|`グ`|Likes a song, adding it to your favorite tracks
+↖|`⛶`|Expands the program to be fullscreen with blur
+↗|`∞`|Menu with various views based on your taste
+↙|`≡`|Opens the playlist view, public and private
+↘|`♡`|Likes a song, adding it to your favorite tracks
 
 ![](images/hoverRaw.jpg)
 ![](images/hoverInfo.jpg)
@@ -51,15 +50,10 @@ Black | ⠀ | Allows dragging of window to desired location
 
 #### Fullscreen View
 ![](images/fullscreen.jpg)
-#### Top Songs View (video)
-[![Preview Top Songs](images/topSongs.jpg)](https://streamable.com/m08hx)
+#### Top Songs View (click for sound)
+[![Preview Top Songs](images/topSongs.gif)](https://streamable.com/m08hx)
 
 There are other features in play, with a number more planned! I work on this during the weekends, but you're also welcome to submit feature or pull requests at any point.
-
-## Planned Features
-- Display lyrics in full screen view
-- Implement user statistics view
-- Caching system for loading playlists
 
 ## Installation
 
@@ -67,14 +61,11 @@ There are other features in play, with a number more planned! I work on this dur
 >
 > Go to the [Releases](https://github.com/novatorem/Melodify/releases) page and download the latest release
 
-
-Currently Windows 10 support only, planning on further expansion if this picks up.
+Currently only supports Windows 10, planning on further expansion if this picks up.
 
 ## Development setup
 
-Developed on Visual Studio 2019
-
-A WPF application using .NET
+Developed on Visual Studio 2019 - a WPF application using .NET
 
 You'll need to get your own Spotify API and YouTube API access.
 Set up a Resources.resx file under the Solution Properties.
@@ -82,6 +73,10 @@ You'll then need three variables, with their respective keys:
 - SpotID
 - SpotSecret
 - YoutubeAPI
+
+## Known Issues
+
+- Running as an admin breaks the music video feature
 
 ## Various Views
 

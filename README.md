@@ -23,9 +23,9 @@ Yet another spotify "client" that runs alongisde the program, removing certain f
 </table>
 
 ## Overview
-![](images/main.jpg) ![](images/melodify.gif)
+![](images/main.JPG) ![](images/melodify.gif)
 
-The default view of the application. The blue circle are just recorded clicks, to show some functionality.
+The default view of the application. The blue circles are just recorded clicks, to show some functionality.
 
 Hovering over it reveals four buttons that perform the following:
 

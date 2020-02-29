@@ -38,10 +38,10 @@
 
         <Grid x:Name="exitGrid" Margin="710,0,710,782" MouseEnter="ExitGrid_MouseEnter" MouseLeave="ExitGrid_MouseLeave">
             <!-- Exit button -->
-            <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-12,5,-3" FontSize="36" Visibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-11,5,-3" FontSize="36" Visibility="Visible">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="50"/>
+                        <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>

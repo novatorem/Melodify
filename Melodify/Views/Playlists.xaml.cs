@@ -47,8 +47,15 @@ namespace Melodify
 
         private void Populate_Playlists(bool adding)
         {
+            int offSet = 50;
+            Paging<SimplePlaylist> userPlaylistsInc;
             Paging<SimplePlaylist> userPlaylists = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50);
-            userPlaylists.Items.AddRange(_spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50, offset: 50).Items);
+            while (userPlaylists.Total > offSet)
+            {
+                userPlaylistsInc = _spotify.GetUserPlaylists(_spotify.GetPrivateProfile().Id, limit: 50, offset: offSet);
+                userPlaylists.Items.AddRange(userPlaylistsInc.Items);
+                offSet += 50;
+            }
             string userID = _spotify.GetPrivateProfile().Id;
 
             foreach (SimplePlaylist playlist in userPlaylists.Items)
@@ -58,6 +65,7 @@ namespace Melodify
                     continue;
                 }
                 Grid grid = new Grid();
+
 
                 // Get the image URL
                 BitmapImage bimage = new BitmapImage();
@@ -78,7 +86,7 @@ namespace Melodify
                 ellipse.Margin = new Thickness(0, 10, 0, 0);
                 ellipse.VerticalAlignment = System.Windows.VerticalAlignment.Top;
 
-                // Create the song text
+                // Create the playlist text
                 TextBlock tBlock = new TextBlock();
 
                 string pName = playlist.Name;
@@ -94,9 +102,13 @@ namespace Melodify
                 grid.Cursor = Cursors.Hand;
                 if (adding)
                 {
+                    grid.MouseLeave += ((s, e) => Remove_Hover(s, e, grid));
+                    grid.MouseEnter += ((s, e) => Add_Hover(s, e, grid, adding));
                     grid.MouseDown += ((s, e) => AddTo_Playlist(s, e, playlist.Id));
                 } else
                 {
+                    grid.MouseLeave += ((s, e) => Remove_Hover(s, e, grid));
+                    grid.MouseEnter += ((s, e) => Add_Hover(s, e, grid, adding));
                     grid.MouseDown += ((s, e) => Play_Playlist(s, e, playlist.Uri));
                 }
 
@@ -105,6 +117,43 @@ namespace Melodify
 
                 playlists.Children.Add(grid);
             }
+        }
+
+        private void Remove_Hover(object s, MouseEventArgs e, Grid grid)
+        {
+            grid.Children.RemoveAt(2);
+        }
+
+        private void Add_Hover(object s, MouseEventArgs e, Grid grid, bool adding)
+        {
+            Ellipse ellipseHover = new Ellipse();
+            // Get the image URL
+            BitmapImage bimageHover = new BitmapImage();
+            bimageHover.BeginInit();
+            if (adding)
+            {
+                bimageHover.UriSource = new Uri("https://imgur.com/bvwhxjU.png", UriKind.Absolute);
+            } else
+            {
+                bimageHover.UriSource = new Uri("https://imgur.com/OvOsHyN.png", UriKind.Absolute);
+            }
+            bimageHover.EndInit();
+
+            // Bind the image to a brush
+            ImageBrush imageBrushHover = new ImageBrush();
+            imageBrushHover.ImageSource = bimageHover;
+            imageBrushHover.Stretch = System.Windows.Media.Stretch.UniformToFill;
+
+            // Create the hover
+            ellipseHover.Height = 100;
+            ellipseHover.Name = "test";
+            ellipseHover.Width = 100;
+            ellipseHover.Fill = imageBrushHover;
+            ellipseHover.Opacity = 0.8;
+            ellipseHover.Margin = new Thickness(0, 10, 0, 0);
+            ellipseHover.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+
+            grid.Children.Add(ellipseHover);
         }
 
         private void Play_Playlist(object sender, MouseEventArgs e, string playlistURI)
@@ -127,9 +176,6 @@ namespace Melodify
             }
 
             ErrorResponse err = _spotify.ResumePlayback(contextUri: playlistURI, offset: "");
-            // Possibility of disabling repeat when playing back
-            //App.Current.Properties["setRepeatOff"] = true;
-            //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
         }
 
         private void AddTo_Playlist(object sender, MouseEventArgs e, string playlistID)

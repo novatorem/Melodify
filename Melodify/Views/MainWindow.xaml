@@ -28,9 +28,9 @@
             </Image.Effect>
         </Image>
 
-        <!-- The japanese buttons -->
+        <!-- The UI buttons -->
         <Button x:Name="fullClick" Style="{DynamicResource control}" Content="⛶" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Full_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
-                ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Resize to full screen view">
+                ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Resize to full screen view">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -41,7 +41,7 @@
             </Button.Background>
         </Button>
         <Button x:Name="playlistClick" Style="{DynamicResource control}" Content="≡" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Playlist_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,0.9,5,3.4" Cursor="Hand"
-                ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens the playlist view">
+                ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens the playlist view">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -52,7 +52,7 @@
             </Button.Background>
         </Button>
         <Button x:Name="loveClick" Style="{DynamicResource control}" Content="♡" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
-                ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Add current songs to favorites">
+                ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Add current songs to favorites">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -63,7 +63,7 @@
             </Button.Background>
         </Button>
         <Button x:Name="infoClick" Style="{DynamicResource control}" Content="∞" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,1,5,3" Cursor="Hand"
-                ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens a menu with more actions">
+                ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens a menu with more actions">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>

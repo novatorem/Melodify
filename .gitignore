@@ -1,6 +1,5 @@
 /build/
 *.suo
-*.user
 _ReSharper.*/
 *.sdf
 bin/
@@ -16,9 +15,9 @@ TestResult.xml
 Version.cs
 Version.h
 Version.cpp
-Properties/
+*Resources.resx
 Installer/Melodify-cache/
 *.[Pp]ublish.xml
 *.azurePubxml
-*.pubxml
 *.publishproj
+Melodify.csproj.user

@@ -59,6 +59,9 @@
     <Compile Update="Views\FullScreen.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\TopArtists.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UserInfo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,6 +101,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\FullScreen.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TopArtists.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UserInfo.xaml">

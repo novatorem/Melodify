@@ -14,49 +14,44 @@ using System.Windows.Shapes;
 namespace Melodify
 {
     /// <summary>
-    /// Interaction logic for TopSons.xaml
+    /// Interaction logic for TopArtists.xaml
     /// </summary>
-    public partial class TopSongs : Window
+    public partial class TopArtists : Window
     {
 
         MediaPlayer previewer = new MediaPlayer();
         SpotifyWebAPI _spotify = new SpotifyWebAPI()
-
         {
             AccessToken = (string)App.Current.Properties["AccessToken"],
             TokenType = (string)App.Current.Properties["TokenType"]
         };
 
-        public TopSongs()
+        public TopArtists()
         {
             InitializeComponent();
             WindowBlur.SetIsEnabled(this, true);
             MouseDown += Window_MouseDown;
-            Populate_Songs();
+            Populate_Artists();
         }
 
-        private void Populate_Songs()
+        private void Populate_Artists()
         {
             PrivateProfile user = _spotify.GetPrivateProfile();
-            Paging<FullTrack> tracks = _spotify.GetUsersTopTracks(limit: 28);
-            string userSong = "";
-            string userArtists = "";
+            Paging<FullArtist> artists = _spotify.GetUsersTopArtists(limit: 28);
 
             BitmapImage userArt = new BitmapImage();
             userArt.BeginInit();
             userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
             userArt.EndInit();
 
-            userCover.Source = userArt;
-
-            foreach (FullTrack track in tracks.Items)
+            foreach (FullArtist artist in artists.Items)
             {
                 Grid grid = new Grid();
 
                 // Get the image URL
                 BitmapImage bimage = new BitmapImage();
                 bimage.BeginInit();
-                bimage.UriSource = new Uri(track.Album.Images[1].Url, UriKind.Absolute);
+                bimage.UriSource = new Uri(artist.Images[1].Url, UriKind.Absolute);
                 bimage.EndInit();
 
                 // Bind the image to a brush
@@ -75,39 +70,25 @@ namespace Melodify
                 // Create the song text
                 TextBlock tBlock = new TextBlock();
 
-                userSong = track.Name;
-                tBlock.Text = userSong;
-
+                tBlock.Text = artist.Name;
                 tBlock.FontSize = 16;
                 tBlock.Margin = new Thickness(0, 0, 0, 35);
                 tBlock.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
                 tBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
                 tBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
 
-                // Create the artist text
-                TextBlock tBlock2 = new TextBlock();
-
-                userArtists = track.Artists[0].Name;
-                tBlock2.Text = userArtists;
-
-                tBlock2.FontSize = 14;
-                tBlock2.Margin = new Thickness(0, 0, 0, 18);
-                tBlock2.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-                tBlock2.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-                tBlock2.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
-
                 // Create the event handlers
-                grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, track.Id, bimage, grid));
+                SeveralTracks tracks = _spotify.GetArtistsTopTracks(artist.Id, user.Country);
+                grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, tracks.Tracks[0].Id, bimage, grid));
                 grid.MouseLeave += new MouseEventHandler((s, e) => Stop_Preview(s, e, userArt, grid));
-                grid.MouseDown += ((s, e) => Open_Song(s, e, track.Uri));
+                grid.MouseDown += ((s, e) => Open_Artist(s, e, tracks));
 
                 grid.Cursor = Cursors.Hand;
 
                 grid.Children.Add(ellipse);
                 grid.Children.Add(tBlock);
-                grid.Children.Add(tBlock2);
 
-                uSongs.Children.Add(grid);
+                uArtists.Children.Add(grid);
             }
         }
 
@@ -133,7 +114,7 @@ namespace Melodify
             userCover.Source = userArt;
         }
 
-        private void Open_Song(object sender, MouseEventArgs e, string songURI)
+        private void Open_Artist(object sender, MouseEventArgs e, SeveralTracks artistTracks)
         {
             // Save their current playback so we can return to it after
             try
@@ -151,11 +132,10 @@ namespace Melodify
             {
                 System.Diagnostics.Debug.WriteLine("Issue saving playback at TopSongs/Preview_Song");
             }
+            List<string> songs = new List<string>();
+            artistTracks.Tracks.ForEach((track) => songs.Add(track.Uri));
 
-            _ = _spotify.ResumePlayback(uris: new List<string> { songURI }, offset: "");
-            // Possibility of disabling repeat when playing back
-            //App.Current.Properties["setRepeatOff"] = true;
-            //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
+            _ = _spotify.ResumePlayback(uris: songs, offset: "");
         }
 
         private void Add_Hover(Grid grid)

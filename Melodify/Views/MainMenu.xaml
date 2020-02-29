@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Melodify"
       mc:Ignorable="d" 
-      Height="300" Width="900"
+      Height="300" Width="1200"
       Title="Main Menu"
       Background="Transparent"
       AllowsTransparency="True"
@@ -30,7 +30,7 @@
         </Button>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <!-- User Playlists -->
+            <!-- Top Songs -->
             <Button Style="{DynamicResource control}" Background="#11FFFFFF" BorderBrush="Black" BorderThickness="1,1,1,1" MaxHeight="200" VerticalAlignment="Bottom" Margin="0,30,50,0" Padding="5">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -46,8 +46,8 @@
                 </Grid>
             </Button>
 
-            <!-- Followed Playlists -->
-            <Button Style="{DynamicResource control}" Background="#11FFFFFF" BorderBrush="Black" BorderThickness="1,1,1,1" MaxHeight="200" VerticalAlignment="Bottom" Margin="50,30,0,0" Padding="5">
+            <!-- User Info -->
+            <Button Style="{DynamicResource control}" Background="#11FFFFFF" BorderBrush="Black" BorderThickness="1,1,1,1" MaxHeight="200" VerticalAlignment="Bottom" Margin="0,30,0,0" Padding="5">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -57,6 +57,22 @@
                     <TextBlock Text="User Info" Margin="0,-5,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
                     <TextBlock HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
                         Set of information regarding your listening habits and other fun tidbits (in progress).
+                    </TextBlock>
+                    <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
+                </Grid>
+            </Button>
+            
+            <!-- Top Artists -->
+            <Button Style="{DynamicResource control}" Background="#11FFFFFF" BorderBrush="Black" BorderThickness="1,1,1,1" MaxHeight="200" VerticalAlignment="Bottom" Margin="50,30,0,0" Padding="5">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Grid Width="300" Margin="10" MouseDown="Artists_Click" Cursor="Hand">
+                    <TextBlock Text="Top Artists" Margin="0,-5,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
+                        All your current favorite artists, determined by how often you've listened to them.
                     </TextBlock>
                     <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
                 </Grid>

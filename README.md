@@ -66,23 +66,22 @@ There are other features in play, with a number more planned! I work on this dur
  #### Windows Users
 >
 > Go to the [Releases](https://github.com/novatorem/Melodify/releases) page and download the latest release
->
 
- #### Mac Users
->
-> Not supported at the moment
->
 
- #### Linux Users
->
-> Not supported at the moment
->
+Currently Windows 10 support only, planning on further expansion if this picks up.
 
 ## Development setup
 
 Developed on Visual Studio 2019
 
 A WPF application using .NET
+
+You'll need to get your own Spotify API and YouTube API access.
+Set up a Resources.resx file under the Solution Properties.
+You'll then need three variables, with their respective keys:
+- SpotID
+- SpotSecret
+- YoutubeAPI
 
 ## Various Views
 

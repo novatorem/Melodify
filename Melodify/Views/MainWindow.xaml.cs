@@ -318,5 +318,16 @@ namespace Melodify
             e.Handled = true;
         }
 
+        private void progressGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            progressGrid.Height = 8;
+            progressBar.Height = 3;
+        }
+
+        private void progressGrid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            progressGrid.Height = 6;
+            progressBar.Height = 2;
+        }
     }
 }

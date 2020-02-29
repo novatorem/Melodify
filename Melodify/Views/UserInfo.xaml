@@ -14,9 +14,7 @@
       >
 
     <Grid>
-        <!-- Title -->
-        <TextBlock x:Name="title" HorizontalAlignment="Center" Margin="0,15,0,0" Text="Melodify" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="24"/>
-
+        
         <!-- Exit button -->
         <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,3,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-4,5,2" FontSize="20">
             <Button.Resources>
@@ -37,16 +35,20 @@
         </Image>
         
         <!-- The populated section -->
-        <Grid Margin="15,60,15,5">
+        <WrapPanel Margin="15,15,15,5">
             <!-- Name, country, and followers -->
-            <TextBlock x:Name="introText" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32"/>
+            <TextBlock x:Name="introText" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center"/>
             
-            <!-- Artist's metrics -->
-            <WrapPanel x:Name ="uArtists" Orientation="Horizontal" Margin="0,75,0,0" ItemHeight="175" ItemWidth="200">
-                <!-- Automatically populated in *.cs -->
-            </WrapPanel>
-        </Grid>
+            <!-- Popularity metrics -->
+            <TextBlock x:Name="popMetrics" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center"/>
 
+            <!-- Genre info -->
+            <TextBlock x:Name="genreInfo" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center"/>
+        </WrapPanel>
+        
+        <!-- More Info -->
+        <TextBlock x:Name="moreInfo" HorizontalAlignment="Center" Margin="0,15,0,0" Padding="5" Text="⚶" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FFC8C8C8" FontSize="24" MouseDown="Hyperlink_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+        
         <!-- Background to add clickable and darken -->
         <Canvas Background="Black" Opacity="0.7" Panel.ZIndex="-90"/>
 

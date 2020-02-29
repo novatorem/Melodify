@@ -90,9 +90,11 @@
                 <SolidColorBrush Opacity="0"/>
             </Button.Background>
         </Button>
-
-        <Grid x:Name="progressGrid" Height="4" VerticalAlignment="Bottom" Width="360" MouseDown="Seek_Playback" Background="#01FFFFFF" Cursor="Hand" Visibility="Visible">
+        
+        <!-- Progress bar -->
+        <Grid x:Name="progressGrid" Height="4" VerticalAlignment="Bottom" Width="360" MouseDown="Seek_Playback" Background="#01FFFFFF" Cursor="Hand" Visibility="Visible" MouseEnter="progressGrid_MouseEnter" MouseLeave="progressGrid_MouseLeave">
             <Rectangle x:Name="progressBar" Height="2" VerticalAlignment="Bottom" Margin="0" Fill="#40FFFFFF" Width="0" HorizontalAlignment="Left"/>
+            <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
         </Grid>
 
         <Canvas Background="Black" Opacity="0.5" Panel.ZIndex="-90"/>

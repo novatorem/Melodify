@@ -19,7 +19,7 @@ namespace Melodify
     /// </summary>
     public partial class GPlaylists : Window
     {
-        SpotifyWebAPI _spotify = new SpotifyWebAPI()
+        private readonly SpotifyWebAPI _spotify = new SpotifyWebAPI()
 
         {
             AccessToken = (string)App.Current.Properties["AccessToken"],
@@ -77,9 +77,11 @@ namespace Melodify
                 bimage.EndInit();
 
                 // Bind the image to a brush
-                ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = bimage;
-                imageBrush.Stretch = System.Windows.Media.Stretch.UniformToFill;
+                ImageBrush imageBrush = new ImageBrush
+                {
+                    ImageSource = bimage,
+                    Stretch = System.Windows.Media.Stretch.UniformToFill
+                };
 
                 // Create the image container
                 Ellipse ellipse = new Ellipse();
@@ -147,21 +149,7 @@ namespace Melodify
 
         private void Play_Playlist(object sender, MouseEventArgs e, string playlistURI)
         {
-            // Save their current playback so we can return to it after
-            try
-            {
-                PlaybackContext context = _spotify.GetPlayingTrack();
-                PlaybackContext playbackContext = _spotify.GetPlayback();
-            }
-            catch
-            {
-                System.Diagnostics.Debug.WriteLine("Issue saving playback at GPlaylists/Play_Playlist");
-            }
-
             ErrorResponse err = _spotify.ResumePlayback(contextUri: playlistURI, offset: "");
-            // Possibility of disabling repeat when playing back
-            //App.Current.Properties["setRepeatOff"] = true;
-            //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
         }
 
     }

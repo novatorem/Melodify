@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/novatorem/Melodify</PackageProjectUrl>
     <RepositoryUrl>https://github.com/novatorem/Melodify.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>0.2.4</Version>
+    <Version>0.3.1</Version>
     <ApplicationIcon>Resources/melodify.ico</ApplicationIcon>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
@@ -21,13 +21,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.43.0.1834" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.44.1.1869" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls.WebView" Version="6.0.0" />
-    <PackageReference Include="SpotifyAPI.Web.Auth" Version="4.2.2" />
+    <PackageReference Include="SpotifyAPI.Web.Auth" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

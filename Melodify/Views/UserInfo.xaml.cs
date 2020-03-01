@@ -269,15 +269,7 @@ namespace Melodify
 
         private void Play_Playlist(object sender, MouseEventArgs e, SimplePlaylist playlist)
         {
-            // Save their current playback so we can return to it after
-            try
-            {
-                ErrorResponse err = _spotify.ResumePlayback(contextUri: playlist.Uri, offset: "");
-            }
-            catch
-            {
-                System.Diagnostics.Debug.WriteLine("Issue saving playback at UserInfo/Preview_Song");
-            }
+            ErrorResponse err = _spotify.ResumePlayback(contextUri: playlist.Uri, offset: "");
         }
 
         private void Add_Hover(Grid grid)

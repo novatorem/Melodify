@@ -37,6 +37,7 @@ namespace Melodify
             MouseDown += Window_MouseDown;
             Populate_Intro();
             Populate_Genre();
+            Populate_Artists();
         }
 
         private void Populate_Intro()
@@ -123,7 +124,6 @@ namespace Melodify
             Process.Start(psi);
         }
 
-
         private void Populate_Genre()
         {
             Paging<FullTrack> tracks = _spotify.GetUsersTopTracks();
@@ -157,20 +157,30 @@ namespace Melodify
                 int lim = 1;
                 while (true)
                 {
-                    Debug.WriteLine(lim);
+                    bool noDup = true;
                     var found = _spotify.SearchItems(q: genre, type: SearchType.Playlist, limit: lim, offset: lim - 1);
-                    if (searched.Contains(found)) {
-                        lim++;
-                    } else
+                    searched.ForEach((single) =>
+                    {
+                        if (single.Playlists.Items[0].Id == found.Playlists.Items[0].Id)
+                        {
+                            noDup = false;
+                        }
+                    });
+                    if (noDup)
                     {
                         searched.Add(found);
                         break;
+                    } else
+                    {
+                        lim++;
                     }
                 }
             });
 
             // We reversed because we want to ensure we get the top playlist by worst genre, maximizing average happiness
+            genres.Reverse();
             searched.Reverse();
+            // Maybe revert back?
 
             int iteration = 0;
             foreach (SearchItem searchItem in searched)
@@ -184,7 +194,6 @@ namespace Melodify
                 bimage.UriSource = new Uri(playlist.Images[0].Url, UriKind.Absolute);
                 bimage.EndInit();
 
-                Debug.WriteLine("here");
                 // Bind the image to a brush
                 ImageBrush imageBrush = new ImageBrush();
                 imageBrush.ImageSource = bimage;
@@ -209,8 +218,8 @@ namespace Melodify
                 tBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
 
                 //// Create the event handlers
-                //grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, playlist.Tracks.Href., bimage, grid));
-                //grid.MouseLeave += new MouseEventHandler((s, e) => Stop_Preview(s, e, userArt, grid));
+                grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Song(s, e, playlist.Id, bimage, grid));
+                grid.MouseLeave += new MouseEventHandler((s, e) => Stop_Preview(s, e, userArt, grid));
                 grid.MouseDown += ((s, e) => Play_Playlist(s, e, playlist));
 
                 grid.Cursor = Cursors.Hand;
@@ -223,11 +232,24 @@ namespace Melodify
             }
         }
 
-        private void Preview_Song(object sender, EventArgs e, string songID, BitmapImage bimage, Grid grid)
+        private void Preview_Song(object sender, EventArgs e, string playlistID, BitmapImage bimage, Grid grid)
         {
+            int track = 0;
             Add_Hover(grid);
-            // Play the preview url
-            string previewURL = _spotify.GetTrack(songID).PreviewUrl;
+            string previewURL = null;
+            System.Threading.Tasks.Task.Delay(25);
+
+            // Get the preview url from the first song in the playlist
+            FullPlaylist playlist = _spotify.GetPlaylist(playlistID);
+            while (previewURL == null)
+            {
+                previewURL = _spotify.GetTrack(playlist.Tracks.Items[track].Track.Id).PreviewUrl;
+                track++;
+                if (track > playlist.Tracks.Items.Count - 1)
+                {
+                    return;
+                }
+            }
             if (previewURL != null)
             {
                 previewer.Open(new Uri(previewURL));
@@ -282,6 +304,104 @@ namespace Melodify
             ellipseHover.VerticalAlignment = System.Windows.VerticalAlignment.Top;
 
             grid.Children.Add(ellipseHover);
+        }
+
+        private void Populate_Artists()
+        {
+            PrivateProfile user = _spotify.GetPrivateProfile();
+
+            BitmapImage userArt = new BitmapImage();
+            userArt.BeginInit();
+            userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+            userArt.EndInit();
+
+            List<FullArtist> artists = new List<FullArtist>();
+            artists.Add(_spotify.GetUsersTopArtists(timeRange: TimeRangeType.ShortTerm, limit: 1).Items[0]);
+            artists.Add(_spotify.GetUsersTopArtists(timeRange: TimeRangeType.MediumTerm, limit: 1).Items[0]);
+            artists.Add(_spotify.GetUsersTopArtists(timeRange: TimeRangeType.LongTerm, limit: 1).Items[0]);
+
+            foreach (FullArtist artist in artists) { 
+                Grid grid = new Grid();
+
+                // Get the image URL
+                BitmapImage bimage = new BitmapImage();
+                bimage.BeginInit();
+                bimage.UriSource = new Uri(artist.Images[0].Url, UriKind.Absolute);
+                bimage.EndInit();
+
+                // Bind the image to a brush
+                ImageBrush imageBrush = new ImageBrush();
+                imageBrush.ImageSource = bimage;
+                imageBrush.Stretch = System.Windows.Media.Stretch.UniformToFill;
+
+                // Create the image container
+                Ellipse ellipse = new Ellipse();
+                ellipse.Height = 100;
+                ellipse.Width = 100;
+                ellipse.Fill = imageBrush;
+                ellipse.Margin = new Thickness(0, 10, 0, 0);
+                ellipse.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+
+                // Create the song text
+                TextBlock tBlock = new TextBlock();
+
+                tBlock.Text = artist.Name;
+                tBlock.FontSize = 16;
+                tBlock.Margin = new Thickness(0, 0, 0, 35);
+                tBlock.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                tBlock.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                tBlock.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFC8C8C8");
+
+                // Pass over the top tracks
+                SeveralTracks tracks = _spotify.GetArtistsTopTracks(artist.Id, user.Country);
+
+                //// Create the event handlers
+                grid.MouseEnter += new MouseEventHandler((s, e) => Preview_Artist(s, e, tracks, user, bimage, grid));
+                grid.MouseLeave += new MouseEventHandler((s, e) => Stop_Preview(s, e, userArt, grid));
+                grid.MouseDown += ((s, e) => Play_Artist(s, e, tracks));
+
+                grid.Cursor = Cursors.Hand;
+
+                grid.Children.Add(ellipse);
+                grid.Children.Add(tBlock);
+
+                artInfo.Children.Add(grid);
+            }
+        }
+
+        private void Preview_Artist(object sender, EventArgs e, SeveralTracks tracks, PrivateProfile user, BitmapImage bimage, Grid grid)
+        {
+            int track = 0;
+            Add_Hover(grid);
+            string previewURL = null;
+            System.Threading.Tasks.Task.Delay(25);
+
+            // Get the preview url from the first song in the playlist
+            while (previewURL == null)
+            {
+                previewURL = tracks.Tracks[track].PreviewUrl;
+                track++;
+                if (track > tracks.Tracks.Count)
+                {
+                    return;
+                }
+            }
+            if (previewURL != null)
+            {
+                previewer.Open(new Uri(previewURL));
+                previewer.Play();
+                userCover.Source = bimage;
+                userCover.SetValue(HeightProperty, DependencyProperty.UnsetValue);
+                userCover.SetValue(WidthProperty, DependencyProperty.UnsetValue);
+            }
+        }
+
+        private void Play_Artist(object sender, MouseEventArgs e, SeveralTracks tracks)
+        {
+            List<string> songs = new List<string>();
+            tracks.Tracks.ForEach((track) => songs.Add(track.Uri));
+
+            _ = _spotify.ResumePlayback(uris: songs, offset: "");
         }
 
         private void TextBlock_MouseEnter(object sender, MouseEventArgs e)

@@ -31,8 +31,6 @@ namespace Melodify
             Top = SystemParameters.WorkArea.Height - Height;
 
             // Initalize some instances to ensure continuing playback
-            App.Current.Properties["playlistID"] = "";
-            App.Current.Properties["suggestionMode"] = false;
             App.Current.Properties["userPause"] = false;
             spotAPI = new SpotifyAPI(Properties.Resources.SpotID, Properties.Resources.SpotSecret);
 
@@ -84,7 +82,6 @@ namespace Melodify
                         {
                             Title.Content = context.Item.Name;
                             Author.Content = context.Item.Artists[0].Name;
-
                             if ((context.Item.Album.Images[0].Url != cover.Source.ToString()) && (context.Item.Album.Images[0].Url != null)) {
                                 BitmapImage albumArt = new BitmapImage();
                                 albumArt.BeginInit();
@@ -103,11 +100,6 @@ namespace Melodify
                             animation.FillBehavior = FillBehavior.Stop;
                             progressBar.BeginAnimation(Rectangle.WidthProperty, animation);
                             progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
-
-                            if ((bool)App.Current.Properties["suggestionMode"] == true && (bool)App.Current.Properties["userPause"] == false && !context.IsPlaying)
-                            {
-                                Spotify.ResumePlayback();
-                            }
                         }
                         else
                         {
@@ -121,6 +113,15 @@ namespace Melodify
                         // If the issue is that the auth didn't go through, we try to set up a new connection
                         if (context.Error.Message == "Only valid bearer authentication supported")
                         {
+                            _spotify = new SpotifyWebAPI()
+                            {
+                                AccessToken = (string)Application.Current.Properties["AccessToken"],
+                                TokenType = (string)Application.Current.Properties["TokenType"]
+                            };
+                        } else if (context.Error.Message == "The access token expired")
+                        {
+                            Debug.WriteLine("Attempting to refresh token due to expiration");
+                            spotAPI.Authenticate();
                             _spotify = new SpotifyWebAPI()
                             {
                                 AccessToken = (string)Application.Current.Properties["AccessToken"],
@@ -150,11 +151,6 @@ namespace Melodify
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
-        }
-
-        private void Other_Click(object sender, RoutedEventArgs e)
-        {
-            Spotify.CurrentTrackSuggestion();
         }
 
         private void Full_Click(object sender, RoutedEventArgs e)

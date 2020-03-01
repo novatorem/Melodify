@@ -35,22 +35,26 @@
         </Image>
         
         <!-- The populated section -->
-        <WrapPanel Margin="15,15,15,5">
+        <Grid Margin="15,25,15,5">
             <!-- Name, country, and followers -->
             <TextBlock x:Name="introText" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center"/>
             
             <!-- Popularity metrics -->
-            <TextBlock x:Name="popMetrics" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="popMetrics" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center" Margin="0,50,0,0"/>
 
             <!-- Genre info -->
-            <TextBlock x:Name="genreInfo" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center"/>
-        </WrapPanel>
+
+            <TextBlock Text="━━━━━━━━━━━━━━━━━            🎜            Top Genres            🎝            ━━━━━━━━━━━━━━━━━" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center" Margin="0,130,0,0"/>
+            <WrapPanel x:Name ="genreInfo" Orientation="Horizontal" ItemHeight="175" ItemWidth="200" Margin="0,220,0,0">
+                <!-- Automatically populated in *.cs -->
+            </WrapPanel>
+        </Grid>
         
         <!-- More Info -->
         <TextBlock x:Name="moreInfo" HorizontalAlignment="Center" Margin="0,15,0,0" Padding="5" Text="⚶" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FFC8C8C8" FontSize="24" MouseDown="Hyperlink_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
         
         <!-- Background to add clickable and darken -->
-        <Canvas Background="Black" Opacity="0.7" Panel.ZIndex="-90"/>
+        <Canvas Background="Black" Opacity="0.85" Panel.ZIndex="-90"/>
 
     </Grid>
 

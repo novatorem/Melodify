@@ -140,12 +140,6 @@ namespace Melodify
             {
                 PlaybackContext context = _spotify.GetPlayingTrack();
                 PlaybackContext playbackContext = _spotify.GetPlayback();
-                if (context.Context.Type == "playlist")
-                {
-                    string playlistID = playbackContext.Context.Uri;
-                    App.Current.Properties["playlistID"] = playlistID;
-                    App.Current.Properties["suggestionMode"] = true;
-                }
             }
             catch
             {
@@ -153,9 +147,6 @@ namespace Melodify
             }
 
             _ = _spotify.ResumePlayback(uris: new List<string> { songURI }, offset: "");
-            // Possibility of disabling repeat when playing back
-            //App.Current.Properties["setRepeatOff"] = true;
-            //ErrorResponse error = _spotify.SetRepeatMode(RepeatState.Off) ;
         }
 
         private void Add_Hover(Grid grid)

@@ -7,50 +7,6 @@ namespace Melodify
 {
     class Spotify
     {
-
-        public static void CurrentTrackSuggestion()
-        {
-
-            try
-            {
-                using var _spotify = new SpotifyWebAPI()
-                {
-                    AccessToken = (string)App.Current.Properties["AccessToken"],
-                    TokenType = (string)App.Current.Properties["TokenType"]
-                };
-
-                PlaybackContext context = _spotify.GetPlayingTrack();
-                PlaybackContext playbackContext = _spotify.GetPlayback();
-
-                // Save their current playback so we can return to it after
-                try
-                {
-                    if (context.Context.Type == "playlist")
-                    {
-                        string playlistID = playbackContext.Context.Uri;
-                        App.Current.Properties["playlistID"] = playlistID;
-                        App.Current.Properties["suggestionMode"] = true;
-                    }
-                }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine("Not playing a playlist, can't get suggestion at Spotify/CurrentTrackSuggestion");
-                }
-
-                // Get a suggestion based on currently playing song
-                string songID = context.Item.Id;
-                string recommendedURI = _spotify.GetRecommendations(trackSeed: new List<string> { songID }).Tracks[0].Uri;
-                ErrorResponse err = _spotify.ResumePlayback(uris: new List<string> { recommendedURI }, offset: "");
-
-            }
-            catch
-            {
-
-                App.Current.Properties["suggestionMode"] = false;
-                System.Diagnostics.Debug.WriteLine("Failed to get suggestion at Spotify/CurrentTrackSuggestion");
-            }
-        }
-
         public static void UserTrackSuggestion()
         {
             try
@@ -65,21 +21,6 @@ namespace Melodify
                 PlaybackContext context = _spotify.GetPlayingTrack();
                 PlaybackContext playbackContext = _spotify.GetPlayback();
 
-                // Save their current playback so we can return to it after
-                try
-                {
-                    if (context.Context.Type == "playlist")
-                    {
-                        string playlistID = playbackContext.Context.Uri;
-                        App.Current.Properties["playlistID"] = playlistID;
-                        App.Current.Properties["suggestionMode"] = true;
-                    }
-                }
-                catch
-                {
-                    System.Diagnostics.Debug.WriteLine("Not playing a playlist, can't get suggestion at Spotify/UserTrackSuggestion");
-                }
-
                 Random random = new Random();
                 // Get users top playing tracks
                 Paging<FullTrack> tracks = _spotify.GetUsersTopTracks();
@@ -93,7 +34,6 @@ namespace Melodify
                     recTracks.Add(_spotify.GetRecommendations(trackSeed: new List<string> { track }, limit: 5).Tracks[random.Next(2)].Uri);
                 }
                 // Play the random songs as a standalone playlist
-                App.Current.Properties["suggestionMode"] = true;
                 ErrorResponse err = _spotify.ResumePlayback(uris: recTracks, offset: "");
 
             }
@@ -114,7 +54,6 @@ namespace Melodify
                 };
 
                 ErrorResponse err = _spotify.ResumePlayback(contextUri: (string)App.Current.Properties["playlistID"], offset: "");
-                App.Current.Properties["suggestionMode"] = false;
             }
             catch
             {

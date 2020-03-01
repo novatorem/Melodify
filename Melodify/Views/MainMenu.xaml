@@ -39,7 +39,7 @@
                 </Button.Resources>
                 <Grid Width="300" Margin="10" MouseDown="Songs_Click" Cursor="Hand">
                     <TextBlock Text="Top Songs" Margin="0,-5,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
+                    <TextBlock x:Name="songsText" HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
                         A view of all your current favorite songs, determined by how often you've played them.
                     </TextBlock>
                     <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
@@ -55,7 +55,7 @@
                 </Button.Resources>
                 <Grid Width="300" Margin="10" MouseDown="User_Click" Cursor="Hand">
                     <TextBlock Text="User Info" Margin="0,-5,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
+                    <TextBlock x:Name="userText" HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
                         Set of information regarding your listening habits and other fun tidbits (in progress).
                     </TextBlock>
                     <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
@@ -69,9 +69,9 @@
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
-                <Grid Width="300" Margin="10" MouseDown="Artists_Click" Cursor="Hand">
+                <Grid Width="300" Margin="10" MouseDown="Artists_ClickAsync" Cursor="Hand">
                     <TextBlock Text="Top Artists" Margin="0,-5,3,100" Foreground="White" FontSize="36" HorizontalAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
+                    <TextBlock x:Name="artistText" HorizontalAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="22" TextAlignment="Center">
                         All your current favorite artists, determined by how often you've listened to them.
                     </TextBlock>
                     <Canvas Background="Black" Opacity="0.01" Panel.ZIndex="-90"/>
@@ -96,10 +96,10 @@
         </Style>
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#000000" Opacity="0.25"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="White" Opacity="0.1"/>
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="White" Opacity="0.4"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#000000" Opacity="0.5"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#000000ff"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF686868" Opacity="0.1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="White"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>

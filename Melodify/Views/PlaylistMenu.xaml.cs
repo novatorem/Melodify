@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Melodify
@@ -21,15 +22,21 @@ namespace Melodify
                 this.DragMove();
         }
 
-        private void Gen_Click(object sender, RoutedEventArgs e)
+        private async void Gen_Click(object sender, RoutedEventArgs e)
         {
+            followedText.Text = "♨\n";
+            // Await to make UI update before moving on to window
+            await Task.Delay(25).ConfigureAwait(true);
             GPlaylists gPlaylists = new GPlaylists();
             gPlaylists.Show();
             this.Close();
         }
 
-        private void User_Click(object sender, RoutedEventArgs e)
+        private async void User_Click(object sender, RoutedEventArgs e)
         {
+            personalText.Text = "♨\n";
+            // Await to make UI update before moving on to window
+            await Task.Delay(25).ConfigureAwait(true);
             Playlists playlists = new Playlists();
             playlists.Show();
             this.Close();

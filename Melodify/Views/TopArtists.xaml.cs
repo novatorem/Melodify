@@ -121,12 +121,6 @@ namespace Melodify
             {
                 PlaybackContext context = _spotify.GetPlayingTrack();
                 PlaybackContext playbackContext = _spotify.GetPlayback();
-                if (context.Context.Type == "playlist")
-                {
-                    string playlistID = playbackContext.Context.Uri;
-                    App.Current.Properties["playlistID"] = playlistID;
-                    App.Current.Properties["suggestionMode"] = true;
-                }
             }
             catch
             {

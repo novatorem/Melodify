@@ -116,16 +116,6 @@ namespace Melodify
 
         private void Open_Artist(object sender, MouseEventArgs e, SeveralTracks artistTracks)
         {
-            // Save their current playback so we can return to it after
-            try
-            {
-                PlaybackContext context = _spotify.GetPlayingTrack();
-                PlaybackContext playbackContext = _spotify.GetPlayback();
-            }
-            catch
-            {
-                System.Diagnostics.Debug.WriteLine("Issue saving playback at TopSongs/Preview_Song");
-            }
             List<string> songs = new List<string>();
             artistTracks.Tracks.ForEach((track) => songs.Add(track.Uri));
 

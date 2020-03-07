@@ -58,6 +58,8 @@ namespace Melodify
             }
             string userID = _spotify.GetPrivateProfile().Id;
 
+            Add_Main(adding);
+
             foreach (SimplePlaylist playlist in userPlaylists.Items)
             {
                 if (userID != playlist.Owner.Id)
@@ -184,6 +186,34 @@ namespace Melodify
             catch
             {
                 System.Diagnostics.Debug.WriteLine("Issue saving playback at Playlists/AddTo_Playlist");
+            }
+        }
+
+        private void Add_Main(bool adding)
+        {
+            if (adding)
+            {
+                likedSongs.MouseLeave += ((s, e) => likedImage.Opacity = 0.25);
+                likedSongs.MouseEnter += ((s, e) => likedImage.Opacity = 0.5);
+                likedSongs.MouseDown += ((s, e) => {
+                    Spotify.LoveSong(_spotify.GetPlayingTrack().Item.Id);
+                    foreach (Window window in Application.Current.Windows)
+                    {
+                        if (window.GetType() == typeof(MainWindow))
+                        {
+                            (window as MainWindow).loveClick.Content = "♥";
+                        }
+                    }
+                });
+            }
+            else
+            {
+                List<string> songs = new List<string>();
+                _spotify.GetSavedTracks().Items.ForEach((song) => songs.Add(song.Track.Uri));
+
+                likedSongs.MouseLeave += ((s, e) => likedImage.Opacity = 0.25);
+                likedSongs.MouseEnter += ((s, e) => likedImage.Opacity = 0.5);
+                likedSongs.MouseDown += (s, e) => _spotify.ResumePlayback(uris: songs, offset: "");
             }
         }
 

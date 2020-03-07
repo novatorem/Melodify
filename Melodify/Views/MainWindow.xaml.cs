@@ -26,9 +26,20 @@ namespace Melodify
         public MainWindow()
         {
             InitializeComponent();
-            MouseDown += Window_MouseDown;
-            Left = SystemParameters.WorkArea.Width - Width;
-            Top = SystemParameters.WorkArea.Height - Height;
+
+            // Sets the position of the window according to history
+            if (Properties.Settings.Default.firstLaunch)
+            {
+                Left = SystemParameters.WorkArea.Width - Width;
+                Top = SystemParameters.WorkArea.Height - Height;
+
+                Properties.Settings.Default.mainLeft = Left;
+                Properties.Settings.Default.mainTop = Top;
+            } else
+            {
+                Left = Properties.Settings.Default.mainLeft;
+                Top = Properties.Settings.Default.mainTop;
+            }
 
             // Initalize some instances to ensure continuing playback
             App.Current.Properties["userPause"] = false;
@@ -53,7 +64,7 @@ namespace Melodify
             accesser.Start();
 
             // Checks user settings regarding progress bar
-            if (Properties.Settings.Default.ProgressBar != "true")
+            if (Properties.Settings.Default.ProgressBar)
             {
                 Progressbar.Header = "Enable Progress Bar";
                 progressGrid.Visibility = Visibility.Collapsed;
@@ -62,18 +73,20 @@ namespace Melodify
                 Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
             }
+
+            // User now ran the software at least once
+            Properties.Settings.Default.firstLaunch = false;
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (_pauseAPI)
-            {
-                return;
-            }
+            // If we're looking to make the timer temporarily useless to reduce API rate call
+            if (_pauseAPI) { return; }
+
             try
             {
                 PlaybackContext context = _spotify.GetPlayingTrack();
-
+                // Take control over the UI elements
                 Dispatcher.Invoke(() =>
                 {
                     if (context.Error == null && context.Item != null)
@@ -82,6 +95,8 @@ namespace Melodify
                         {
                             Title.Content = context.Item.Name;
                             Author.Content = context.Item.Artists[0].Name;
+
+                            // Check to make sure the song changed before refreshing variables
                             if ((context.Item.Album.Images[0].Url != cover.Source.ToString()) && (context.Item.Album.Images[0].Url != null)) {
                                 BitmapImage albumArt = new BitmapImage();
                                 albumArt.BeginInit();
@@ -92,11 +107,9 @@ namespace Melodify
                                 // Sets to solid heart if we liked it already
                                 _songID = context.Item.Id;
                                 ListResponse<bool> tracksSaved = _spotify.CheckSavedTracks(new System.Collections.Generic.List<String> { _songID });
-                                if (tracksSaved.List[0])
-                                {
+                                if (tracksSaved.List[0]) {
                                     loveClick.Content = "♥";
-                                } else
-                                {
+                                } else {
                                     loveClick.Content = "♡";
                                 }
 
@@ -104,6 +117,7 @@ namespace Melodify
                                 progress = context.Item.DurationMs;
                             }
 
+                            // Animates the progress bar to fluidly move to position
                             DoubleAnimation animation = new DoubleAnimation();
                             animation.From = progressBar.ActualWidth;
                             animation.To = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
@@ -148,6 +162,7 @@ namespace Melodify
             }
         }
 
+        // Function to reauthenticate the API
         private void Access_Elapsed(object sender, ElapsedEventArgs e)
         {
             spotAPI.Authenticate();
@@ -257,6 +272,8 @@ namespace Melodify
 
         private void CMExit_Click(object sender, RoutedEventArgs e)
         {
+            Properties.Settings.Default.mainTop = Top;
+            Properties.Settings.Default.mainLeft = Left;
             Application.Current.Shutdown();
         }
 
@@ -285,13 +302,13 @@ namespace Melodify
             {
                 Progressbar.Header = "Enable Progress Bar";
                 progressGrid.Visibility = Visibility.Collapsed;
-                Properties.Settings.Default.ProgressBar = "false";
+                Properties.Settings.Default.ProgressBar = false;
             }
             else if (progressGrid.Visibility == Visibility.Collapsed)
             {
                 Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
-                Properties.Settings.Default.ProgressBar = "true";
+                Properties.Settings.Default.ProgressBar = true;
             }
             Properties.Settings.Default.Save();
         }
@@ -352,8 +369,22 @@ namespace Melodify
             {
                 Title.Margin = new Thickness();
                 Author.Visibility = Visibility.Hidden;
-                Top = SystemParameters.WorkArea.Height;
-                Left = SystemParameters.WorkArea.Width - Width - (Width / 2);
+
+                // Save the values we've gotten for Main View
+                Properties.Settings.Default.mainTop = Top;
+                Properties.Settings.Default.mainLeft = Left;
+                if (Properties.Settings.Default.firstTaskView)
+                {
+                    Top = SystemParameters.WorkArea.Height;
+                    Left = SystemParameters.WorkArea.Width - Width - (Width / 2);
+                    Properties.Settings.Default.firstTaskView = false;
+                }
+                else
+                {
+                    Top = Properties.Settings.Default.taskTop;
+                    Left = Properties.Settings.Default.mainLeft;
+                }
+
                 Height = SystemParameters.PrimaryScreenHeight - SystemParameters.WorkArea.Height;
 
                 fullClick.Margin = new Thickness(-1, -1, -1, -1);
@@ -361,21 +392,55 @@ namespace Melodify
                 infoClick.Margin = new Thickness(-1, -1, -1, -1);
                 playlistClick.Margin = new Thickness(-1, -1, -1, -1);
 
+                pauseButton.Padding = new Thickness(50, 10, 50, 0);
+                previousButton.Padding = new Thickness(50, 10, 50, 0);
+                nextButton.Padding = new Thickness(50, 10, 50, 0);
+
                 TaskContext.Header = "Main View";
-            } else
+            }
+            else
             {
                 Height = 100;
                 Author.Visibility = Visibility.Visible;
                 Title.Margin = new Thickness(0, 0, 0, 20);
-                Left = SystemParameters.WorkArea.Width - Width;
-                Top = SystemParameters.WorkArea.Height - Height;
+
+                // Save the values we've gotten for Task View
+                Properties.Settings.Default.taskTop = Top;
+                Properties.Settings.Default.taskLeft = Left;
+
+                Top = Properties.Settings.Default.mainTop;
+                Left = Properties.Settings.Default.mainLeft;
 
                 fullClick.Margin = new Thickness(5, 5, 0, 0);
                 loveClick.Margin = new Thickness(0, 0, 5, 5);
                 infoClick.Margin = new Thickness(5, 5, 5, 0);
                 playlistClick.Margin = new Thickness(5, 0, 0, 5);
 
+                pauseButton.Padding = new Thickness(50, 40, 50, 25);
+                previousButton.Padding = new Thickness(50, 20, 50, 25);
+                nextButton.Padding = new Thickness(50, 20, 50, 25);
+
                 TaskContext.Header = "Task View";
+            }
+        }
+
+        private void ResetPosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (TaskContext.Header.ToString() == "Task View")
+            {
+                Top = SystemParameters.WorkArea.Height;
+                Left = SystemParameters.WorkArea.Width - Width - (Width / 2);
+
+                Properties.Settings.Default.taskTop = Top;
+                Properties.Settings.Default.taskLeft = Left;
+            }
+            else
+            {
+                Left = SystemParameters.WorkArea.Width - Width;
+                Top = SystemParameters.WorkArea.Height - Height;
+
+                Properties.Settings.Default.mainTop = Top;
+                Properties.Settings.Default.mainLeft = Left;
             }
         }
     }

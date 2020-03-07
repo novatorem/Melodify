@@ -42,7 +42,7 @@ namespace Melodify
             _window.Visibility = Visibility.Collapsed;
 
             // Checks user settings regarding progress bar
-            if (Properties.Settings.Default.ProgressBar != "true")
+            if (Properties.Settings.Default.ProgressBar)
             {
                 Progressbar.Header = "Enable Progress Bar";
                 progressGrid.Visibility = Visibility.Collapsed;
@@ -235,13 +235,13 @@ namespace Melodify
             {
                 Progressbar.Header = "Enable Progress Bar";
                 progressGrid.Visibility = Visibility.Collapsed;
-                Properties.Settings.Default.ProgressBar = "false";
+                Properties.Settings.Default.ProgressBar = false;
             }
             else if (progressGrid.Visibility == Visibility.Collapsed)
             {
                 Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
-                Properties.Settings.Default.ProgressBar = "true";
+                Properties.Settings.Default.ProgressBar = true;
             }
             Properties.Settings.Default.Save();
         }

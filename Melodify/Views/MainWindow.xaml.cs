@@ -18,10 +18,11 @@ namespace Melodify
     /// </summary>
     public partial class MainWindow : Window
     {
-        SpotifyAPI spotAPI;
-        bool _pauseAPI = false;
-        SpotifyWebAPI _spotify;
+        string _songID;
         int progress = 0;
+        SpotifyAPI spotAPI;
+        SpotifyWebAPI _spotify;
+        bool _pauseAPI = false;
 
         public MainWindow()
         {
@@ -88,6 +89,17 @@ namespace Melodify
                                 albumArt.UriSource = new Uri(context.Item.Album.Images[0].Url);
                                 albumArt.EndInit();
                                 cover.Source = albumArt;
+
+                                // Sets to solid heart if we liked it already
+                                _songID = context.Item.Id;
+                                ListResponse<bool> tracksSaved = _spotify.CheckSavedTracks(new System.Collections.Generic.List<String> { _songID });
+                                if (tracksSaved.List[0])
+                                {
+                                    loveClick.Content = "♥";
+                                } else
+                                {
+                                    loveClick.Content = "♡";
+                                }
 
                                 // Gets the total length of the song
                                 progress = context.Item.DurationMs;
@@ -182,7 +194,16 @@ namespace Melodify
 
         private void Love_Click(object sender, RoutedEventArgs e)
         {
-            Spotify.LoveSong();
+            ListResponse<bool> tracksSaved = _spotify.CheckSavedTracks(new System.Collections.Generic.List<String> { _songID });
+            if (tracksSaved.List[0])
+            {
+                Spotify.UnLoveSong(_songID);
+                loveClick.Content = "♡";
+            } else
+            {
+                Spotify.LoveSong(_songID);
+                loveClick.Content = "♥";
+            }
         }
 
         private void Menu_Click(object sender, RoutedEventArgs e)

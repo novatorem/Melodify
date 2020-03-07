@@ -73,7 +73,13 @@ namespace Melodify
                 // Get the image URL
                 BitmapImage bimage = new BitmapImage();
                 bimage.BeginInit();
-                bimage.UriSource = new Uri(playlist.Images[0].Url, UriKind.Absolute);
+                if (playlist.Name == "Release Radar" ^ playlist.Name =="Discover Weekly")
+                {
+                    bimage.UriSource = new Uri(playlist.Images[0].Url + ".jpg", UriKind.Absolute);
+                } else
+                {
+                    bimage.UriSource = new Uri(playlist.Images[0].Url, UriKind.Absolute);
+                }
                 bimage.EndInit();
 
                 // Bind the image to a brush

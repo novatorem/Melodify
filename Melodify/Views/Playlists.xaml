@@ -28,12 +28,21 @@
                 <SolidColorBrush Color="Red" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        
-        <ScrollViewer Margin="0,75,0,0" VerticalScrollBarVisibility="Hidden">
+
+        <ScrollViewer Margin="0,75,0,100" VerticalScrollBarVisibility="Hidden">
             <WrapPanel x:Name ="playlists" Orientation="Horizontal" ItemHeight="175" ItemWidth="200" HorizontalAlignment="Center">
                 <!-- Populated here -->
             </WrapPanel>
         </ScrollViewer>
+
+        <Grid HorizontalAlignment="Center" x:Name="likedSongs" VerticalAlignment="Bottom" Height="100" Width="1050" Cursor="Hand">
+            <Image x:Name="likedImage" HorizontalAlignment="Center" Source="https://source.unsplash.com/random/1050x100" Stretch="UniformToFill" Opacity="0.25">
+                <Image.BitmapEffect>
+                    <BlurBitmapEffect Radius="20" />
+                </Image.BitmapEffect>
+            </Image>
+            <TextBlock Text="Liked Songs" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="28" Foreground="White"/>
+        </Grid>
 
         <!-- Background to add clickable and darken -->
         <Canvas Background="Black" Opacity="0.7" Panel.ZIndex="-90"/>

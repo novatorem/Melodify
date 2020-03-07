@@ -61,7 +61,7 @@ namespace Melodify
             }
         }
 
-        public static void LoveSong()
+        public static void LoveSong(string ID)
         {
             try
             {
@@ -72,7 +72,27 @@ namespace Melodify
                 };
 
                 PlaybackContext context = _spotify.GetPlayingTrack();
-                ErrorResponse response = _spotify.SaveTrack(context.Item.Id);
+                ErrorResponse response = _spotify.SaveTrack(ID);
+
+            }
+            catch
+            {
+                System.Diagnostics.Debug.WriteLine("Failed at Spotify/LoveSong");
+            }
+        }
+
+        public static void UnLoveSong(string ID)
+        {
+            try
+            {
+                using var _spotify = new SpotifyWebAPI()
+                {
+                    AccessToken = (string)App.Current.Properties["AccessToken"],
+                    TokenType = (string)App.Current.Properties["TokenType"]
+                };
+
+                PlaybackContext context = _spotify.GetPlayingTrack();
+                ErrorResponse response = _spotify.RemoveSavedTracks(new List<string> { ID });
 
             }
             catch

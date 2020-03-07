@@ -51,7 +51,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="♡" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="♡" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand" x:FieldModifier="public"
                 ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Add current songs to favorites">
             <Button.Resources>
                 <Style TargetType="Border">

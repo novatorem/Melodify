@@ -17,7 +17,7 @@ Yet another spotify "client" that runs alongisde the program, removing certain f
   </tr>
   <tr>
     <td>Music Videos in full screen</td>
-    <td><sub><sup>🚧</sup></sub> Full user statistics and info</td>
+    <td>Full user statistics and info</td>
     <td><sub><sup>🚧</sup></sub> Lyrics in full screen</td>
   </tr>
 </table>

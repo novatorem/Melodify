@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Threading;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -345,6 +344,39 @@ namespace Melodify
         {
             progressGrid.Height = 6;
             progressBar.Height = 2;
+        }
+
+        private void TaskContext_Click(object sender, RoutedEventArgs e)
+        {
+            if (TaskContext.Header.ToString() == "Task View")
+            {
+                Title.Margin = new Thickness();
+                Author.Visibility = Visibility.Hidden;
+                Top = SystemParameters.WorkArea.Height;
+                Left = SystemParameters.WorkArea.Width - Width - (Width / 2);
+                Height = SystemParameters.PrimaryScreenHeight - SystemParameters.WorkArea.Height;
+
+                fullClick.Margin = new Thickness(-1, -1, -1, -1);
+                loveClick.Margin = new Thickness(-1, -1, -1, -1);
+                infoClick.Margin = new Thickness(-1, -1, -1, -1);
+                playlistClick.Margin = new Thickness(-1, -1, -1, -1);
+
+                TaskContext.Header = "Main View";
+            } else
+            {
+                Height = 100;
+                Author.Visibility = Visibility.Visible;
+                Title.Margin = new Thickness(0, 0, 0, 20);
+                Left = SystemParameters.WorkArea.Width - Width;
+                Top = SystemParameters.WorkArea.Height - Height;
+
+                fullClick.Margin = new Thickness(5, 5, 0, 0);
+                loveClick.Margin = new Thickness(0, 0, 5, 5);
+                infoClick.Margin = new Thickness(5, 5, 5, 0);
+                playlistClick.Margin = new Thickness(5, 0, 0, 5);
+
+                TaskContext.Header = "Task View";
+            }
         }
     }
 }

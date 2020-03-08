@@ -21,13 +21,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\index.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.44.1.1869" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls.WebView" Version="6.0.0" />
-    <PackageReference Include="SpotifyAPI.Web.Auth" Version="5.0.0" />
+    <PackageReference Include="SpotifyAPI.Web.Auth" Version="5.1.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="1.4.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\index.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

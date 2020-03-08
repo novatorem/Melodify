@@ -75,7 +75,8 @@ namespace Melodify
                 Progressbar.Header = "Disable Progress Bar";
                 progressGrid.Visibility = Visibility.Visible;
             }
-
+            Debug.WriteLine(IsActive);
+            IsEnabled = true;
             // User now ran the software at least once
         }
 
@@ -126,6 +127,9 @@ namespace Melodify
                             animation.FillBehavior = FillBehavior.Stop;
                             progressBar.BeginAnimation(Rectangle.WidthProperty, animation);
                             progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
+
+                            Debug.WriteLine(IsActive);
+                            IsEnabled = true;
                         }
                         else
                         {
@@ -378,7 +382,7 @@ namespace Melodify
         {
             if (TaskContext.Header.ToString() == "Task View")
             {
-                Title.Margin = new Thickness();
+                Title.Margin = new Thickness(0, -2, 0, 0);
                 Author.Visibility = Visibility.Hidden;
 
                 // Save the values we've gotten for Main View
@@ -404,9 +408,9 @@ namespace Melodify
                 infoClick.Margin = new Thickness(-1, -1, -1, -1);
                 playlistClick.Margin = new Thickness(-1, -1, -1, -1);
 
+                nextButton.Padding = new Thickness(50, 10, 50, 0);
                 pauseButton.Padding = new Thickness(50, 10, 50, 0);
                 previousButton.Padding = new Thickness(50, 10, 50, 0);
-                nextButton.Padding = new Thickness(50, 10, 50, 0);
 
                 TaskContext.Header = "Main View";
             }
@@ -429,9 +433,9 @@ namespace Melodify
                 infoClick.Margin = new Thickness(5, 5, 5, 0);
                 playlistClick.Margin = new Thickness(5, 0, 0, 5);
 
-                pauseButton.Padding = new Thickness(50, 40, 50, 25);
-                previousButton.Padding = new Thickness(50, 20, 50, 25);
                 nextButton.Padding = new Thickness(50, 20, 50, 25);
+                pauseButton.Padding = new Thickness(50, 20, 50, 25);
+                previousButton.Padding = new Thickness(50, 20, 50, 25);
 
                 TaskContext.Header = "Task View";
             }

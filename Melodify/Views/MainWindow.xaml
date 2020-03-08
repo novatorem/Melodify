@@ -30,7 +30,7 @@
         </Image>
 
         <!-- The UI buttons -->
-        <Button x:Name="fullClick" Style="{DynamicResource control}" Content="⛶" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Click="Full_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
+        <Button x:Name="fullClick" Style="{DynamicResource control}" Content="⛶" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,2,0,0" Click="Full_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Resize to full screen view">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -41,7 +41,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="playlistClick" Style="{DynamicResource control}" Content="≡" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,5" Click="Playlist_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,0.9,5,3.4" Cursor="Hand"
+        <Button x:Name="playlistClick" Style="{DynamicResource control}" Content="≡" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="2,0,0,2" Click="Playlist_Click" Foreground="White" BorderBrush="{x:Null}" Padding="6, 1, 6, 3" Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens the playlist view">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -52,7 +52,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="♡" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,2,5,2" Cursor="Hand" x:FieldModifier="public"
+        <Button x:Name="loveClick" Style="{DynamicResource control}" Content="♡" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,2,2" Click="Love_Click" Foreground="White" BorderBrush="{x:Null}" Padding="6, 2, 6, 2" Cursor="Hand" x:FieldModifier="public"
                 ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Add current songs to favorites">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -63,7 +63,7 @@
                 <SolidColorBrush Color="Black" Opacity="0.15"/>
             </Button.Background>
         </Button>
-        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="∞" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,1,5,3" Cursor="Hand"
+        <Button x:Name="infoClick" Style="{DynamicResource control}" Content="∞" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2,2,5,0" Click="Menu_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,1,5,3" Cursor="Hand"
                 ToolTipService.InitialShowDelay="500" ToolTipService.ShowDuration="2000" ToolTipService.BetweenShowDelay="10000" ToolTip="Opens a menu with more actions">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -80,7 +80,7 @@
 
         <Button x:Name="previousButton" Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Previous_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5"/>
 
-        <Button x:Name="nextButton" Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5" Height="67"/>
+        <Button x:Name="nextButton" Style="{DynamicResource playback}" Content=" " HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Click="Next_Click" BorderBrush="{x:Null}" Padding="50,20,50,25" FontSize="18" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Panel.ZIndex="-5"/>
 
         <!-- Progress bar -->
         <Grid x:Name="progressGrid" Height="4" VerticalAlignment="Bottom" Width="360" MouseDown="Seek_Playback" Background="#01FFFFFF" Cursor="Hand" Visibility="Visible" MouseEnter="progressGrid_MouseEnter" MouseLeave="progressGrid_MouseLeave">

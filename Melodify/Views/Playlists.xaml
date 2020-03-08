@@ -14,8 +14,8 @@
       >
 
     <Grid>
-        <!-- Title -->
-        <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" Text="Playlists" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="24"/>
+        <!-- Title --><!--
+        <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" Text="Playlists" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFC8C8C8" FontSize="24"/>-->
 
         <!-- Exit button -->
         <Button x:Name="exitClick" Style="{DynamicResource exit}" Content="×" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,3,0" Click="Exit_Click" Foreground="White" BorderBrush="{x:Null}" Padding="5,-4,5,2" FontSize="20">
@@ -29,7 +29,7 @@
             </Button.Background>
         </Button>
 
-        <ScrollViewer Margin="0,75,0,100" VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer Margin="0,40,0,100" VerticalScrollBarVisibility="Hidden">
             <WrapPanel x:Name ="playlists" Orientation="Horizontal" ItemHeight="175" ItemWidth="200" HorizontalAlignment="Center">
                 <!-- Populated here -->
             </WrapPanel>

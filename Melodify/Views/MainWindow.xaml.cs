@@ -35,6 +35,8 @@ namespace Melodify
 
                 Properties.Settings.Default.mainLeft = Left;
                 Properties.Settings.Default.mainTop = Top;
+
+                Properties.Settings.Default.firstLaunch = false;
             } else
             {
                 Left = Properties.Settings.Default.mainLeft;
@@ -75,7 +77,6 @@ namespace Melodify
             }
 
             // User now ran the software at least once
-            Properties.Settings.Default.firstLaunch = false;
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -272,8 +273,18 @@ namespace Melodify
 
         private void CMExit_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.mainTop = Top;
-            Properties.Settings.Default.mainLeft = Left;
+            if (TaskContext.Header.ToString() == "Main View")
+            {
+                Properties.Settings.Default.taskTop = Top;
+                Properties.Settings.Default.taskLeft = Left;
+            }
+            else
+            {
+                Properties.Settings.Default.mainTop = Top;
+                Properties.Settings.Default.mainLeft = Left;
+            }
+
+            Properties.Settings.Default.Save();
             Application.Current.Shutdown();
         }
 
@@ -373,6 +384,7 @@ namespace Melodify
                 // Save the values we've gotten for Main View
                 Properties.Settings.Default.mainTop = Top;
                 Properties.Settings.Default.mainLeft = Left;
+
                 if (Properties.Settings.Default.firstTaskView)
                 {
                     Top = SystemParameters.WorkArea.Height;
@@ -382,7 +394,7 @@ namespace Melodify
                 else
                 {
                     Top = Properties.Settings.Default.taskTop;
-                    Left = Properties.Settings.Default.mainLeft;
+                    Left = Properties.Settings.Default.taskLeft;
                 }
 
                 Height = SystemParameters.PrimaryScreenHeight - SystemParameters.WorkArea.Height;
@@ -405,6 +417,7 @@ namespace Melodify
                 Title.Margin = new Thickness(0, 0, 0, 20);
 
                 // Save the values we've gotten for Task View
+
                 Properties.Settings.Default.taskTop = Top;
                 Properties.Settings.Default.taskLeft = Left;
 
@@ -426,7 +439,7 @@ namespace Melodify
 
         private void ResetPosition_Click(object sender, RoutedEventArgs e)
         {
-            if (TaskContext.Header.ToString() == "Task View")
+            if (TaskContext.Header.ToString() == "Main View")
             {
                 Top = SystemParameters.WorkArea.Height;
                 Left = SystemParameters.WorkArea.Width - Width - (Width / 2);

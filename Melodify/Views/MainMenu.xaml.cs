@@ -37,7 +37,7 @@ namespace Melodify
 
         private async void User_Click(object sender, RoutedEventArgs e)
         {
-            userText.Text = "\n♬\n";
+            userText.Text = "\n♨\n";
             // Await to make UI update before moving on to window
             await Task.Delay(25).ConfigureAwait(true);
             UserInfo userInfo = new UserInfo();

@@ -148,7 +148,6 @@ namespace Melodify
 
             // Create the hover
             ellipseHover.Height = 100;
-            ellipseHover.Name = "test";
             ellipseHover.Width = 100;
             ellipseHover.Fill = imageBrushHover;
             ellipseHover.Opacity = 0.8;

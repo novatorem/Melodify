@@ -60,6 +60,7 @@
     <ROW Component="SpotifyAPI.Web.dll" ComponentId="{5C40B508-86AD-4142-B393-04CCFFF5CD79}" Directory_="APPDIR" Attributes="0" KeyPath="SpotifyAPI.Web.dll"/>
     <ROW Component="Unosquare.Labs.EmbedIO.dll" ComponentId="{6E354C59-DD01-4FA0-8C95-EF65D83EF541}" Directory_="APPDIR" Attributes="0" KeyPath="Unosquare.Labs.EmbedIO.dll"/>
     <ROW Component="Unosquare.Swan.Lite.dll" ComponentId="{41F57133-744B-4F78-B0E8-CA97D9EA6B7D}" Directory_="APPDIR" Attributes="0" KeyPath="Unosquare.Swan.Lite.dll"/>
+    <ROW Component="WpfAnimatedGif.dll" ComponentId="{0D53CC17-90B0-45E6-B6A9-47B7F6725E5D}" Directory_="APPDIR" Attributes="0" KeyPath="WpfAnimatedGif.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -82,6 +83,7 @@
     <ROW File="SpotifyAPI.Web.dll" Component_="SpotifyAPI.Web.dll" FileName="SPOTIF~2.DLL|SpotifyAPI.Web.dll" Attributes="0" SourcePath="..\Melodify\bin\Release\SpotifyAPI.Web.dll" SelfReg="false"/>
     <ROW File="Unosquare.Labs.EmbedIO.dll" Component_="Unosquare.Labs.EmbedIO.dll" FileName="UNOSQU~1.DLL|Unosquare.Labs.EmbedIO.dll" Attributes="0" SourcePath="..\Melodify\bin\Release\Unosquare.Labs.EmbedIO.dll" SelfReg="false"/>
     <ROW File="Unosquare.Swan.Lite.dll" Component_="Unosquare.Swan.Lite.dll" FileName="UNOSQU~2.DLL|Unosquare.Swan.Lite.dll" Attributes="0" SourcePath="..\Melodify\bin\Release\Unosquare.Swan.Lite.dll" SelfReg="false"/>
+    <ROW File="WpfAnimatedGif.dll" Component_="WpfAnimatedGif.dll" FileName="WPFANI~1.DLL|WpfAnimatedGif.dll" Attributes="0" SourcePath="..\Melodify\bin\Release\WpfAnimatedGif.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -173,6 +175,7 @@
     <ROW Feature_="MainFeature" Component_="SpotifyAPI.Web.dll"/>
     <ROW Feature_="MainFeature" Component_="Unosquare.Labs.EmbedIO.dll"/>
     <ROW Feature_="MainFeature" Component_="Unosquare.Swan.Lite.dll"/>
+    <ROW Feature_="MainFeature" Component_="WpfAnimatedGif.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="melodify.exe" SourcePath="..\Melodify\Resources\melodify.ico" Index="0"/>

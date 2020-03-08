@@ -36,6 +36,7 @@ namespace Melodify
         {
             personalText.Text = "♨\n";
             // Await to make UI update before moving on to window
+            //Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new PlaylistMenu());
             await Task.Delay(25).ConfigureAwait(true);
             Playlists playlists = new Playlists();
             playlists.Show();

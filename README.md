@@ -18,12 +18,12 @@ Yet another spotify "client" that runs alongisde the program, removing certain f
   <tr>
     <td>Music Videos in full screen</td>
     <td>Full user statistics and info</td>
-    <td><sub><sup>🚧</sup></sub> Lyrics in full screen</td>
+    <td><sub><sup>🚧</sup></sub> .NET 5.0 <sub><sup>🚧</sup></sub></td>
   </tr>
 </table>
 
 ## Overview
-![](images/main.JPG) ![](images/melodify.gif)
+[![](images/Full-Preview.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591740210.mp4)
 
 The default view of the application. The blue circles are just recorded clicks, to show some functionality.
 
@@ -48,10 +48,17 @@ Blue | `left`/`right` | Returns to previous song or skips current song
 Black | ⠀ | Allows dragging of window to desired location
 ⠀ | `f` | Resizes to fullscreen
 
+#### User Info View (click for sound)
+[![](images/User-Info.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591738564.mp4)
+
+#### Top Songs View (click for sound)
+[![](images/Songs.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591738502.mp4)
+
+#### Top Artists View (click for sound)
+[![](images/Artists.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591738245.mp4)
+
 #### Fullscreen View
 ![](images/fullscreen.jpg)
-#### Top Songs View (click for sound)
-[![Preview Top Songs](images/topSongs.gif)](https://streamable.com/m08hx)
 
 There are other features in play, with a number more planned! I work on this during the weekends, but you're also welcome to submit feature or pull requests at any point.
 

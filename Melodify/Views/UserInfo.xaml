@@ -45,12 +45,12 @@
 
             <!-- Genre info -->
 
-            <TextBlock Text="━━━━━━━━━━━━━━━━━            🎜            Top Genres            🎝            ━━━━━━━━━━━━━━━━━" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center" Margin="0,115,0,0"/>
-            <WrapPanel x:Name ="genreInfo" Orientation="Horizontal" ItemHeight="175" ItemWidth="200" Margin="0,185,0,0">
+            <TextBlock Text="🎜            Top Genres            🎝" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center" Margin="0,115,0,0"/>
+            <WrapPanel x:Name ="genreInfo" Orientation="Horizontal" HorizontalAlignment="Center" ItemHeight="175" ItemWidth="200" Margin="0,185,0,0">
                 <!-- Automatically populated in *.cs -->
             </WrapPanel>
 
-            <TextBlock Text="━━━━━━━━━━━━━━━━━            🎜            Top Artists            🎝            ━━━━━━━━━━━━━━━━━" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center" Margin="0,550,0,0"/>
+            <TextBlock Text="🎜            Top Artists            🎝" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="32" HorizontalAlignment="Center" Margin="0,550,0,0"/>
             <WrapPanel x:Name ="artInfo" Orientation="Horizontal" HorizontalAlignment="Center" ItemHeight="175" ItemWidth="450" Margin="0,465,0,0">
                 <TextBlock Text="Short Term" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="24" Margin="0,140,0,0" HorizontalAlignment="Center"/>
                 <TextBlock Text="Medium Term" TextWrapping="Wrap" Foreground="#FFC8C8C8" FontSize="24" Margin="0,140,0,0" HorizontalAlignment="Center"/>

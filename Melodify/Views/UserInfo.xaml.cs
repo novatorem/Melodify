@@ -45,11 +45,19 @@ namespace Melodify
             PrivateProfile user = _spotify.GetPrivateProfile();
             try
             {
-                BitmapImage bimage = new BitmapImage();
-                bimage.BeginInit();
-                bimage.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
-                bimage.EndInit();
-                userCover.Source = bimage;
+                BitmapImage userArt = new BitmapImage();
+                userArt.BeginInit();
+                try
+                {
+                    userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+                    userArt.EndInit();
+                }
+                catch
+                {
+                    userArt.UriSource = new Uri("https://source.unsplash.com/random/600x600", UriKind.Absolute);
+                    userArt.EndInit();
+                }
+                userCover.Source = userArt;
                 userCover.SetValue(WidthProperty, DependencyProperty.UnsetValue);
                 userCover.SetValue(HeightProperty, DependencyProperty.UnsetValue);
 
@@ -101,9 +109,6 @@ namespace Melodify
                         break;
                 }
                 popMetrics.Text = "Your favorite artsits are in the " + AddOrdinal(popularity) + " percentile of popularity, rather " + popularitStatement + " musicians.";
-
-                // Genre text
-
             }
             catch (Exception e)
             {
@@ -131,8 +136,15 @@ namespace Melodify
 
             BitmapImage userArt = new BitmapImage();
             userArt.BeginInit();
-            userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
-            userArt.EndInit();
+            try
+            {
+                userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+                userArt.EndInit();
+            } catch
+            {
+                userArt.UriSource = new Uri("https://source.unsplash.com/random/600x600", UriKind.Absolute);
+                userArt.EndInit();
+            }
 
             List<string> genres = new List<string>();
 
@@ -304,8 +316,16 @@ namespace Melodify
 
             BitmapImage userArt = new BitmapImage();
             userArt.BeginInit();
-            userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
-            userArt.EndInit();
+            try
+            {
+                userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+                userArt.EndInit();
+            }
+            catch
+            {
+                userArt.UriSource = new Uri("https://source.unsplash.com/random/600x600", UriKind.Absolute);
+                userArt.EndInit();
+            }
 
             List<FullArtist> artists = new List<FullArtist>();
             artists.Add(_spotify.GetUsersTopArtists(timeRange: TimeRangeType.ShortTerm, limit: 1).Items[0]);

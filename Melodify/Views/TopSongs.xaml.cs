@@ -44,9 +44,9 @@ namespace Melodify
 
             BitmapImage userArt = new BitmapImage();
             userArt.BeginInit();
-            userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute);
+            try { userArt.UriSource = new Uri(user.Images[0].Url, UriKind.Absolute); }
+            catch { userArt.UriSource = new Uri("https://source.unsplash.com/random/600x600", UriKind.Absolute); }
             userArt.EndInit();
-
             userCover.Source = userArt;
 
             foreach (FullTrack track in tracks.Items)

@@ -39,8 +39,9 @@ namespace Melodify
                 Properties.Settings.Default.firstLaunch = false;
             } else
             {
-                Left = Properties.Settings.Default.mainLeft;
-                Top = Properties.Settings.Default.mainTop;
+                ;
+                //Left = Properties.Settings.Default.mainLeft;
+                //Top = Properties.Settings.Default.mainTop;
             }
 
             // Initalize some instances to ensure continuing playback
@@ -127,9 +128,6 @@ namespace Melodify
                             animation.FillBehavior = FillBehavior.Stop;
                             progressBar.BeginAnimation(Rectangle.WidthProperty, animation);
                             progressBar.Width = ((double)(context.ProgressMs) / (double)(progress)) * this.Width;
-
-                            Debug.WriteLine(IsActive);
-                            IsEnabled = true;
                         }
                         else
                         {

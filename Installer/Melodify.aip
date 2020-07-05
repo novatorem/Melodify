@@ -45,22 +45,22 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{66CBF4C7-424D-4D0F-98A9-6F3C3CBF5622}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="Google.Apis.Auth.PlatformServices.dll" ComponentId="{C3D2C58E-7FFC-4C04-B673-0A779CD88086}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.Auth.PlatformServices.dll"/>
-    <ROW Component="Google.Apis.Auth.dll" ComponentId="{DCD9940B-CBE7-4879-9CFD-049F1242AB76}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.Auth.dll"/>
-    <ROW Component="Google.Apis.Core.dll" ComponentId="{98B07B09-2EEC-4839-93D9-C36F304E2061}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.Core.dll"/>
-    <ROW Component="Google.Apis.YouTube.v3.dll" ComponentId="{8433B077-042C-4325-A6CC-D6BF2FEBBA62}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.YouTube.v3.dll"/>
-    <ROW Component="Google.Apis.dll" ComponentId="{1EFAAB8E-2DAB-43C4-A607-6A33E570893F}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.dll"/>
-    <ROW Component="Melodify.deps.json" ComponentId="{81F51A9E-6F59-4F73-A395-F2E79043C1C5}" Directory_="APPDIR" Attributes="0" KeyPath="Melodify.deps.json" Type="0"/>
-    <ROW Component="Melodify.dll" ComponentId="{37FEE6D6-4269-4BF4-B4C7-1BEEF88A203B}" Directory_="APPDIR" Attributes="0" KeyPath="Melodify.dll"/>
+    <ROW Component="Google.Apis.Auth.PlatformServices.dll" ComponentId="{D4A35483-A9ED-48D7-BED0-F96E1C937BF9}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.Auth.PlatformServices.dll"/>
+    <ROW Component="Google.Apis.Auth.dll" ComponentId="{F9DB5D16-D688-4222-A6C3-27D2B6F48C39}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.Auth.dll"/>
+    <ROW Component="Google.Apis.Core.dll" ComponentId="{0E04A2C7-48A7-473E-8A14-0FDFF5F22E4D}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.Core.dll"/>
+    <ROW Component="Google.Apis.YouTube.v3.dll" ComponentId="{916C42E3-BBA7-465B-926A-48CE87F1BF25}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.YouTube.v3.dll"/>
+    <ROW Component="Google.Apis.dll" ComponentId="{B9EA636F-F33C-43E0-9976-90819F67EBB3}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Apis.dll"/>
+    <ROW Component="Melodify.deps.json" ComponentId="{A139ABFE-A503-4D34-8F54-219177CDE7A0}" Directory_="APPDIR" Attributes="0" KeyPath="Melodify.deps.json" Type="0"/>
+    <ROW Component="Melodify.dll" ComponentId="{502750FB-8BA2-495B-88A8-7D16628E136D}" Directory_="APPDIR" Attributes="0" KeyPath="Melodify.dll"/>
     <ROW Component="Melodify.exe" ComponentId="{26989232-20BB-41BC-B15B-A5E8B570A366}" Directory_="APPDIR" Attributes="0" KeyPath="Melodify.exe"/>
-    <ROW Component="Microsoft.Toolkit.Wpf.UI.Controls.WebView.dll" ComponentId="{1F2B8F3F-12F4-4787-97B3-22C53C7861D6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Wpf.UI.Controls.WebView.dll"/>
-    <ROW Component="Newtonsoft.Json.dll" ComponentId="{262C3DCF-B4A1-4228-BEB4-C618C6FBA6A0}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Microsoft.Toolkit.Wpf.UI.Controls.WebView.dll" ComponentId="{DC6A5DBC-CC8C-4C53-9A5B-43271EB1864F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Toolkit.Wpf.UI.Controls.WebView.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{4AC2DF47-521B-47F6-B88F-3A2B7D7825EB}" Directory_="APPDIR" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="ProductInformation" ComponentId="{BB2F2C16-4E0B-4D34-9490-10DA61FC7F0A}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SpotifyAPI.Web.Auth.dll" ComponentId="{EC68DB6E-6233-4176-BAE0-3646AA737FCE}" Directory_="APPDIR" Attributes="0" KeyPath="SpotifyAPI.Web.Auth.dll"/>
-    <ROW Component="SpotifyAPI.Web.dll" ComponentId="{5C40B508-86AD-4142-B393-04CCFFF5CD79}" Directory_="APPDIR" Attributes="0" KeyPath="SpotifyAPI.Web.dll"/>
-    <ROW Component="Unosquare.Labs.EmbedIO.dll" ComponentId="{6E354C59-DD01-4FA0-8C95-EF65D83EF541}" Directory_="APPDIR" Attributes="0" KeyPath="Unosquare.Labs.EmbedIO.dll"/>
-    <ROW Component="Unosquare.Swan.Lite.dll" ComponentId="{41F57133-744B-4F78-B0E8-CA97D9EA6B7D}" Directory_="APPDIR" Attributes="0" KeyPath="Unosquare.Swan.Lite.dll"/>
-    <ROW Component="WpfAnimatedGif.dll" ComponentId="{0D53CC17-90B0-45E6-B6A9-47B7F6725E5D}" Directory_="APPDIR" Attributes="0" KeyPath="WpfAnimatedGif.dll"/>
+    <ROW Component="SpotifyAPI.Web.Auth.dll" ComponentId="{684B33C3-6238-4162-B56E-C69B15181C1C}" Directory_="APPDIR" Attributes="0" KeyPath="SpotifyAPI.Web.Auth.dll"/>
+    <ROW Component="SpotifyAPI.Web.dll" ComponentId="{0B815A30-CF8D-4681-9CCB-8A9771552CB3}" Directory_="APPDIR" Attributes="0" KeyPath="SpotifyAPI.Web.dll"/>
+    <ROW Component="Unosquare.Labs.EmbedIO.dll" ComponentId="{4E743786-789A-4289-B68B-28B1D4164659}" Directory_="APPDIR" Attributes="0" KeyPath="Unosquare.Labs.EmbedIO.dll"/>
+    <ROW Component="Unosquare.Swan.Lite.dll" ComponentId="{03C315AF-C843-4495-BF8C-E4738F41C765}" Directory_="APPDIR" Attributes="0" KeyPath="Unosquare.Swan.Lite.dll"/>
+    <ROW Component="WpfAnimatedGif.dll" ComponentId="{6FA5A659-2EC2-4442-BC14-2366C89D4658}" Directory_="APPDIR" Attributes="0" KeyPath="WpfAnimatedGif.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -161,8 +161,8 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
-    <ROW Feature_="MainFeature" Component_="Google.Apis.Auth.dll"/>
     <ROW Feature_="MainFeature" Component_="Melodify.exe"/>
+    <ROW Feature_="MainFeature" Component_="Google.Apis.Auth.dll"/>
     <ROW Feature_="MainFeature" Component_="Google.Apis.Auth.PlatformServices.dll"/>
     <ROW Feature_="MainFeature" Component_="Google.Apis.Core.dll"/>
     <ROW Feature_="MainFeature" Component_="Google.Apis.dll"/>

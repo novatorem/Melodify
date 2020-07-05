@@ -39,7 +39,7 @@
         <!-- The populated section -->
         <Grid Margin="15,60,15,5">
             <!-- Artist's metrics -->
-            <WrapPanel x:Name ="uArtists" Orientation="Horizontal" ItemHeight="175" ItemWidth="200">
+            <WrapPanel x:Name ="uArtists" Orientation="Horizontal" HorizontalAlignment="Center" ItemHeight="175" ItemWidth="200">
                 <!-- Automatically populated in *.cs -->
             </WrapPanel>
         </Grid>

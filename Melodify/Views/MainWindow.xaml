@@ -12,12 +12,12 @@
         Height="100"
         Width="360"
         WindowStyle="None"
-        WindowStartupLocation="Manual" 
-        Left="0" Top="0"
+        WindowStartupLocation="Manual"
         Topmost="True"
         KeyDown="Window_KeyDown"
         MouseDown="Window_MouseDown"
-        MouseDoubleClick="Window_MouseDoubleClick">
+        MouseDoubleClick="Window_MouseDoubleClick"
+        >
 
     <Grid x:Name="MainGrid" MouseEnter="MainGrid_MouseEnter" MouseLeave="MainGrid_MouseLeave" MouseWheel="Mouse_Wheel" AllowDrop="True">
 

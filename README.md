@@ -23,9 +23,9 @@ Yet another spotify "client" that runs alongisde the program, removing certain f
 </table>
 
 ## Overview
-[![](images/Full-Preview.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591740210.mp4)
+[![](images/Full-Preview.gif)](https://giant.gfycat.com/QuestionableClassicGalapagostortoise.webm)
 
-The default view of the application. The blue circles are just recorded clicks, to show some functionality.
+The default view of the application! Click the gifs for a sound preview.
 
 Hovering over it reveals four buttons that perform the following:
 
@@ -49,13 +49,13 @@ Black | ⠀ | Allows dragging of window to desired location
 ⠀ | `f` | Resizes to fullscreen
 
 #### User Info View (click for sound)
-[![](images/User-Info.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591738564.mp4)
+[![](images/User-Info.gif)](https://giant.gfycat.com/ScentedCoarseJellyfish.webm)
 
 #### Top Songs View (click for sound)
-[![](images/Songs.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591738502.mp4)
+[![](images/Songs.gif)](https://giant.gfycat.com/IgnorantEnragedDodobird.webm)
 
 #### Top Artists View (click for sound)
-[![](images/Artists.gif)](https://cdnvistreamviz.r.worldssl.net/uploads/1591738245.mp4)
+[![](images/Artists.gif)](https://giant.gfycat.com/AchingTatteredBaiji.webm)
 
 #### Fullscreen View
 ![](images/fullscreen.jpg)

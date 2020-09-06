@@ -1,6 +1,7 @@
 # Melodify
 
-Yet another spotify "client" that runs alongisde the program, removing certain features and adding others. This program uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) in a WPF .NET Core application.
+Yet another spotify client that focuses on presentation and user statistics, exposing a number of API calls.  
+This program uses [SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET) in a WPF .NET Core application.
 
 ## Features
 
@@ -59,8 +60,6 @@ Black | ⠀ | Allows dragging of window to desired location
 
 #### Fullscreen View
 ![](images/fullscreen.jpg)
-
-There are other features in play, with a number more planned! I work on this during the weekends, but you're also welcome to submit feature or pull requests at any point.
 
 ## Installation
 

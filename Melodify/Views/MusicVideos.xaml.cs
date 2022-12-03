@@ -107,6 +107,16 @@ namespace Melodify
             {
                 Spotify.NextSong();
             }
+            else if ((e.VirtualKey == Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.VirtualKey.F4 && Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
+               ^ e.VirtualKey == Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.VirtualKey.Escape)
+            {
+                timer.Stop();
+                webView.Navigate((Uri)null);
+                this.Close();
+                Spotify.GetSetVolume(_volume);
+                _window.FullNow(false);
+                _window.Visibility = Visibility.Visible;
+            }
             else if (e.Key == Key.Escape)
             {
                 timer.Stop();
@@ -129,20 +139,6 @@ namespace Melodify
         {
             webView.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             webView.Focus();
-        }
-
-        private void WebView_AcceleratorKeyPressed(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlAcceleratorKeyPressedEventArgs e)
-        {
-            if ((e.VirtualKey == Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.VirtualKey.F4 && Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
-               ^ e.VirtualKey == Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.VirtualKey.Escape)
-            {
-                timer.Stop();
-                webView.Navigate((Uri)null);
-                this.Close();
-                Spotify.GetSetVolume(_volume);
-                _window.FullNow(false);
-                _window.Visibility = Visibility.Visible;
-            }
         }
     }
 }

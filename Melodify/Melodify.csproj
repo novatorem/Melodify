@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Authors>Andrew Novac</Authors>
     <Company>Novatorem</Company>
@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/novatorem/Melodify</PackageProjectUrl>
     <RepositoryUrl>https://github.com/novatorem/Melodify.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>0.3.1</Version>
+    <Version>0.4.0</Version>
     <ApplicationIcon>Resources/melodify.ico</ApplicationIcon>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
@@ -25,14 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.44.1.1869" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.57.0.2827" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls.WebView" Version="6.0.0" />
-    <PackageReference Include="SpotifyAPI.Web.Auth" Version="5.1.0" />
-    <PackageReference Include="WpfAnimatedGif" Version="1.4.18" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1418.22" />
+    <PackageReference Include="SpotifyAPI.Web.Auth" Version="6.3.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
